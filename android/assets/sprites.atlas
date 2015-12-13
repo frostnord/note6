@@ -1,0 +1,278 @@
+
+sprites.png
+size: 2048,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+4324234
+  rotate: false
+  xy: 1270, 185
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: -1
+note
+  rotate: false
+  xy: 1270, 185
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: 1
+BassButton
+  rotate: false
+  xy: 1282, 260
+  size: 380, 380
+  orig: 380, 380
+  offset: 0, 0
+  index: -1
+LearningScrip_mid
+  rotate: false
+  xy: 1860, 73
+  size: 186, 186
+  orig: 186, 186
+  offset: 0, 0
+  index: -1
+PlayButton
+  rotate: false
+  xy: 1663, 260
+  size: 380, 380
+  orig: 380, 380
+  offset: 0, 0
+  index: -1
+ReflectBass
+  rotate: false
+  xy: 1282, 641
+  size: 380, 381
+  orig: 380, 381
+  offset: 0, 0
+  index: -1
+ReflectPlay
+  rotate: false
+  xy: 1663, 641
+  size: 380, 381
+  orig: 380, 381
+  offset: 0, 0
+  index: -1
+ScripVertZnak
+  rotate: false
+  xy: 802, 149
+  size: 467, 152
+  orig: 467, 152
+  offset: 0, 0
+  index: -1
+acarolabs
+  rotate: false
+  xy: 1603, 49
+  size: 256, 210
+  orig: 256, 210
+  offset: 0, 0
+  index: -1
+backgroundMenu
+  rotate: false
+  xy: 1, 302
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: -1
+keybord
+  rotate: false
+  xy: 802, 16
+  size: 800, 132
+  orig: 800, 132
+  offset: 0, 0
+  index: -1
+lineImg
+  rotate: false
+  xy: 1573, 191
+  size: 5, 68
+  orig: 5, 68
+  offset: 0, 0
+  index: -1
+lines
+  rotate: false
+  xy: 1, 1
+  size: 800, 300
+  orig: 800, 300
+  offset: 0, 0
+  index: -1
+note
+  rotate: false
+  xy: 1371, 185
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: 2
+note
+  rotate: false
+  xy: 1472, 185
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: 3
+sound_on
+  rotate: false
+  xy: 1860, 23
+  size: 49, 49
+  orig: 49, 49
+  offset: 0, 0
+  index: -1
+
+sprites2.png
+size: 2048,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+PracticeBass_middle
+  rotate: false
+  xy: 1183, 261
+  size: 119, 120
+  orig: 119, 120
+  offset: 0, 0
+  index: -1
+PracticeScrip_right
+  rotate: false
+  xy: 1183, 382
+  size: 186, 186
+  orig: 186, 186
+  offset: 0, 0
+  index: -1
+ReflectScrip
+  rotate: false
+  xy: 802, 568
+  size: 380, 381
+  orig: 380, 381
+  offset: 0, 0
+  index: -1
+ScripButton
+  rotate: false
+  xy: 802, 187
+  size: 380, 380
+  orig: 380, 380
+  offset: 0, 0
+  index: -1
+ScripGorZnak
+  rotate: false
+  xy: 1564, 746
+  size: 81, 203
+  orig: 81, 203
+  offset: 0, 0
+  index: -1
+SetingsButton
+  rotate: false
+  xy: 247, 1
+  size: 145, 136
+  orig: 145, 136
+  offset: 0, 0
+  index: -1
+TreningBass_left
+  rotate: false
+  xy: 1370, 449
+  size: 118, 119
+  orig: 118, 119
+  offset: 0, 0
+  index: -1
+TreningScrip_left
+  rotate: false
+  xy: 1183, 569
+  size: 380, 380
+  orig: 380, 380
+  offset: 0, 0
+  index: -1
+backgroundGame
+  rotate: false
+  xy: 1, 469
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+doKeyImg
+  rotate: false
+  xy: 1599, 613
+  size: 33, 132
+  orig: 33, 132
+  offset: 0, 0
+  index: -1
+keybord2
+  rotate: false
+  xy: 1, 1
+  size: 245, 136
+  orig: 245, 136
+  offset: 0, 0
+  index: -1
+laKeyImg
+  rotate: false
+  xy: 1564, 613
+  size: 34, 132
+  orig: 34, 132
+  offset: 0, 0
+  index: -1
+linesGoriz
+  rotate: false
+  xy: 1, 138
+  size: 800, 330
+  orig: 800, 330
+  offset: 0, 0
+  index: -1
+miKeyImg
+  rotate: false
+  xy: 1303, 249
+  size: 33, 132
+  orig: 33, 132
+  offset: 0, 0
+  index: -1
+note
+  rotate: false
+  xy: 1646, 875
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: 4
+note
+  rotate: false
+  xy: 393, 63
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: 5
+note
+  rotate: false
+  xy: 1646, 800
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: 6
+note
+  rotate: false
+  xy: 1747, 875
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: 7
+note_grey
+  rotate: false
+  xy: 494, 63
+  size: 100, 74
+  orig: 100, 74
+  offset: 0, 0
+  index: -1
+reKeyImg
+  rotate: false
+  xy: 1337, 249
+  size: 33, 132
+  orig: 33, 132
+  offset: 0, 0
+  index: -1
+siKeyImg
+  rotate: false
+  xy: 1489, 436
+  size: 33, 132
+  orig: 33, 132
+  offset: 0, 0
+  index: -1
+solKeyImg
+  rotate: false
+  xy: 1523, 436
+  size: 33, 132
+  orig: 33, 132
+  offset: 0, 0
+  index: -1
