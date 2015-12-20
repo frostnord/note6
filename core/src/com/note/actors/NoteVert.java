@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.note.enums.GameState;
 import com.note.game.Assets;
 import com.note.screens.DirectedGame;
@@ -24,7 +25,7 @@ public class NoteVert extends Actor {
     private GameState gameState;
     private boolean isSecond;
 
-
+    private Label label;
     private Vector2 position;
     private String note ;
     public Vector2 dimension;
@@ -33,6 +34,7 @@ public class NoteVert extends Actor {
     public float rotation1;
     private BitmapFont font;
     private boolean move ;
+    private int lineNamber;
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -40,19 +42,19 @@ public class NoteVert extends Actor {
 
         lineImg= Assets.instance.decoration.lineImg;
         if (note.equals("do")){
-            textureRegion = Assets.instance.note.noteRedDo;
+            textureRegion = Assets.instance.note.noteRedDoVert;
         }else if (note.equals("re")){
-            textureRegion = Assets.instance.note.noteOrangeRe;
+            textureRegion = Assets.instance.note.noteOrangeReVert;
         }else if (note.equals("mi")){
-            textureRegion = Assets.instance.note.noteYellowMi;
+            textureRegion = Assets.instance.note.noteYellowMiVert;
         }else if (note.equals("fa")){
-            textureRegion = Assets.instance.note.noteGreenFa;
+            textureRegion = Assets.instance.note.noteGreenFaVert;
         }else if (note.equals("sol")){
-            textureRegion = Assets.instance.note.noteBlueSol;
+            textureRegion = Assets.instance.note.noteBlueSolVert;
         }else if (note.equals("la")){
-            textureRegion = Assets.instance.note.noteSiniiLa;
+            textureRegion = Assets.instance.note.noteSiniiLaVert;
         }else if (note.equals("si")){
-            textureRegion = Assets.instance.note.notePurpleSi;
+            textureRegion = Assets.instance.note.notePurpleSiVert;
         }
 
 //        switch ((int)index){
@@ -61,43 +63,64 @@ public class NoteVert extends Actor {
 //                return;
 //        }
         if (index== 5){
-            batch.draw(lineImg,192 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight());
+            lineNamber = 1 ;
+            batch.draw(lineImg,192 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight()+40);
         }
         if (index == 4) {
-            batch.draw(lineImg,192 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight());
+            lineNamber = 1;
+            batch.draw(lineImg,192 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight()+40);
         }
         if ((index == 3)||(index == 2)) {
-            batch.draw(lineImg, 125, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
-            batch.draw(lineImg, 192, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
+            lineNamber = 2;
+            batch.draw(lineImg, 125, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40 );
+            batch.draw(lineImg, 192, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
         }
         if ((index== 1)||(index == 0)){
-            batch.draw(lineImg, 192, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
-            batch.draw(lineImg, 125, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
-            batch.draw(lineImg, 55, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
+            lineNamber = 3;
+            batch.draw(lineImg, 192, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
+            batch.draw(lineImg, 125, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
+            batch.draw(lineImg, 55, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
         }
         if (index== 17){
-            batch.draw(lineImg,600 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight());
+            lineNamber = 1;
+            batch.draw(lineImg,600 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight()+40);
         }
         if (index==18){
-            batch.draw(lineImg,600 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight());
+            lineNamber = 1;
+            batch.draw(lineImg,600 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight()+40);
         }
         if ((index == 19)||(index==20)){
-            batch.draw(lineImg, 600, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
-            batch.draw(lineImg, 668, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
+            lineNamber = 2;
+            batch.draw(lineImg, 600, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
+            batch.draw(lineImg, 668, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
         }
         if ((index == 21)||(index==22)){
-            batch.draw(lineImg, 600, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
-            batch.draw(lineImg, 670, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
-            batch.draw(lineImg, 739, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight());
+            lineNamber = 3;
+            batch.draw(lineImg, 600, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
+            batch.draw(lineImg, 670, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
+            batch.draw(lineImg, 739, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
         }
         if (isSecond) {
-            textureRegion = Assets.instance.note.note_grey;
+            textureRegion = Assets.instance.note.note_greyVert;
         }
-        batch.draw(textureRegion, position.x, position.y, Constants.APP_WIDTH / 12, Constants.APP_HEIGHT / 10);
+        batch.draw(textureRegion, position.x + 0 , position.y + 5, Constants.APP_WIDTH /12, Constants.APP_WIDTH / 10);
+
+
+
 
         this.font = Assets.instance.fonts.levelCompleted;
         font.setColor(0, 0, 0, 1);
-        font.draw(batch, note, position.x+32,  position.y+45);
+        if (lineNamber > 0) {
+            font.draw(batch, Integer.toString(lineNamber), position.x + 0, position.y + 100);
+        }
+        if (!note.equals("sol")) {
+            font.draw(batch, note, position.x+15,  position.y + 55);
+//                label.setPosition(position.x + 15 , position.y + 55);
+
+        }else {
+            font.draw(batch, note, position.x + 12, position.y + 55);
+//            label.setPosition(position.x + 10 , position.y + 55);
+        }
 //        font.drawMultiLine(batch, Float.toString( index), position.x+50, position.y, 0, BitmapFont.HAlignment.CENTER);
 //        if (GameManager.ourInstance.getGameState()== GameState.WAITKEYPRESS) {
     }
@@ -105,6 +128,9 @@ public class NoteVert extends Actor {
         this.game = directedGame;
         randomNote();
         this.move= true;
+//        Skin skin2 = new Skin();
+//        label = new Label(note,skin2);
+//        label.setRotation(-90.0f);
 //        index = 18;
 //        note ="mi";
         position = new Vector2(Constants.APP_WIDTH / (23) * index - 8, Constants.APP_HEIGHT - (Constants.APP_HEIGHT/5));
@@ -172,7 +198,7 @@ public class NoteVert extends Actor {
     public void act(float delta) {
         super.act(delta);
         if  (GameManager.ourInstance.getGameState()== GameState.MOVE) {
-            position.y -= 1;
+            position.y -= 50* delta;
         }
     }
 

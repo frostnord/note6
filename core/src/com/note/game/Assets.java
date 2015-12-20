@@ -16,7 +16,6 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 public class Assets implements AssetErrorListener, Disposable {
@@ -77,39 +76,50 @@ public class Assets implements AssetErrorListener, Disposable {
     }
 
     public class AssetNote {
-        public final AtlasRegion noteRedDo;
-        public final AtlasRegion noteOrangeRe;
-        public final AtlasRegion noteYellowMi;
-        public final AtlasRegion noteBlueSol;
-        public final AtlasRegion noteGreenFa;
-        public final AtlasRegion noteSiniiLa;
-        public final AtlasRegion notePurpleSi;
-        public final AtlasRegion note_grey;
+        public final AtlasRegion noteRedDoVert;
+        public final AtlasRegion noteOrangeReVert;
+        public final AtlasRegion noteYellowMiVert;
+        public final AtlasRegion noteBlueSolVert;
+        public final AtlasRegion noteGreenFaVert;
+        public final AtlasRegion noteSiniiLaVert;
+        public final AtlasRegion notePurpleSiVert;
+        public final AtlasRegion note_greyVert;
+
         public final Animation noteAni;
 
-        public AssetNote (TextureAtlas atlas) {
-            noteRedDo = atlas.findRegion("note",1);
-            noteOrangeRe = atlas.findRegion("note",2);
-            noteYellowMi = atlas.findRegion("note",3);
-            noteGreenFa = atlas.findRegion("note",4);
-            noteBlueSol = atlas.findRegion("note",5);
-            noteSiniiLa = atlas.findRegion("note",6);
-            notePurpleSi = atlas.findRegion("note",7);
-            note_grey = atlas.findRegion("note_grey");
+        public final AtlasRegion noteRedDoGor;
+        public final AtlasRegion noteOrangeReGor;
+        public final AtlasRegion noteYellowMiGor;
+        public final AtlasRegion noteBlueSolGor;
+        public final AtlasRegion noteGreenFaGor;
+        public final AtlasRegion noteSiniiLaGor;
+        public final AtlasRegion notePurpleSiGor;
+        public final AtlasRegion note_greyGor;
 
-//            Array<AtlasRegion> allFrames = new Array<AtlasRegion>() ;
-//            allFrames.add(noteRedDo);
-//            allFrames.add(noteOrangeRe);
-//            allFrames.add(noteYellowMi);
-//            allFrames.add(noteGreenFa);
-//            allFrames.add(noteBlueSol);
-//            allFrames.add(noteSiniiLa);
-//            allFrames.add(notePurpleSi);
+        public AssetNote (TextureAtlas atlas) {
+            noteRedDoVert = atlas.findRegion("noteV",1);
+            noteOrangeReVert = atlas.findRegion("noteV",2);
+            noteYellowMiVert = atlas.findRegion("noteV",3);
+            noteGreenFaVert = atlas.findRegion("noteV",4);
+            noteBlueSolVert = atlas.findRegion("noteV",5);
+            noteSiniiLaVert = atlas.findRegion("noteV",6);
+            notePurpleSiVert = atlas.findRegion("noteV",7);
+            note_greyVert = atlas.findRegion("note_greyV");
+
+            noteRedDoGor = atlas.findRegion("noteG",1);
+            noteOrangeReGor = atlas.findRegion("noteG",2);
+            noteYellowMiGor = atlas.findRegion("noteG",3);
+            noteGreenFaGor = atlas.findRegion("noteG",4);
+            noteBlueSolGor = atlas.findRegion("noteG",5);
+            noteSiniiLaGor = atlas.findRegion("noteG",6);
+            notePurpleSiGor = atlas.findRegion("noteG",7);
+            note_greyGor = atlas.findRegion("note_greyG");
+
 
 //            Array<AtlasRegion> allFrames = atlas.findRegions("note");
-//            noteAni = new Animation(1.0f / 15.0f, noteRedDo, noteOrangeRe,noteYellowMi,noteGreenFa,noteBlueSol,noteSiniiLa,notePurpleSi,Animation.PlayMode.LOOP);
+//            noteAni = new Animation(1.0f / 15.0f, noteRedDoVert, noteOrangeReVert,noteYellowMiVert,noteGreenFaVert,noteBlueSolVert,noteSiniiLaVert,notePurpleSiVert,Animation.PlayMode.LOOP);
 //            noteAni = new Animation(1.0f / 15.0f , allFrames,Animation.PlayMode.LOOP);
-            this.noteAni = new Animation(1.0f, atlas.findRegions("note"), Animation.PlayMode.LOOP);
+            this.noteAni = new Animation(1.0f, atlas.findRegions("noteV"), Animation.PlayMode.LOOP);
 //            this.noteAni = new Animation(0.1f, atlas.findRegions("zombie_boy/anim_zombie_rising"), Animation.PlayMode.NORMAL);
         }
     }
@@ -234,7 +244,8 @@ public class Assets implements AssetErrorListener, Disposable {
 //            this.levelComplete.setScale(1.0f, 1.0f);
 
             freeTypeFontParameter.size = 35;
-            freeTypeFontParameter.borderWidth= 2;
+//            freeTypeFontParameter.borderWidth= 1;
+
             freeTypeFontParameter.borderColor = Color.BLACK;
             this.levelCompleted = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
             this.levelCompleted.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);

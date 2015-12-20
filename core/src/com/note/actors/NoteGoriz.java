@@ -50,19 +50,19 @@ public class NoteGoriz extends Actor {
 
         lineImg= Assets.instance.decoration.lineImg;
         if (note.equals("Do")){
-            textureRegion = Assets.instance.note.noteRedDo;
+            textureRegion = Assets.instance.note.noteRedDoGor;
         }else if (note.equals("Re")){
-            textureRegion = Assets.instance.note.noteOrangeRe;
+            textureRegion = Assets.instance.note.noteOrangeReGor;
         }else if (note.equals("Mi")){
-            textureRegion = Assets.instance.note.noteYellowMi;
+            textureRegion = Assets.instance.note.noteYellowMiGor;
         }else if (note.equals("Fa")){
-            textureRegion = Assets.instance.note.noteGreenFa;
+            textureRegion = Assets.instance.note.noteGreenFaGor;
         }else if (note.equals("Sol")){
-            textureRegion = Assets.instance.note.noteBlueSol;
+            textureRegion = Assets.instance.note.noteBlueSolGor;
         }else if (note.equals("La")){
-            textureRegion = Assets.instance.note.noteSiniiLa;
+            textureRegion = Assets.instance.note.noteSiniiLaGor;
         }else if (note.equals("Si")){
-            textureRegion = Assets.instance.note.notePurpleSi;
+            textureRegion = Assets.instance.note.notePurpleSiGor;
         }
         noteAni = Assets.instance.note.noteAni;
 
@@ -91,7 +91,7 @@ public class NoteGoriz extends Actor {
             batch.draw(lineImg,position.x - 10 , 431,70,2);
         }
         if (isSecond) {
-            textureRegion = Assets.instance.note.note_grey;
+            textureRegion = Assets.instance.note.note_greyGor;
             ran = 1;
             ranNote = 2;
         }
@@ -100,16 +100,16 @@ public class NoteGoriz extends Actor {
             reg = noteAni.getKeyFrame(stateTime, true);
 //            batch.draw(reg.getTexture(), position.x, position.y, 50, 34);
             batch.draw(reg.getTexture(),
-                    position.x, position.y,
+                    position.x, position.y + 6,
                     origin.x, origin.y,
-                    50, 34,
+                    46, 28,
                     scale.x, scale.y,
                     rotation,
                     reg.getRegionX(), reg.getRegionY(),
                     reg.getRegionWidth(), reg.getRegionHeight(),
                     false, false);
         }else {
-            batch.draw(textureRegion, position.x, position.y, 50, 34);
+            batch.draw(textureRegion, position.x , position.y + 6, 46, 28);
         }
         this.font = Assets.instance.fonts.levelComplete;
         font.setColor(0.11f,0.11f, 0.11f, 1);

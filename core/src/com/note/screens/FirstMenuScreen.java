@@ -187,7 +187,7 @@ public class FirstMenuScreen extends AbstractGameScreen {
 //                MenuScreen.this.onStoreClicked();
             }
         });
-        table.add(this.btnMenuBass).padLeft(imgMenuScrip.getWidth() /2.5f);
+        table.add(this.btnMenuBass).padLeft((this.stage.getViewport().getWorldWidth()/11.0f));
 
         this.btnMenuPlay = new Button(Assets.instance.skin.buttonStyle);
         Image imgMenuPlay = new Image(this.game.gameSkin, "PlayButton");
@@ -201,17 +201,18 @@ public class FirstMenuScreen extends AbstractGameScreen {
 //                MenuScreen.this.onStoreClicked();
             }
         });
-        table.add(this.btnMenuPlay).padLeft(imgMenuScrip.getWidth() / 2.5f);
+        table.add(this.btnMenuPlay).padLeft((this.stage.getViewport().getWorldWidth()/11.0f));
         table.row();
         Image imgScripReflect = new Image(this.game.gameSkin,"ReflectScrip");
         Image imgBassReflect = new Image(this.game.gameSkin,"ReflectBass");
         Image imgPlayReflect = new Image(this.game.gameSkin,"ReflectPlay");
         table.add((Actor)imgScripReflect);
-        table.add((Actor)imgBassReflect).padLeft(imgMenuScrip.getWidth() /2.5f);
-        table.add((Actor)imgPlayReflect).padLeft(imgMenuScrip.getWidth() /2.5f);
+        table.add((Actor)imgBassReflect).padLeft((this.stage.getViewport().getWorldWidth()/11.0f));
+        table.add((Actor)imgPlayReflect).padLeft((this.stage.getViewport().getWorldWidth()/11.0f));
 //        table.setFillParent(true);
 //        table.addAction(Actions.fadeIn(2f));
 //        table.pack();
+        System.out.println(imgMenuScrip.getWidth() /2.5f);
         return table;
     }
     private void rebuildStage() {

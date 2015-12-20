@@ -54,7 +54,7 @@ public class SplashScreen implements Screen {
         this.alpha = 0.0F;
         this.batch = new SpriteBatch();
 //        this.imgLogo = new Texture("LoadScreen-" + this.game.densite + ".png");
-        this.imgLogo = new Texture("LoadScreen-xxxhdpi.png");
+        this.imgLogo = new Texture("LoadScreen.png");
 
         this.music = Gdx.audio.newMusic(Gdx.files.internal(SOUNDS_SPLASH));
         this.music.play();
@@ -88,7 +88,7 @@ public class SplashScreen implements Screen {
 
             this.batch.begin();
 //            this.batch.setColor(1.0F, 1.0F, 1.0F, this.alpha);
-            this.batch.draw(this.imgLogo, (Gdx.graphics.getWidth() - this.imgLogo.getWidth()) / 2, (Gdx.graphics.getHeight() - this.imgLogo.getHeight()) / 2, this.imgLogo.getWidth(), this.imgLogo.getHeight());
+            this.batch.draw(this.imgLogo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             this.batch.end();
 
 //            if (Gdx.input.justTouched()) {

@@ -63,7 +63,8 @@ public class ScripTreningScreen extends AbstractGameScreen {
     }
     private Table buildZnakLayer() {
         Table table = new Table();
-        table.left().top().padLeft(154);
+        table.center().top();
+//                .padLeft(154);
         znakImg = new Image(this.game.gameSkin, "ScripVertZnak");
         table.add(znakImg);
         return table;
@@ -132,27 +133,6 @@ public class ScripTreningScreen extends AbstractGameScreen {
 
     private void Back() {
         this.game.setScreen(new ScripMenuScreen(this.game));
-    }
-
-    private void renderGuiFpsCounter() {
-        float x = 400;
-        float y = 240;
-        int fps = Gdx.graphics.getFramesPerSecond();
-        BitmapFont fpsFont = Assets.instance.fonts.heroInfo;
-        if (fps >= 45) {
-            // 45 or more FPS show up in green
-            fpsFont.setColor(0, 1, 0, 1);
-        } else if (fps >= 30) {
-            // 30 or more FPS show up in yellow
-            fpsFont.setColor(1, 1, 0, 1);
-        } else {
-            // less than 30 FPS show up in red
-            fpsFont.setColor(1, 0, 0, 1);
-        }
-        stage.getBatch().begin();
-        fpsFont.draw(stage.getBatch(), "FPS: " + fps, x, y);
-        stage.getBatch().end();
-        fpsFont.setColor(1, 1, 1, 1); // white
     }
 
     @Override
@@ -290,5 +270,26 @@ public class ScripTreningScreen extends AbstractGameScreen {
     @Override
     public void dispose() {
         Assets.instance.dispose();
+    }
+
+    private void renderGuiFpsCounter() {
+        float x = 400;
+        float y = 240;
+        int fps = Gdx.graphics.getFramesPerSecond();
+        BitmapFont fpsFont = Assets.instance.fonts.heroInfo;
+        if (fps >= 45) {
+            // 45 or more FPS show up in green
+            fpsFont.setColor(0, 1, 0, 1);
+        } else if (fps >= 30) {
+            // 30 or more FPS show up in yellow
+            fpsFont.setColor(1, 1, 0, 1);
+        } else {
+            // less than 30 FPS show up in red
+            fpsFont.setColor(1, 0, 0, 1);
+        }
+        stage.getBatch().begin();
+        fpsFont.draw(stage.getBatch(), "FPS: " + fps, x, y);
+        stage.getBatch().end();
+        fpsFont.setColor(1, 1, 1, 1); // white
     }
 }

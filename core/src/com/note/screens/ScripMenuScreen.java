@@ -73,7 +73,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
     private void assembleStage() {
         this.stage.clear();
         Stack stack = new Stack();
-        stack.setTransform(true);
+//        stack.setTransform(true);
         this.stage.addActor(stack);
         stack.setSize(this.stage.getViewport().getWorldWidth(), this.stage.getViewport().getWorldHeight());
         stack.add(this.layerBackground);
@@ -118,10 +118,11 @@ public class ScripMenuScreen extends AbstractGameScreen  {
     }
     private Table buildControlsLayer() {
         Table table = new Table();
-        table.validate();
+//        table.validate();
         table.debug();
 //        table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        table.center().bottom().padBottom(this.game.gameSkin.getRegion("ScripButton").getRegionWidth() / 1.8f);
+        table.center().bottom();
+//        .padBottom(this.game.gameSkin.getRegion("ScripButton").getRegionWidth() / 1.5f);
 
         this.treningMenuImg = new Button(this.game.gameSkin, "TreningScrip_left");
         table.add(this.treningMenuImg);
@@ -136,7 +137,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
         });
 
         this.practiceMenuImg = new Button(this.game.gameSkin, "TreningScrip_left");///"LearningScrip_mid"
-        table.add(this.practiceMenuImg).padLeft(this.game.gameSkin.getRegion("LearningScrip_mid").getRegionHeight() /2.2f);
+        table.add(this.practiceMenuImg).padLeft(this.stage.getViewport().getWorldWidth()/11.0f);
         this.practiceMenuImg.addListener(new ChangeListener() {
 
             @Override
@@ -146,7 +147,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
         });
 
         this.lerningMenuImg = new Button(this.game.gameSkin, "TreningScrip_left");///"PracticeScrip_right"
-        table.add(this.lerningMenuImg).padLeft(this.game.gameSkin.getRegion("LearningScrip_mid").getRegionHeight()/2.2f );
+        table.add(this.lerningMenuImg).padLeft(this.stage.getViewport().getWorldWidth()/11.0f );
         this.lerningMenuImg.addListener(new ChangeListener() {
 
             @Override
@@ -154,6 +155,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
 //                MenuScreen.this.onStoreClicked();
             }
         });
+        System.out.println(this.game.gameSkin.getRegion("LearningScrip_mid").getRegionHeight() /2.5f);
         return table;
     }
 
