@@ -131,6 +131,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {/////////
 //                FirstMenuScreen.this.onPlayClicked();
+                System.out.println("dsdsd");
                 ScripMenuScreen.this.onTreningClicked();
 
             }
@@ -152,7 +153,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
 
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-//                MenuScreen.this.onStoreClicked();
+                onPracticeClicked();
             }
         });
         System.out.println(this.game.gameSkin.getRegion("LearningScrip_mid").getRegionHeight() /2.5f);
@@ -166,7 +167,9 @@ public class ScripMenuScreen extends AbstractGameScreen  {
     private void onTreningClicked() {
         this.game.setScreen(new ScripTreningScreen(this.game));
     }
-
+    private void onPracticeClicked() {
+        this.game.setScreen(new ScripPracticeScreen(this.game));
+    }
 
     @Override
     public void render(float delta) {
@@ -179,9 +182,6 @@ public class ScripMenuScreen extends AbstractGameScreen  {
 
     @Override
     public void resize(int n, int n2) {
-//        this.game.camera.viewportWidth = n;
-//        this.game.camera.viewportHeight = n2;
-//        this.game.camera.update();
 
         this.stage.getViewport().update(n, n2, true);
     }
@@ -221,6 +221,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
         this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT,game.camera)){
             @Override
             public boolean keyUp(int keycode) {
+
                 if ((keycode == Input.Keys.BACK)|| (keycode == Keys.ESCAPE)){
                     ScripMenuScreen.this.Back();
                 }

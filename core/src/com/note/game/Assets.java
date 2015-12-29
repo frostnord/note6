@@ -56,6 +56,9 @@ public class Assets implements AssetErrorListener, Disposable {
 
     public class AssetNoteImg {
 
+        public final AtlasRegion doKeyImgActor;
+        public final AtlasRegion reKeyImgActor;
+
         public final AtlasRegion doKeyImg;
         public final AtlasRegion reKeyImg;
         public final AtlasRegion solKeyImg;
@@ -65,6 +68,10 @@ public class Assets implements AssetErrorListener, Disposable {
 
 
         public AssetNoteImg(TextureAtlas atlas) {
+
+            doKeyImgActor = atlas.findRegion("do");
+            reKeyImgActor = atlas.findRegion("re");
+
             doKeyImg = atlas.findRegion("doKeyImg");
             miKeyImg = atlas.findRegion("miKeyImg");
             reKeyImg = atlas.findRegion("reKeyImg");
@@ -154,9 +161,9 @@ public class Assets implements AssetErrorListener, Disposable {
         for (String string : assetManager.getAssetNames()) {
             Gdx.app.debug(TAG, "asset: " + string);
         }
-        note = new AssetNote(atlas);
+        this.note = new AssetNote(atlas);
         this.fonts = new AssetFonts();
-        decoration= new AssetDecoration(atlas);
+        this.decoration= new AssetDecoration(atlas);
         this.noteImg = new AssetNoteImg(atlas);
         this.skin = new AssetSkin(atlas);
 

@@ -13,11 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.note.Note;
 import com.note.actors.NoteVert;
 import com.note.enums.GameState;
 import com.note.game.Assets;
+import com.note.utils.Constants;
 import com.note.utils.GameManager;
 
 /**
@@ -43,6 +45,7 @@ public class ScripTreningScreen extends AbstractGameScreen {
     private float key;
     private Image znakImg;
     private Table layerZnak;
+    public static int NUMBER;
 
 
     public ScripTreningScreen(Note directedGame) {
@@ -121,7 +124,7 @@ public class ScripTreningScreen extends AbstractGameScreen {
         Stack stack = new Stack();
         this.stage.addActor(stack);
 
-        stack.setSize(800.0f, 480.0f);
+        stack.setSize(this.stage.getViewport().getWorldWidth(), this.stage.getViewport().getWorldHeight());
         stack.add(this.layerBackground);
 
         stack.add(this.layerLines);
@@ -226,7 +229,7 @@ public class ScripTreningScreen extends AbstractGameScreen {
     @Override
     public void show() {
         Gdx.input.setCatchBackKey(true);
-        this.stage = new Stage() {
+        this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT,game.camera)) {
             @Override
             public boolean keyUp(int keycode) {
                 if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
@@ -237,7 +240,7 @@ public class ScripTreningScreen extends AbstractGameScreen {
         };
         firstActor = null;
         Gdx.input.setInputProcessor(stage);
-        this.stage.setViewport(new StretchViewport(800.0f, 480.0f));
+//        this.stage.setViewport(new StretchViewport(800.0f, 480.0f));
         this.rebuildStage();
         this.stage.act();
         this.stage.draw();

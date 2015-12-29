@@ -4,9 +4,16 @@ size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+LearningScrip_mid
+  rotate: false
+  xy: 1807, 5
+  size: 186, 186
+  orig: 186, 186
+  offset: 0, 0
+  index: -1
 PracticeBass_middle
   rotate: false
-  xy: 1922, 1916
+  xy: 1922, 1924
   size: 119, 120
   orig: 119, 120
   offset: 0, 0
@@ -27,21 +34,14 @@ ReflectPlay
   index: -1
 ScripGorZnak
   rotate: false
-  xy: 1922, 1592
+  xy: 1922, 1600
   size: 81, 203
   orig: 81, 203
   offset: 0, 0
   index: -1
-SetingsButton
-  rotate: false
-  xy: 1506, 98
-  size: 145, 136
-  orig: 145, 136
-  offset: 0, 0
-  index: -1
 TreningBass_left
   rotate: false
-  xy: 1922, 1796
+  xy: 1922, 1804
   size: 118, 119
   orig: 118, 119
   offset: 0, 0
@@ -55,7 +55,7 @@ TreningScrip_left
   index: -1
 backgroundGame
   rotate: false
-  xy: 1, 956
+  xy: 1, 964
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
@@ -67,30 +67,37 @@ backgroundMenu
   orig: 1280, 720
   offset: 0, 0
   index: -1
+do
+  rotate: false
+  xy: 1922, 1332
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
 doKeyImg
   rotate: false
-  xy: 2004, 1530
+  xy: 2004, 1538
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
   index: -1
 laKeyImg
   rotate: false
-  xy: 2004, 1663
+  xy: 2004, 1671
   size: 34, 132
   orig: 34, 132
   offset: 0, 0
   index: -1
 lineImg
   rotate: false
-  xy: 2042, 1968
+  xy: 2042, 1976
   size: 5, 68
   orig: 5, 68
   offset: 0, 0
   index: -1
 miKeyImg
   rotate: false
-  xy: 1922, 1409
+  xy: 1989, 1355
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
@@ -132,35 +139,42 @@ noteG
   index: 5
 noteG
   rotate: false
-  xy: 1652, 1
+  xy: 1506, 1
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 6
+re
+  rotate: false
+  xy: 1922, 1064
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
 reKeyImg
   rotate: false
-  xy: 1956, 1409
+  xy: 1989, 1222
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
   index: -1
 siKeyImg
   rotate: false
-  xy: 1990, 1397
+  xy: 1989, 1089
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
   index: -1
 solKeyImg
   rotate: false
-  xy: 1922, 1276
+  xy: 1989, 956
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
   index: -1
 sound_on
   rotate: false
-  xy: 1922, 1542
+  xy: 1989, 1488
   size: 49, 49
   orig: 49, 49
   offset: 0, 0
@@ -178,13 +192,6 @@ BassButton
   orig: 380, 380
   offset: 0, 0
   index: -1
-LearningScrip_mid
-  rotate: false
-  xy: 1306, 1474
-  size: 186, 186
-  orig: 186, 186
-  offset: 0, 0
-  index: -1
 PlayButton
   rotate: false
   xy: 382, 764
@@ -194,7 +201,7 @@ PlayButton
   index: -1
 PracticeScrip_right
   rotate: false
-  xy: 1493, 1474
+  xy: 1306, 1474
   size: 186, 186
   orig: 186, 186
   offset: 0, 0
@@ -225,6 +232,13 @@ ScripVertZnak11111111
   xy: 382, 230
   size: 467, 152
   orig: 467, 152
+  offset: 0, 0
+  index: -1
+SetingsButton
+  rotate: false
+  xy: 1493, 1524
+  size: 145, 136
+  orig: 145, 136
   offset: 0, 0
   index: -1
 TreningScrip_left1
