@@ -12,12 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.note.Note;
 import com.note.game.Assets;
+import com.note.game.WorldController;
 import com.note.screens.ScripPracticeScreen;
 
 import java.lang.reflect.Field;
 
-public class ReKey extends Actor {
+public class ReKey extends AbstractActor {
 
+    private final float position;
     private TextureRegion textureRegion;
     private static float textuerKeybordHeight;
     private Stage stage;
@@ -34,38 +36,54 @@ public class ReKey extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 //        textureRegion = Assets.instance.
-        batch.draw(textureRegion, number, 0, width, height);
+        batch.draw(textureRegion, position, 0, width, height);
 
     }
 
-    public ReKey(final Note game, Stage stage, int number, final Screen screen) {
-        this.screen = screen;
+    public ReKey(final Note game, Stage stage, final int number) {
+        this.number = number;
         this.game = game;
         this.stage = stage;
-        this.number = this.stage.getViewport().getWorldWidth() / 23 * number - 1;
+        this.position = this.stage.getViewport().getWorldWidth() / 23 * number - 1;
         this.width = this.stage.getViewport().getWorldWidth() / 23 ;
         this.height = this.stage.getViewport().getWorldHeight() / 3;
-        System.out.println(height);
-        System.out.println(width);
         textureRegion = Assets.instance.noteImg.reKeyImgActor;
+        setBounds(position,0,width,height);
 
 
         addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                try {
-                    NUMBER = game.getScreen().getClass().getField("currIndex");
+//                if (((DoKey) event.getTarget()).state != 0) {
+//
+//                }
+                if (WorldController.KEYNUMBER == number){
+                    textureRegion = Assets.instance.noteImg.reGreenKeyImgActor;
+                }else {
+                    textureRegion = Assets.instance.noteImg.reRedKeyImgActor;
+                }
 
-                } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                }
-                if (ScripPracticeScreen.class == screen.getClass()) {
-                    ScripPracticeScreen.setJeybordHeight(true);
-                }
+
+
+//                try {
+//                    NUMBER = game.getScreen().getClass().getField("currIndex");
+//                    String n = NUMBER.getName();
+//                    System.out.println(n);
+//
+//                    textureRegion = Assets.instance.noteImg.reKeyImgActor;
+//
+//                } catch (NoSuchFieldException e) {
+//                    e.printStackTrace();
+//                }
+//                if (ScripPracticeScreen.class == screen.getClass()) {
+//                    ScripPracticeScreen.setJeybordHeight(true);
+//                }
 
                 return true;
             }
-
+            @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+
+                textureRegion = Assets.instance.noteImg.reKeyImgActor;
 
             }
         });

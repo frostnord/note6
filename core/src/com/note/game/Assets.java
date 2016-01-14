@@ -58,6 +58,11 @@ public class Assets implements AssetErrorListener, Disposable {
 
         public final AtlasRegion doKeyImgActor;
         public final AtlasRegion reKeyImgActor;
+        public final AtlasRegion miKeyImgActor;
+        public final AtlasRegion faKeyImgActor;
+        public final AtlasRegion solKeyImgActor;
+        public final AtlasRegion laKeyImgActor;
+        public final AtlasRegion siKeyImgActor;
 
         public final AtlasRegion doKeyImg;
         public final AtlasRegion reKeyImg;
@@ -66,11 +71,47 @@ public class Assets implements AssetErrorListener, Disposable {
         public final AtlasRegion siKeyImg;
         public final AtlasRegion miKeyImg;
 
+        public final AtlasRegion doRedKeyImgActor;
+        public final AtlasRegion doGreenKeyImgActor;
+        public final AtlasRegion reRedKeyImgActor;
+        public final AtlasRegion reGreenKeyImgActor;
+        public final AtlasRegion miRedKeyImgActor;
+        public final AtlasRegion miGreenKeyImgActor;
+        public final AtlasRegion faRedKeyImgActor;
+        public final AtlasRegion faGreenKeyImgActor;
+        public final AtlasRegion solRedKeyImgActor;
+        public final AtlasRegion solGreenKeyImgActor;
+        public final AtlasRegion laRedKeyImgActor;
+        public final AtlasRegion laGreenKeyImgActor;
+        public final AtlasRegion siRedKeyImgActor;
+        public final AtlasRegion siGreenKeyImgActor;
 
         public AssetNoteImg(TextureAtlas atlas) {
 
+            doRedKeyImgActor = atlas.findRegion("doRed");
+            doGreenKeyImgActor = atlas.findRegion("doGreen");
+            reRedKeyImgActor = atlas.findRegion("reRed");
+            reGreenKeyImgActor = atlas.findRegion("reGreen");
+            miRedKeyImgActor = atlas.findRegion("miRed");
+            miGreenKeyImgActor = atlas.findRegion("miGreen");
+            faRedKeyImgActor = atlas.findRegion("faRed");
+            faGreenKeyImgActor = atlas.findRegion("faGreen");
+            solRedKeyImgActor = atlas.findRegion("solRed");
+            solGreenKeyImgActor = atlas.findRegion("solGreen");
+            laRedKeyImgActor = atlas.findRegion("laRed");
+            laGreenKeyImgActor = atlas.findRegion("laGreen");
+            siRedKeyImgActor = atlas.findRegion("siRed");
+            siGreenKeyImgActor = atlas.findRegion("siGreen");
+
+
             doKeyImgActor = atlas.findRegion("do");
             reKeyImgActor = atlas.findRegion("re");
+            miKeyImgActor = atlas.findRegion("mi");
+            faKeyImgActor = atlas.findRegion("fa");
+            solKeyImgActor = atlas.findRegion("sol");
+            laKeyImgActor = atlas.findRegion("la");
+            siKeyImgActor = atlas.findRegion("si");
+
 
             doKeyImg = atlas.findRegion("doKeyImg");
             miKeyImg = atlas.findRegion("miKeyImg");
@@ -135,8 +176,10 @@ public class Assets implements AssetErrorListener, Disposable {
         public final AtlasRegion reflectPlay;
         public final AtlasRegion reflectBass;
         public final AtlasRegion reflectScrip;
+        public final AtlasRegion triangleImg;
 
         public AssetDecoration(TextureAtlas atlas) {
+            triangleImg = atlas.findRegion("triangle");
             this.lineImg = atlas.findRegion("lineImg");
             this.reflectScrip = atlas.findRegion("ReflectScrip");
             this.reflectBass = atlas.findRegion("ReflectBass");
@@ -224,7 +267,7 @@ public class Assets implements AssetErrorListener, Disposable {
 //        public final BitmapFont selectLevel;
 
         public AssetFonts() {
-            FreeTypeFontGenerator freeTypeFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("PartnerCondensedMono.ttf"));
+            FreeTypeFontGenerator freeTypeFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("LinLibertine_aBS.ttf"));
             FreeTypeFontParameter freeTypeFontParameter = new FreeTypeFontParameter();
             freeTypeFontParameter.size = 15;
             this.defaultSmall = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
@@ -250,10 +293,11 @@ public class Assets implements AssetErrorListener, Disposable {
             this.levelComplete.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 //            this.levelComplete.setScale(1.0f, 1.0f);
 
-            freeTypeFontParameter.size = 35;
+            freeTypeFontParameter.size = 100;
+//            freeTypeFontParameter.color = Color.valueOf("122d73");
 //            freeTypeFontParameter.borderWidth= 1;
 
-            freeTypeFontParameter.borderColor = Color.BLACK;
+//            freeTypeFontParameter.borderColor = Color.valueOf("0f5aa7");
             this.levelCompleted = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
             this.levelCompleted.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 //            this.levelCompleted.setScale(1.0f, 1.0f);

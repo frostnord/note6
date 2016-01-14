@@ -22,8 +22,8 @@ public class Constants {
 
 
 
-    public static final int APP_WIDTH = 800;
-    public static final int APP_HEIGHT = 480;
+    public static final int APP_WIDTH = Gdx.graphics.getWidth();
+    public static final int APP_HEIGHT = Gdx.graphics.getHeight();
 
 
     public static final String SCRIP_BUTTON_REGION_NAME = "ScripButton";//////  ScripKey

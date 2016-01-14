@@ -77,7 +77,7 @@ public class SplashScreen implements Screen {
         if (game.manager.update()&& !this.music.isPlaying() ) {
 //            this.splashImage.addAction(Actions.sequence(Actions.fadeOut(0.5f), Actions.alpha(0.0f), Actions.run(new Runnable() {
 //                public void run() {
-                    SplashScreen.this.game.setScreen(new FirstMenuScreen(SplashScreen.this.game));
+                    SplashScreen.this.game.setScreen(new FirstMenuScreen(this.game));
 //                }
 //            })));
         }

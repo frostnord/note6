@@ -4,179 +4,186 @@ size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-LearningScrip_mid
-  rotate: false
-  xy: 1807, 5
-  size: 186, 186
-  orig: 186, 186
-  offset: 0, 0
-  index: -1
 PracticeBass_middle
   rotate: false
-  xy: 1922, 1924
+  xy: 1922, 1922
   size: 119, 120
   orig: 119, 120
   offset: 0, 0
   index: -1
 ReflectBass
   rotate: false
-  xy: 1663, 574
+  xy: 1663, 412
   size: 380, 381
   orig: 380, 381
   offset: 0, 0
   index: -1
 ReflectPlay
   rotate: false
-  xy: 1663, 192
+  xy: 1663, 30
   size: 380, 381
   orig: 380, 381
   offset: 0, 0
   index: -1
 ScripGorZnak
   rotate: false
-  xy: 1922, 1600
+  xy: 1922, 1598
   size: 81, 203
   orig: 81, 203
   offset: 0, 0
   index: -1
 TreningBass_left
   rotate: false
-  xy: 1922, 1804
+  xy: 1922, 1802
   size: 118, 119
   orig: 118, 119
   offset: 0, 0
   index: -1
 TreningScrip_left
   rotate: false
-  xy: 1, 195
+  xy: 1, 201
   size: 380, 760
   orig: 380, 760
   offset: 0, 0
   index: -1
+acarolabs
+  rotate: false
+  xy: 382, 30
+  size: 256, 210
+  orig: 256, 210
+  offset: 0, 0
+  index: -1
 backgroundGame
   rotate: false
-  xy: 1, 964
+  xy: 1, 962
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
 backgroundMenu
   rotate: false
-  xy: 382, 235
+  xy: 382, 241
   size: 1280, 720
   orig: 1280, 720
   offset: 0, 0
   index: -1
 do
   rotate: false
-  xy: 1922, 1332
+  xy: 1922, 1330
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+doGreen
+  rotate: false
+  xy: 1922, 1062
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 doKeyImg
   rotate: false
-  xy: 2004, 1538
+  xy: 1989, 1415
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
   index: -1
+doRed
+  rotate: false
+  xy: 1922, 794
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+keybord2
+  rotate: false
+  xy: 1663, 825
+  size: 245, 136
+  orig: 245, 136
+  offset: 0, 0
+  index: -1
 laKeyImg
   rotate: false
-  xy: 2004, 1671
+  xy: 2004, 1669
   size: 34, 132
   orig: 34, 132
   offset: 0, 0
   index: -1
 lineImg
   rotate: false
-  xy: 2042, 1976
+  xy: 2004, 1600
   size: 5, 68
   orig: 5, 68
   offset: 0, 0
   index: -1
 miKeyImg
   rotate: false
-  xy: 1989, 1355
+  xy: 1989, 1282
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
   index: -1
 noteG
   rotate: false
-  xy: 1, 4
+  xy: 1, 10
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 1
 noteG
   rotate: false
-  xy: 302, 4
+  xy: 639, 50
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 2
 noteG
   rotate: false
-  xy: 603, 1
+  xy: 940, 50
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 3
 noteG
   rotate: false
-  xy: 904, 1
+  xy: 1241, 50
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 4
-noteG
-  rotate: false
-  xy: 1205, 1
-  size: 300, 190
-  orig: 300, 190
-  offset: 0, 0
-  index: 5
-noteG
-  rotate: false
-  xy: 1506, 1
-  size: 300, 190
-  orig: 300, 190
-  offset: 0, 0
-  index: 6
-re
-  rotate: false
-  xy: 1922, 1064
-  size: 66, 267
-  orig: 66, 267
-  offset: 0, 0
-  index: -1
 reKeyImg
   rotate: false
-  xy: 1989, 1222
+  xy: 1989, 1149
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
   index: -1
 siKeyImg
   rotate: false
-  xy: 1989, 1089
+  xy: 1989, 1016
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
   index: -1
 solKeyImg
   rotate: false
-  xy: 1989, 956
+  xy: 1989, 883
   size: 33, 132
   orig: 33, 132
   offset: 0, 0
   index: -1
 sound_on
   rotate: false
-  xy: 1989, 1488
+  xy: 1989, 1548
   size: 49, 49
   orig: 49, 49
+  offset: 0, 0
+  index: -1
+triangle
+  rotate: false
+  xy: 639, 1
+  size: 128, 48
+  orig: 128, 48
   offset: 0, 0
   index: -1
 
@@ -187,169 +194,302 @@ filter: Nearest,Nearest
 repeat: none
 BassButton
   rotate: false
-  xy: 1, 382
+  xy: 1, 404
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
+LearningScrip_mid
+  rotate: false
+  xy: 1676, 1496
+  size: 186, 186
+  orig: 186, 186
+  offset: 0, 0
+  index: -1
 PlayButton
   rotate: false
-  xy: 382, 764
+  xy: 382, 786
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
 PracticeScrip_right
   rotate: false
-  xy: 1306, 1474
+  xy: 1184, 1305
   size: 186, 186
   orig: 186, 186
   offset: 0, 0
   index: -1
 ReflectScrip
   rotate: false
-  xy: 1, 763
+  xy: 1, 785
   size: 380, 381
   orig: 380, 381
   offset: 0, 0
   index: -1
 ScripButton
   rotate: false
-  xy: 1, 1
+  xy: 1, 23
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
 ScripVertZnak
   rotate: false
-  xy: 1, 1609
+  xy: 1, 1631
   size: 1003, 352
   orig: 1003, 352
   offset: 0, 0
   index: -1
 ScripVertZnak11111111
   rotate: false
-  xy: 382, 230
+  xy: 382, 252
   size: 467, 152
   orig: 467, 152
   offset: 0, 0
   index: -1
 SetingsButton
   rotate: false
-  xy: 1493, 1524
+  xy: 1863, 1546
   size: 145, 136
   orig: 145, 136
   offset: 0, 0
   index: -1
 TreningScrip_left1
   rotate: false
-  xy: 382, 383
+  xy: 382, 405
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
-acarolabs
+fa
   rotate: false
-  xy: 683, 19
-  size: 256, 210
-  orig: 256, 210
+  xy: 1371, 1224
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+faGreen
+  rotate: false
+  xy: 850, 269
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+faRed
+  rotate: false
+  xy: 917, 269
+  size: 66, 267
+  orig: 66, 267
   offset: 0, 0
   index: -1
 keybord
   rotate: false
-  xy: 1, 1145
+  xy: 1, 1167
   size: 800, 132
   orig: 800, 132
   offset: 0, 0
   index: -1
-keybord2
+la
   rotate: false
-  xy: 993, 1032
-  size: 245, 136
-  orig: 245, 136
+  xy: 984, 269
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+laGreen
+  rotate: false
+  xy: 1051, 269
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+laRed
+  rotate: false
+  xy: 1118, 269
+  size: 66, 267
+  orig: 66, 267
   offset: 0, 0
   index: -1
 lines
   rotate: false
-  xy: 1005, 1661
+  xy: 1005, 1683
   size: 800, 300
   orig: 800, 300
   offset: 0, 0
   index: -1
 linesGoriz
   rotate: false
-  xy: 1, 1278
+  xy: 1, 1300
   size: 800, 330
   orig: 800, 330
   offset: 0, 0
   index: -1
+mi
+  rotate: false
+  xy: 984, 1
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+miGreen
+  rotate: false
+  xy: 1051, 1
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+miRed
+  rotate: false
+  xy: 1118, 1
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
 noteG
   rotate: false
-  xy: 382, 39
+  xy: 382, 61
+  size: 300, 190
+  orig: 300, 190
+  offset: 0, 0
+  index: 5
+noteG
+  rotate: false
+  xy: 683, 61
+  size: 300, 190
+  orig: 300, 190
+  offset: 0, 0
+  index: 6
+noteG
+  rotate: false
+  xy: 802, 1139
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 7
 noteV
   rotate: false
-  xy: 1806, 1661
+  xy: 1806, 1683
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 1
 noteV
   rotate: false
-  xy: 802, 1308
+  xy: 802, 1330
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 2
 noteV
   rotate: false
-  xy: 802, 1007
+  xy: 763, 838
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 3
 noteV
   rotate: false
-  xy: 763, 706
+  xy: 763, 537
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 4
 noteV
   rotate: false
-  xy: 763, 405
+  xy: 954, 838
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 5
 noteV
   rotate: false
-  xy: 993, 1169
+  xy: 954, 537
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 6
 noteV
   rotate: false
-  xy: 1184, 1169
+  xy: 993, 1330
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 7
 note_greyG
   rotate: false
-  xy: 1005, 1470
+  xy: 1184, 1492
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: -1
 note_greyV
   rotate: false
-  xy: 1375, 1173
+  xy: 1485, 1382
   size: 190, 300
   orig: 190, 300
+  offset: 0, 0
+  index: -1
+re
+  rotate: false
+  xy: 1145, 956
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+reGreen
+  rotate: false
+  xy: 1145, 688
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+reRed
+  rotate: false
+  xy: 1212, 956
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+si
+  rotate: false
+  xy: 1212, 688
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+siGreen
+  rotate: false
+  xy: 1279, 956
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+siRed
+  rotate: false
+  xy: 1279, 688
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+sol
+  rotate: false
+  xy: 1346, 956
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+solGreen
+  rotate: false
+  xy: 1346, 688
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+solRed
+  rotate: false
+  xy: 1413, 956
+  size: 66, 267
+  orig: 66, 267
   offset: 0, 0
   index: -1

@@ -251,7 +251,7 @@ public class FirstMenuScreen extends AbstractGameScreen {
     private Table noteCreate(){
         Table table = new Table();
 
-        table.addActor(oneMenuNoteVert = new NoteVert(game));
+        table.addActor(oneMenuNoteVert = new NoteVert(game,stage));
 
         return table;
     }

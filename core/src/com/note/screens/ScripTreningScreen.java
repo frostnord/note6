@@ -155,14 +155,14 @@ public class ScripTreningScreen extends AbstractGameScreen {
 
     public void controller(float delta) {
         if (firstActor == null) {
-            firstActor = new NoteVert(game);
+            firstActor = new NoteVert(game,stage);
             currIndex = firstActor.getIndex();
             stage.addActor(firstActor);
         }
             time += 1;
         if (time >= 180f) {
             if (secondActor == null) {
-                secondActor = new NoteVert(game);
+                secondActor = new NoteVert(game,stage);
                 stage.addActor(secondActor);
                 currIndex = nextIndex;
                 time = 0f;
@@ -229,7 +229,7 @@ public class ScripTreningScreen extends AbstractGameScreen {
     @Override
     public void show() {
         Gdx.input.setCatchBackKey(true);
-        this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT,game.camera)) {
+        this.stage = new Stage(new StretchViewport(800.0f, 480.0f)) {
             @Override
             public boolean keyUp(int keycode) {
                 if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
