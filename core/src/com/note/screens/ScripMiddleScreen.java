@@ -3,9 +3,9 @@ package com.note.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureData;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -14,24 +14,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.note.Note;
+import com.note.actors.KeyGoriz;
+import com.note.actors.KeyVert;
+import com.note.actors.Lines;
 import com.note.actors.NoteGoriz;
 import com.note.game.Assets;
-
-
+import com.note.utils.Constants;
 
 public class ScripMiddleScreen extends AbstractGameScreen {
 
-
+    java.util.Stack st;
     private Stage stage;
-    private Table layerBackground;
+//    private Table layerBackground;
     private Image imgBackground;
     private Button keybordImg;
     private Table layerKeyboard;
     private float keybordHeight;
     private KeyStatus keyStatus;
-    private Image lineImg;
+    private Image lineImg , leftBorder , rightBorder;
     private Table layerLines;
     private Image znakImg;
     private Table layerZnak;
@@ -43,70 +46,94 @@ public class ScripMiddleScreen extends AbstractGameScreen {
     public int scoreRight = 0;
     public int scoreWrong = 0;
     private Animation  animation;
+    private TextureRegion lineTextureRegion;
+    private float widthW ;
+    private float hidthH ;
+    private TextureRegion triangleTextureRegion;
+    private Sprite sp;
 
-
-    public ScripMiddleScreen(Note directedGame) {
-        super(directedGame);
+    public ScripMiddleScreen(Note game) {
+        super(game);
     }
 
-    @Override
-    public void show() {
-        Gdx.input.setCatchBackKey(true);
-        this.stage = new Stage() {
-            @Override
-            public boolean keyUp(int keycode) {
-                if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
-                    ScripMiddleScreen.this.Back();
-                }
-                return false;
-            }
-        };
-        Gdx.input.setInputProcessor(stage);
-        this.stage.setViewport(new StretchViewport(800.0f, 480.0f));
-        this.rebuildStage();
-/////////////////
-//        stage.addActor(new NoteGoriz(game));
-        actors = new Array();
+    private void buildStage() {
+//        this.buildMenuLayers();
+//        this.assembleStage();
 
-        NoteGoriz noteGoriz = new NoteGoriz(game);
-        actors.add(noteGoriz);
-        stage.addActor(noteGoriz);
+        this.imgBackground = new Image(this.game.gameSkin, "backgroundGame");
+        imgBackground.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
+        stage.addActor(this.imgBackground);
+        znakImg = new Image(this.game.gameSkin, "ScripGorZnak");
+        znakImg.setPosition(0, this.stage.getViewport().getWorldHeight() / 2.7f);
+        stage.addActor(znakImg);
 
+        leftBorder = new Image(Assets.instance.decoration.leftBorder);
+        leftBorder.setSize(this.stage.getViewport().getWorldWidth() / 90, this.stage.getViewport().getWorldHeight() / 4f);
+        leftBorder.setPosition(this.stage.getViewport().getWorldWidth() / 23f * 8f - (this.stage.getViewport().getWorldWidth() / 90 - 1), 0);
+        stage.addActor(leftBorder);
 
-        controller();
-        this.stage.act();
-        this.stage.draw();
+        rightBorder = new Image(Assets.instance.decoration.rightBorder);
+        rightBorder.setSize(this.stage.getViewport().getWorldWidth() / 90, this.stage.getViewport().getWorldHeight() / 4f);
+        rightBorder.setPosition(this.stage.getViewport().getWorldWidth() / 23f * 15f, 0);
+        stage.addActor(rightBorder);
+
+        stage.addActor(new KeyGoriz(game, 1, stage, 8));
+        stage.addActor(new KeyGoriz(game, 2, stage, 9));
+        stage.addActor(new KeyGoriz(game, 3, stage, 10));
+        stage.addActor(new KeyGoriz(game, 4, stage, 11));
+        stage.addActor(new KeyGoriz(game, 5, stage, 12));
+        stage.addActor(new KeyGoriz(game, 6, stage, 13));
+        stage.addActor(new KeyGoriz(game, 7, stage, 14));
+
+        stage.addActor(new Lines(game,stage));
+
     }
     private void Back() {
         this.game.setScreen(new ScripMenuScreen(this.game));
     }
-    private void rebuildStage() {
-        this.buildMenuLayers();
-        this.assembleStage();
-    }
-    private void buildMenuLayers() {
-        this.layerBackground = this.buildBackgroundLayer();
-        this.layerKeyboard = this.buildKeyboardLayer();
-        this.layerZnak = this.buildZnakLayer();
-        this.layerLines = this.buildLinesLayer();
+//    private void buildMenuLayers() {
+//        this.layerBackground = this.buildBackgroundLayer();
+//        this.layerKeyboard = this.buildKeyboardLayer();
+//        this.layerZnak = this.buildZnakLayer();
+//        this.layerLines = this.buildLinesLayer();
+//    }
+//    private Table buildZnakLayer() {
+//        Table table = new Table();
+//        table.left().top().padLeft(50).padTop(90);
+//        znakImg = new Image(this.game.gameSkin, "ScripGorZnak");
+//        table.add(znakImg);
+//        return table;
+//    }
+
+    private void buildLinesLayer() {
+
+//        float lineW = widthW / 100 ;
+//        float lineH = (hidthH - (hidthH / 4f)) / 23;
+//        Table table = new Table();
+//        table.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
+//        table.bottom().left().padBottom(stage.getViewport().getWorldHeight() / 4f);
+//        this.lineImg = new Image(this.game.gameSkin, "linesGoriz");
+
+//        stage.getBatch().begin();
+//        for (int i = 1; i < 23 ; i++) {
+//            stage.getBatch().draw(triangleTextureRegion, widthW - lineW, (lineH * i) + (hidthH / 4f)- lineH / 2 + 2, widthW / 100, (hidthH - (hidthH / 4f)) / 23);
+//            i++;
+//        }
+//        stage.getBatch().draw(lineTextureRegion, widthW / 23, (lineH * 7) + (hidthH / 4f), widthW, hidthH / 200);
+//        stage.getBatch().draw(lineTextureRegion, widthW / 23, (lineH * 9) + (hidthH / 4f), widthW, hidthH / 200);
+//        stage.getBatch().draw(lineTextureRegion, widthW / 23, (lineH * 11) + (hidthH / 4f), widthW, hidthH / 200);
+//        stage.getBatch().draw(lineTextureRegion, widthW / 23, (lineH * 13) + (hidthH / 4f), widthW, hidthH / 200);
+//        stage.getBatch().draw(lineTextureRegion, widthW / 23, (lineH * 15) + (hidthH / 4f), widthW, hidthH / 200);
+//        stage.getBatch().end();
+
+//        table.add(this.lineImg);/////
+
+//        lineImg = new Image(Assets.instance.decoration.lineImg);
+//        table.add(lineImg).setActorBounds(widthW / 23, (lineH * 7) + (hidthH / 4f), widthW, hidthH / 200);
+//        stage.addActor(table);
+////        return table;
     }
 
-    private Table buildZnakLayer() {
-        Table table = new Table();
-        table.left().top().padLeft(50).padTop(90);
-        znakImg = new Image(this.game.gameSkin, "ScripGorZnak");
-        table.add(znakImg);
-        return table;
-    }
-
-    private Table buildLinesLayer() {
-        Table table = new Table();
-        table.bottom().left().padBottom(keybordHeight - 5);
-        this.lineImg = new Image(this.game.gameSkin, "linesGoriz");
-        table.add(this.lineImg);
-
-        return table;
-    }
     private Table buildKeyboardLayer() {
         final Table table = new Table();
         table.center().bottom();
@@ -135,38 +162,39 @@ public class ScripMiddleScreen extends AbstractGameScreen {
     }
 
 
+
     public enum KeyStatus {
         DOWN,
-        UP
+        UP;
     }
-
     private Table buildBackgroundLayer() {
         Table table = new Table();
         this.imgBackground = new Image(this.game.gameSkin, "backgroundGame");
         table.add(this.imgBackground);
         return table;
     }
+
     private void assembleStage() {
         this.stage.clear();
-        Stack stack = new Stack();
+        com.badlogic.gdx.scenes.scene2d.ui.Stack stack = new Stack();
         this.stage.addActor(stack);
 
         stack.setSize(800.0f, 480.0f);
-        stack.add(this.layerBackground);
+//        stack.add(this.layerBackground);
 
         stack.add(this.layerLines);
         stack.add(layerZnak);
-        stack.add(this.layerKeyboard);
+//        stack.add(this.layerKeyboard);
 
     }
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        controller();
-
         stage.draw();
         stage.act(delta);
+        buildLinesLayer();
+        controller();
 
         if (keyStatus == KeyStatus.DOWN) {
             drawKey(key);
@@ -228,17 +256,17 @@ public class ScripMiddleScreen extends AbstractGameScreen {
                 scoreRight +=1;
             }else {
                 actors.get(0).setNoteCliked(true);
-                actors.get(0).setNoteCliked(true);
+//                actors.get(0).setNoteCliked(true);
                 actors.removeIndex(0);
                 scoreWrong +=1;
             }
         }
     }
-
     public void controller() {
         time += 1;
-        if (time >= 210f) {
-            NoteGoriz noteGoriz = new NoteGoriz(game);
+        if (time >= 310f) {
+            NoteGoriz noteGoriz = new NoteGoriz(game,stage,stage.getViewport().getWorldHeight(),
+                    stage.getViewport().getWorldHeight()-this.stage.getViewport().getWorldHeight() / 4f);
             actors.add(noteGoriz);
             stage.addActor(noteGoriz);
             time = 0f;
@@ -250,7 +278,39 @@ public class ScripMiddleScreen extends AbstractGameScreen {
                 scoreWrong +=1;
             }
         }
-//
+    }
+
+    @Override
+    public void show() {
+        Gdx.input.setCatchBackKey(true);
+        this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT,game.camera)) {
+            @Override
+            public boolean keyUp(int keycode) {
+                if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
+                    ScripMiddleScreen.this.Back();
+                }
+                return false;
+            }
+        };
+        Gdx.input.setInputProcessor(stage);
+//        widthW = stage.getViewport().getWorldWidth();
+//        hidthH = stage.getViewport().getWorldHeight();
+//        this.stage.setViewport(new StretchViewport(800.0f, 480.0f));
+//        triangleTextureRegion = Assets.instance.decoration.triangleImgRot;
+//        lineTextureRegion = Assets.instance.decoration.lineImg;
+
+
+        this.buildStage();
+        actors = new Array();
+        NoteGoriz noteGoriz = new NoteGoriz(game,stage,stage.getViewport().getWorldHeight(),
+                stage.getViewport().getWorldHeight()-this.stage.getViewport().getWorldHeight() / 4f);
+        actors.add(noteGoriz);
+        stage.addActor(noteGoriz);
+
+
+        controller();
+        this.stage.act();
+        this.stage.draw();
     }
     public void drawKey(float key) {
 //        float keyPosition = 8 + (34 * (int) key);

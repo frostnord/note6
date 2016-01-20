@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 import com.note.enums.GameState;
 import com.note.game.Assets;
@@ -20,6 +21,10 @@ import java.util.Random;
  * Created by 1 on 13.06.2015.
  */
 public class NoteGoriz extends Actor {
+    private final float width;
+    private final float height;
+    private final Stage stage;
+    private float widthBot;
     private TextureRegion textureRegion;
     private TextureRegion lineImg;
     private final DirectedGame game;
@@ -43,12 +48,14 @@ public class NoteGoriz extends Actor {
     public Animation animation;
     private int ranNote ;
     private float rotation;
+    private float widhtTop ;
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 
         lineImg= Assets.instance.decoration.lineImg;
+
         if (note.equals("Do")){
             textureRegion = Assets.instance.note.noteRedDoGor;
         }else if (note.equals("Re")){
@@ -102,15 +109,16 @@ public class NoteGoriz extends Actor {
             batch.draw(reg.getTexture(),
                     position.x, position.y + 6,
                     origin.x, origin.y,
-                    46, 28,
+                    width, height,
                     scale.x, scale.y,
                     rotation,
                     reg.getRegionX(), reg.getRegionY(),
                     reg.getRegionWidth(), reg.getRegionHeight(),
                     false, false);
         }else {
-            batch.draw(textureRegion, position.x , position.y + 6, 46, 28);
+            batch.draw(textureRegion, position.x , position.y + 6, width, height);
         }
+
         this.font = Assets.instance.fonts.levelComplete;
         font.setColor(0.11f,0.11f, 0.11f, 1);
         if (ran != 0) {
@@ -124,7 +132,12 @@ public class NoteGoriz extends Actor {
 //        ranNote = random.nextInt(1);
         return ranNote;
     }
-    public NoteGoriz(DirectedGame directedGame) {
+    public NoteGoriz(DirectedGame directedGame , Stage stage , float widhtTop , float widthBot) {
+        this.stage = stage;
+        this.width = widthBot / 9.2f;
+        this.height = widthBot / 13f;
+        this.widhtTop = widhtTop;
+        this.widthBot= widthBot ;
         this.game = directedGame;
         randomNote();
         nadpisOFF();
@@ -134,10 +147,11 @@ public class NoteGoriz extends Actor {
         this.move= true;
 //        ran = 0;
 //        index = 22;
-//        note ="mi";
-        position = new Vector2(770 , (index * 14) + 118);/////////////////////
-//        position = new Vector2(Constants.APP_WIDTH / (23) * index - 8,Constants.APP_HEIGHT - (Constants.APP_HEIGHT/5));
-        this.isSecond=false;
+//        note ="Do";
+//        noteNumber = 1;
+        position = new Vector2(1900,((this.stage.getViewport().getWorldHeight() - this.stage.getViewport().getWorldHeight() / 4f - 50) / 23f) * index + this.stage.getViewport().getWorldHeight() / 4f);
+//        position = new Vector2(770 , (index * 14) + 118);/////////////////////
+        this.isSecond = false;
         dimension = new Vector2(1, 1);
         origin = new Vector2();
         scale = new Vector2(1, 1);
@@ -151,9 +165,6 @@ public class NoteGoriz extends Actor {
     public void setNoteCliked(boolean isSecond){
         this.isSecond = isSecond;
     }
-    public boolean getNoteCliked(boolean isSecond){
-        return this.isSecond ;
-    }
     public float getIndex(){
         return this.index;
     }
@@ -162,9 +173,6 @@ public class NoteGoriz extends Actor {
     }
     public int getNoteNumber(){
         return noteNumber;
-    }
-    public void move(boolean move){
-        this.move = move;
     }
     public Vector2 getPosition() {
         return position;

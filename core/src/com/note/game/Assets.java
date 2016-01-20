@@ -172,13 +172,20 @@ public class Assets implements AssetErrorListener, Disposable {
         }
     }
     public class AssetDecoration {
+
+        public final AtlasRegion rightBorder;
+        public final AtlasRegion leftBorder;
         public final AtlasRegion lineImg;
         public final AtlasRegion reflectPlay;
         public final AtlasRegion reflectBass;
         public final AtlasRegion reflectScrip;
         public final AtlasRegion triangleImg;
+        public final AtlasRegion triangleImgRot;
 
         public AssetDecoration(TextureAtlas atlas) {
+            rightBorder = atlas.findRegion("rightBorder");
+            leftBorder = atlas.findRegion("leftBorder");
+            triangleImgRot = atlas.findRegion("triangleRot");
             triangleImg = atlas.findRegion("triangle");
             this.lineImg = atlas.findRegion("lineImg");
             this.reflectScrip = atlas.findRegion("ReflectScrip");

@@ -104,7 +104,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
         this.layerBackground = this.buildBackgroundLayer();
 
         this.layerKeyboard=this.buildKeyboardLayer();
-        this.layerLines = this.buildLinesLayer();
+//        this.layerLines = this.buildLinesLayer();
         this.layerControls = this.buildControlsLayer();
 //        this.layerSettings = this.buildSettingsLayer();
     }
@@ -112,7 +112,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
         Table table = new Table();
 //        table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         this.imgBackground = new Image(this.game.gameSkin,"backgroundMenu");
-        table.add(this.imgBackground).fill().expand();;
+        table.add(this.imgBackground).fill().expand();
 
         return table;
     }

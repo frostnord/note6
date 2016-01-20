@@ -16,9 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.note.Note;
+import com.note.actors.KeyVert;
 import com.note.actors.NoteVert;
 import com.note.enums.GameState;
 import com.note.game.Assets;
+import com.note.game.WorldController;
 import com.note.utils.Constants;
 import com.note.utils.GameManager;
 
@@ -27,112 +29,59 @@ import com.note.utils.GameManager;
  */
 public class ScripTreningScreen extends AbstractGameScreen {
 
-    private Table layerBackground;
-    private Table layerLines;
     private Image imgBackground;
-    private TextureAtlas atlas;
     private Stage stage;
-    private Table layerKeyboard;
-    private Button keybordImg;
-    private NoteVert firstActor, secondActor;
-    private GameState gameState;
-    private static float keybordHeight;
-    private Float time = 0f;
+    public static NoteVert firstActor, secondActor;
     private Float currIndex, nextIndex;
-    private Image lineImg;
-    private TextureRegion pressedKey;
-    private KeyStatus keyStatus;
-    private float key;
     private Image znakImg;
-    private Table layerZnak;
-    public static int NUMBER;
 
 
-    public ScripTreningScreen(Note directedGame) {
-        super(directedGame);
+
+    public ScripTreningScreen(Note game) {
+        super(game);
     }
 
-    private void rebuildStage() {
-        this.buildMenuLayers();
-        this.assembleStage();
-    }
-
-    private void buildMenuLayers() {
-        this.layerBackground = this.buildBackgroundLayer();
-        this.layerKeyboard = this.buildKeyboardLayer();
-        this.layerZnak = this.buildZnakLayer();
-//        this.layerSettings = this.buildSettingsLayer();
-        this.layerLines = this.buildLinesLayer();
-    }
-    private Table buildZnakLayer() {
-        Table table = new Table();
-        table.center().top();
-//                .padLeft(154);
-        znakImg = new Image(this.game.gameSkin, "ScripVertZnak");
-        table.add(znakImg);
-        return table;
-    }
-    private Table buildLinesLayer() {
-        Table table = new Table();
-        table.bottom().left().padBottom(keybordHeight);
-        this.lineImg = new Image(this.game.gameSkin, "lines");
-        table.add(this.lineImg);
-
-        return table;
-    }
-
-    private Table buildBackgroundLayer() {
-        Table table = new Table();
+    private void buildStage() {
         this.imgBackground = new Image(this.game.gameSkin, "backgroundGame");
-        table.add(this.imgBackground);
-        return table;
-    }
+        imgBackground.setSize(stage.getViewport().getWorldWidth(),stage.getViewport().getWorldHeight());
+        stage.addActor(this.imgBackground );
+        znakImg = new Image(this.game.gameSkin, "ScripVertZnak");
+        znakImg.setPosition(this.stage.getViewport().getWorldWidth() / 4,
+                this.stage.getViewport().getWorldHeight() - znakImg.getHeight());
+        stage.addActor(znakImg);
 
-    private Table buildKeyboardLayer() {
-        final Table table = new Table();
-        table.center().bottom();
-        this.keybordImg = new Button(this.game.gameSkin, "keybord");
-        table.add(this.keybordImg);
-        keybordHeight = keybordImg.getTop();
-        this.keybordImg.addListener(new ClickListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-//                Gdx.input.vibrate(20);
-                keyStatus = KeyStatus.DOWN;
-                keyPressed(x);
+        stage.addActor(new KeyVert(game, 3, stage, 0));
+        stage.addActor(new KeyVert(game, 4, stage, 1));
+        stage.addActor(new KeyVert(game, 5, stage, 2));
+        stage.addActor(new KeyVert(game, 6, stage, 3));
+        stage.addActor(new KeyVert(game, 7, stage, 4));
+        stage.addActor(new KeyVert(game, 1, stage, 5));
+        stage.addActor(new KeyVert(game, 2, stage, 6));
+        stage.addActor(new KeyVert(game, 3, stage, 7));
+        stage.addActor(new KeyVert(game, 4, stage, 8));
+        stage.addActor(new KeyVert(game, 5, stage, 9));
+        stage.addActor(new KeyVert(game, 6, stage, 10));
+        stage.addActor(new KeyVert(game,7,stage,11));
+        stage.addActor(new KeyVert(game,1,stage,12));
+        stage.addActor(new KeyVert(game,2,stage,13));
+        stage.addActor(new KeyVert(game,3,stage,14));
+        stage.addActor(new KeyVert(game,4,stage,15));
+        stage.addActor(new KeyVert(game,5,stage,16));
+        stage.addActor(new KeyVert(game,6,stage,17));
+        stage.addActor(new KeyVert(game,7,stage,18));
+        stage.addActor(new KeyVert(game,1,stage,19));
+        stage.addActor(new KeyVert(game,2,stage,20));
+        stage.addActor(new KeyVert(game,3,stage,21));
+        stage.addActor(new KeyVert(game,4,stage,22));
 
-                return true;
-            }
 
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-//                game.setScreen(new LevelScreen(game));
-//                dispose();
-                keyStatus = KeyStatus.UP;
-            }
-        });
-        return table;
-    }
 
-    public enum KeyStatus {
-        DOWN,
-        UP
-    }
-
-    private void assembleStage() {
-        this.stage.clear();
-        Stack stack = new Stack();
-        this.stage.addActor(stack);
-
-        stack.setSize(this.stage.getViewport().getWorldWidth(), this.stage.getViewport().getWorldHeight());
-        stack.add(this.layerBackground);
-
-        stack.add(this.layerLines);
-        stack.add(layerZnak);
-        stack.add(this.layerKeyboard);
+//            stage.addActor( a = new DoKey(game,stage,2));
+//            a = new DoKey(game,stage,3);
+//            a.setTouchable(Touchable.enabled);
+//            stage.addActor( a);
 
     }
-
 
     private void Back() {
         this.game.setScreen(new ScripMenuScreen(this.game));
@@ -142,39 +91,40 @@ public class ScripTreningScreen extends AbstractGameScreen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        controller(delta);
-
+        controller();////////////////////////
 
         stage.act(delta);
         stage.draw();
-        if (keyStatus == KeyStatus.DOWN) {
-            drawKey(key);
-        }
         renderGuiFpsCounter();
     }
 
-    public void controller(float delta) {
+    public void controller() {
         if (firstActor == null) {
             firstActor = new NoteVert(game,stage);
             currIndex = firstActor.getIndex();
+            WorldController.KEYNUMBER = currIndex;
             stage.addActor(firstActor);
         }
-            time += 1;
-        if (time >= 180f) {
+        if (firstActor.getPosition().y <= stage.getViewport().getWorldHeight() / 2 ){
             if (secondActor == null) {
-                secondActor = new NoteVert(game,stage);
+                secondActor = new NoteVert(game, stage);
+                nextIndex = secondActor.getIndex();
                 stage.addActor(secondActor);
                 currIndex = nextIndex;
-                time = 0f;
+//                    WorldController.KEYNUMBER = currIndex;
             }
         }
-        if (firstActor.getPosition().y <= keybordImg.getTop()+10) {
+        if (firstActor.getNoteCliked(true)){
+
+            firstActor.speedUp();
+        }
+        if (firstActor.getPosition().y <= this.stage.getViewport().getWorldHeight()/3.2 - 7) {
 
             GameManager.ourInstance.setGameState(GameState.WAITKEYPRESS);
-//            System.out.println("Смена стате");
             if (firstActor.getNoteCliked(true)) {
 
                 currIndex = nextIndex;
+                WorldController.KEYNUMBER = currIndex;
                 firstActor.remove();
                 firstActor = null;
                 firstActor = secondActor;
@@ -187,49 +137,12 @@ public class ScripTreningScreen extends AbstractGameScreen {
                 GameManager.ourInstance.setGameState(GameState.WAITKEYPRESS);
             }
         }
-//        if (!(secondActor == (null))){
-//            if (firstActor.getPosition().y <= keybordImg.getTop()) {
-//                secondActor.move(false);
-//            }
-//        }
-    }
-
-    private void keyPressed(float x) {
-        key = (x - 7) / 34;
-        if ((int) firstActor.getIndex() == (int) key) {
-            System.out.println("OK");
-            firstActor.setNoteCliked(true);
-        }
-    }
-
-    public void drawKey(float key) {
-        float keyPosition = 8 + (34 * (int) key);
-
-        if (((int) key == 1) || ((int) key == 5) || ((int) key == 8) || ((int) key == 12) || ((int) key == 15) || ((int) key == 19) || ((int) key == 22)) {
-            pressedKey = Assets.instance.noteImg.doKeyImg;
-        } else if (((int) key == 2) || ((int) key == 9) || ((int) key == 16)) {
-            pressedKey = Assets.instance.noteImg.solKeyImg;
-        } else if (((int) key == 3) || ((int) key == 10) || ((int) key == 17)) {
-            pressedKey = Assets.instance.noteImg.laKeyImg;
-        } else if (((int) key == 4) || ((int) key == 11) || ((int) key == 18)) {
-            pressedKey = Assets.instance.noteImg.siKeyImg;
-        } else if (((int) key == 6) || ((int) key == 13) || ((int) key == 20)) {
-            pressedKey = Assets.instance.noteImg.reKeyImg;
-        } else if (((int) key == 0) || ((int) key == 7) || ((int) key == 14) || ((int) key == 21)) {
-            pressedKey = Assets.instance.noteImg.miKeyImg;
-        }
-
-        stage.getBatch().begin();
-        stage.getBatch().draw(pressedKey, keyPosition, 0, pressedKey.getRegionWidth(), pressedKey.getRegionHeight());
-        stage.getBatch().end();
-//        System.out.println(keyPosition);
-
     }
 
     @Override
     public void show() {
         Gdx.input.setCatchBackKey(true);
-        this.stage = new Stage(new StretchViewport(800.0f, 480.0f)) {
+        this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT,game.camera)) {
             @Override
             public boolean keyUp(int keycode) {
                 if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
@@ -240,10 +153,10 @@ public class ScripTreningScreen extends AbstractGameScreen {
         };
         firstActor = null;
         Gdx.input.setInputProcessor(stage);
-//        this.stage.setViewport(new StretchViewport(800.0f, 480.0f));
-        this.rebuildStage();
+        this.buildStage();
         this.stage.act();
         this.stage.draw();
+
     }
 
     @Override
@@ -256,13 +169,11 @@ public class ScripTreningScreen extends AbstractGameScreen {
 
     }
 
-    public static float keybordHeight() {
-        return keybordHeight;
-    }
 
     @Override
     public void resume() {
-
+//            this.game.camera.viewportWidth = Gdx.graphics.getWidth();
+//            this.game.camera.viewportHeight = Gdx.graphics.getHeight();
     }
 
     @Override
@@ -272,7 +183,8 @@ public class ScripTreningScreen extends AbstractGameScreen {
 
     @Override
     public void dispose() {
-        Assets.instance.dispose();
+//            Assets.instance.dispose();
+        this.stage.dispose();
     }
 
     private void renderGuiFpsCounter() {

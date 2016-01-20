@@ -40,6 +40,7 @@ public class NoteVert extends Actor {
     private BitmapFont font;
     private boolean move ;
     private int lineNamber;
+    private float speed = 90;
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -221,11 +222,14 @@ public class NoteVert extends Actor {
         }
         return index;
     }
+    public void speedUp(){
+        speed = 500;
+    }
 
     public void act(float delta) {
         super.act(delta);
         if  (GameManager.ourInstance.getGameState()== GameState.MOVE) {
-            position.y -= 100 * delta;
+            position.y -= speed * delta;
         }
     }
 
