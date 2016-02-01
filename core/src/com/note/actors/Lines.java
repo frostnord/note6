@@ -14,7 +14,7 @@ public class Lines extends Actor {
 
     public final Stage stage;
     public final Note game;
-    private final float hidthH;
+    private final int hidthH;
     private final float widthW;
     private final TextureRegion lineTextureRegion;
     private final TextureRegion triangleTextureRegion;
@@ -23,7 +23,7 @@ public class Lines extends Actor {
         this.stage = stage;
         this.game = game;
         widthW = stage.getViewport().getWorldWidth();
-        hidthH = stage.getViewport().getWorldHeight();
+        hidthH = (int) stage.getViewport().getWorldHeight();
         lineTextureRegion = Assets.instance.decoration.lineImg;
         triangleTextureRegion = Assets.instance.decoration.triangleImgRot;
     }
@@ -36,7 +36,7 @@ public class Lines extends Actor {
         float lineH = (hidthH - (hidthH / 4f)-50) / 46;
         float pole = hidthH - hidthH / 4 - 50;
 
-        batch.draw(lineTextureRegion, widthW / 23, (lineH * 0) + (hidthH / 4f), widthW, hidthH / 200);
+//        batch.draw(lineTextureRegion, widthW / 23, (lineH * 0) + (hidthH / 4f), widthW, hidthH / 200);
 
         batch.draw(lineTextureRegion, widthW / 23, (lineH * 16) + (hidthH / 4f), widthW, hidthH / 200);
         batch.draw(lineTextureRegion, widthW / 23, (lineH * 20) + (hidthH / 4f), widthW, hidthH / 200);
@@ -44,7 +44,6 @@ public class Lines extends Actor {
         batch.draw(lineTextureRegion, widthW / 23, (lineH * 28) + (hidthH / 4f), widthW, hidthH / 200);
         batch.draw(lineTextureRegion, widthW / 23, (lineH * 32) + (hidthH / 4f), widthW, hidthH / 200);
 
-//        for (int i = 0; i < 46 ; i ++) {
             batch.draw(triangleTextureRegion, widthW - lineW, (pole / 46 )* 3 + hidthH / 4 , widthW / 100, (hidthH - (hidthH / 4f)) / 23 );
             batch.draw(triangleTextureRegion, widthW - lineW, (pole / 46 )* 7 + hidthH / 4 , widthW / 100, (hidthH - (hidthH / 4f)) / 23 );
             batch.draw(triangleTextureRegion, widthW - lineW, (pole / 46 )* 11 + hidthH / 4 , widthW / 100, (hidthH - (hidthH / 4f)) / 23 );

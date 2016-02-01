@@ -9,8 +9,8 @@ public class MyTexturePacker {
         TexturePacker.Settings settings = new TexturePacker.Settings();
         settings.maxWidth= 2048;
         settings.maxHeight= 2048;
-        settings.paddingX=1;
-        settings.paddingY=1;
+        settings.paddingX=2;
+        settings.paddingY=2;
         settings.debug=false;
         TexturePacker.process(settings,"\\Users\\1\\Desktop\\assets", "\\Projects\\Note\\note6\\android\\assets", "sprites");
     }

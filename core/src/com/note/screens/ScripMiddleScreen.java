@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -23,6 +24,7 @@ import com.note.actors.Lines;
 import com.note.actors.NoteGoriz;
 import com.note.game.Assets;
 import com.note.utils.Constants;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 
 public class ScripMiddleScreen extends AbstractGameScreen {
 
@@ -33,24 +35,26 @@ public class ScripMiddleScreen extends AbstractGameScreen {
     private Button keybordImg;
     private Table layerKeyboard;
     private float keybordHeight;
-    private KeyStatus keyStatus;
+//    private KeyStatus keyStatus;
     private Image lineImg , leftBorder , rightBorder;
     private Table layerLines;
     private Image znakImg;
     private Table layerZnak;
-    private Array<NoteGoriz> actors;
+    private static Array<NoteGoriz> actors;
     private float key;
-    private Float time = 0f;
+    private Float time = 300f;
     private TextureAtlas.AtlasRegion pressedKey;
     boolean rightButton = false;
-    public int scoreRight = 0;
-    public int scoreWrong = 0;
+    public static int scoreRight = 0;
+    public static int scoreWrong = 0;
     private Animation  animation;
     private TextureRegion lineTextureRegion;
     private float widthW ;
     private float hidthH ;
     private TextureRegion triangleTextureRegion;
     private Sprite sp;
+
+    public static int index;
 
     public ScripMiddleScreen(Note game) {
         super(game);
@@ -105,7 +109,7 @@ public class ScripMiddleScreen extends AbstractGameScreen {
 //        return table;
 //    }
 
-    private void buildLinesLayer() {
+//    private void buildLinesLayer() {
 
 //        float lineW = widthW / 100 ;
 //        float lineH = (hidthH - (hidthH / 4f)) / 23;
@@ -132,47 +136,47 @@ public class ScripMiddleScreen extends AbstractGameScreen {
 //        table.add(lineImg).setActorBounds(widthW / 23, (lineH * 7) + (hidthH / 4f), widthW, hidthH / 200);
 //        stage.addActor(table);
 ////        return table;
-    }
+//    }
 
-    private Table buildKeyboardLayer() {
-        final Table table = new Table();
-        table.center().bottom();
-        this.keybordImg = new Button(this.game.gameSkin, "keybord2");
-        table.add(this.keybordImg);
-        keybordHeight = keybordImg.getTop();
-        this.keybordImg.addListener(new ClickListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-//                Gdx.input.vibrate(20);
-                keyStatus = KeyStatus.DOWN;
-                keyPressed(x);
+//    private Table buildKeyboardLayer() {
+//        final Table table = new Table();
+//        table.center().bottom();
+//        this.keybordImg = new Button(this.game.gameSkin, "keybord2");
+//        table.add(this.keybordImg);
+//        keybordHeight = keybordImg.getTop();
+//        this.keybordImg.addListener(new ClickListener() {
+//            @Override
+//            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+////                Gdx.input.vibrate(20);
+//                keyStatus = KeyStatus.DOWN;
+//                keyPressed(x);
+//
+//                return true;
+//            }
+//
+//            @Override
+//            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+////                game.setScreen(new LevelScreen(game));
+////                dispose();
+//                keyStatus = KeyStatus.UP;
+//                rightButton = false;
+//            }
+//        });
+//        return table;
+//    }
 
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-//                game.setScreen(new LevelScreen(game));
-//                dispose();
-                keyStatus = KeyStatus.UP;
-                rightButton = false;
-            }
-        });
-        return table;
-    }
 
 
-
-    public enum KeyStatus {
-        DOWN,
-        UP;
-    }
-    private Table buildBackgroundLayer() {
-        Table table = new Table();
-        this.imgBackground = new Image(this.game.gameSkin, "backgroundGame");
-        table.add(this.imgBackground);
-        return table;
-    }
+//    public enum KeyStatus {
+//        DOWN,
+//        UP;
+//    }
+//    private Table buildBackgroundLayer() {
+//        Table table = new Table();
+//        this.imgBackground = new Image(this.game.gameSkin, "backgroundGame");
+//        table.add(this.imgBackground);
+//        return table;
+//    }
 
     private void assembleStage() {
         this.stage.clear();
@@ -193,12 +197,12 @@ public class ScripMiddleScreen extends AbstractGameScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.draw();
         stage.act(delta);
-        buildLinesLayer();
+//        buildLinesLayer();
         controller();
 
-        if (keyStatus == KeyStatus.DOWN) {
-            drawKey(key);
-        }
+//        if (keyStatus == KeyStatus.DOWN) {
+//            drawKey(key);
+//        }
         renderGuiFpsCounter();
         score();
 
@@ -224,27 +228,32 @@ public class ScripMiddleScreen extends AbstractGameScreen {
         fpsFont.setColor(1, 1, 1, 1); // white
     }
     private  void score (){
-        float x =650;
-        float y = 460;
 //        int fps = Gdx.graphics.getFramesPerSecond();
         BitmapFont score = Assets.instance.fonts.levelCompleted;
-//        BitmapFont scoreWFont = Assets.instance.fonts.levelCompleted;
+        float x = rightBorder.getX()+ 50;
+        float y = rightBorder.getHeight();
 
         score.setColor(1, 0, 0, 1);
-
-//        }
         stage.getBatch().begin();
-        score.draw(stage.getBatch(), " " + scoreWrong, x, y);
+        score.draw(stage.getBatch(), " " + scoreWrong, x, y - score.getCapHeight()- 10 );
         score.setColor(0, 1, 0, 1);
-        score.draw(stage.getBatch(), " " + scoreRight, x + 50, y);
+        score.draw(stage.getBatch(), " " + scoreRight, x , y );
         stage.getBatch().end();
-//        scoreFont.setColor(1, 1, 1, 1); // white
     }
+
+//    public static void setScoreRight() {
+//        scoreRight++;
+//    }
+
+//    public static void setScoreWrong() {
+//        scoreWrong++;
+//    }
+
     private void keyPressed(float x) {
 
 
         key = (x - 3) / 34;
-        System.out.println(key);
+//        System.out.println(key);
 //        System.out.println( actors.get(0).getNoteNumber());
 
         if (actors.size != 0 ) {
@@ -264,18 +273,27 @@ public class ScripMiddleScreen extends AbstractGameScreen {
     }
     public void controller() {
         time += 1;
-        if (time >= 310f) {
+        if (time >= 220f) {
             NoteGoriz noteGoriz = new NoteGoriz(game,stage,stage.getViewport().getWorldHeight(),
                     stage.getViewport().getWorldHeight()-this.stage.getViewport().getWorldHeight() / 4f);
+
             actors.add(noteGoriz);
             stage.addActor(noteGoriz);
             time = 0f;
+//            index = noteGoriz.getIndex();
+//            System.out.println(actors.get(0).getNoteKey());/
+//            if (actors.size >=4 ){
+//                System.out.println(actors.get(0).getNoteKey() + " " +  actors.get(1).getNoteKey()+ " " +  actors.get(2).getNoteKey()+ " " +  actors.get(3).getNoteKey());
+//            }
         }
+
         if (actors.size != 0 ) {
             if (actors.get(0).getPosition().x <= 250) {
-                actors.get(0).setNoteCliked(true);
-                actors.removeIndex(0);
-                scoreWrong +=1;
+                if (!actors.get(0).getNoteClicked()) {
+                    actors.get(0).setNoteCliked(true);
+                    actors.removeIndex(0);
+                    scoreWrong += 1;
+                }
             }
         }
     }
@@ -293,19 +311,15 @@ public class ScripMiddleScreen extends AbstractGameScreen {
             }
         };
         Gdx.input.setInputProcessor(stage);
-//        widthW = stage.getViewport().getWorldWidth();
-//        hidthH = stage.getViewport().getWorldHeight();
-//        this.stage.setViewport(new StretchViewport(800.0f, 480.0f));
-//        triangleTextureRegion = Assets.instance.decoration.triangleImgRot;
-//        lineTextureRegion = Assets.instance.decoration.lineImg;
 
 
         this.buildStage();
         actors = new Array();
-        NoteGoriz noteGoriz = new NoteGoriz(game,stage,stage.getViewport().getWorldHeight(),
-                stage.getViewport().getWorldHeight()-this.stage.getViewport().getWorldHeight() / 4f);
-        actors.add(noteGoriz);
-        stage.addActor(noteGoriz);
+//        NoteGoriz noteGoriz = new NoteGoriz(game,stage,stage.getViewport().getWorldHeight(),
+//                stage.getViewport().getWorldHeight()-this.stage.getViewport().getWorldHeight() / 4f);
+//        actors.add(noteGoriz);
+//        stage.addActor(noteGoriz);
+//        index = noteGoriz.getIndex();
 
 
         controller();
@@ -348,6 +362,16 @@ public class ScripMiddleScreen extends AbstractGameScreen {
     public void resize(int n, int n2) {
         this.stage.getViewport().update(n, n2, true);
     }
+//    public static void setIndex(int s){
+//        index= s;
+//    }
+    public static Array<NoteGoriz> getNoteActors(){
+        return actors;
+    }
+
+//    public static int getIndex(){
+//        return index;
+//    }
 
     @Override
     public void pause() {

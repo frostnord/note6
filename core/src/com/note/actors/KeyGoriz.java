@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.note.Note;
 import com.note.game.Assets;
 import com.note.game.WorldController;
+import com.note.screens.ScripMiddleScreen;
 import com.note.screens.ScripPracticeScreen;
 import com.note.screens.ScripTreningScreen;
 
@@ -95,54 +96,69 @@ public class KeyGoriz extends AbstractActor {
             //            @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 //                if (((DoKey) event.getTarget()).state != 0) {
-//
+            if(ScripMiddleScreen.getNoteActors().size != 0) {
                 if (key == 1) {
-                    if (WorldController.KEYNUMBER == number ) {
+                    if (ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key) {
                         keyTextureRegion = Assets.instance.noteImg.doGreenKeyImgActor;
                     } else {
                         keyTextureRegion = Assets.instance.noteImg.doRedKeyImgActor;
                     }
-                }else if(key == 2){
-                    if (WorldController.KEYNUMBER == number){
+                } else if (key == 2) {
+                    if (ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key) {
                         keyTextureRegion = Assets.instance.noteImg.reGreenKeyImgActor;
-                    }else {
+                    } else {
                         keyTextureRegion = Assets.instance.noteImg.reRedKeyImgActor;
                     }
-                }else if(key == 3){
-                    if (WorldController.KEYNUMBER == number){
+                } else if (key == 3) {
+                    if (ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key) {
                         keyTextureRegion = Assets.instance.noteImg.miGreenKeyImgActor;
-                    }else {
+                    } else {
                         keyTextureRegion = Assets.instance.noteImg.miRedKeyImgActor;
                     }
-                }else if(key == 4){
-                    if (WorldController.KEYNUMBER == number){
+                } else if (key == 4) {
+                    if (ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key) {
                         keyTextureRegion = Assets.instance.noteImg.faGreenKeyImgActor;
-                    }else {
+                    } else {
                         keyTextureRegion = Assets.instance.noteImg.faRedKeyImgActor;
                     }
-                }else if(key == 5){
-                    if (WorldController.KEYNUMBER == number){
+                } else if (key == 5) {
+                    if (ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key) {
                         keyTextureRegion = Assets.instance.noteImg.solGreenKeyImgActor;
-                    }else {
+                    } else {
                         keyTextureRegion = Assets.instance.noteImg.solRedKeyImgActor;
                     }
-                }else if(key == 6){
-                    if (WorldController.KEYNUMBER == number){
+                } else if (key == 6) {
+                    if (ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key) {
                         keyTextureRegion = Assets.instance.noteImg.laGreenKeyImgActor;
-                    }else {
+                    } else {
                         keyTextureRegion = Assets.instance.noteImg.laRedKeyImgActor;
                     }
-                }else if(key == 7){
-                    if (WorldController.KEYNUMBER == number){
+                } else if (key == 7) {
+                    if (ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key) {
                         keyTextureRegion = Assets.instance.noteImg.siGreenKeyImgActor;
-                    }else {
+                    } else {
                         keyTextureRegion = Assets.instance.noteImg.siRedKeyImgActor;
                     }
                 }
+
                 if (game.getScreen().getClass() == ScripTreningScreen.class) {
                     ScripTreningScreen.firstActor.setNoteCliked(true);
                 }
+                if (game.getScreen().getClass() == ScripMiddleScreen.class) {
+                    if ((ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key)) {
+                        ScripMiddleScreen.scoreRight++;
+                    } else {
+                        ScripMiddleScreen.scoreWrong++;
+                    }
+//                    ScripMiddleScreen.setIndex(number);
+                    if (ScripMiddleScreen.getNoteActors().size != 0) {
+                        ScripMiddleScreen.getNoteActors().get(0).setNoteCliked(true);
+                        ScripMiddleScreen.getNoteActors().removeIndex(0);
 
+                    }
+                }
+//                System.out.println("key "+(ScripMiddleScreen.getNoteActors().get(0).getNoteKey()));
+            }
 //                try {
 //                    NUMBER = game.getScreen().getClass().getField("currIndex");
 //                    String n = NUMBER.getName();

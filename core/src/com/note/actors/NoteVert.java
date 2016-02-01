@@ -126,7 +126,7 @@ public class NoteVert extends Actor {
 
 
 
-        this.font = Assets.instance.fonts.levelCompleted;
+        this.font = Assets.instance.fonts.defaultNormal;
 //        font.setColor(18f ,45f ,115f , 1f);
         font.setColor(Color.valueOf("071d53"));
         if (lineNamber > 0) {
@@ -136,7 +136,7 @@ public class NoteVert extends Actor {
             font.draw(batch, note, position.x + 7, position.y + 140);
 //                label.setPosition(position.x + 15 , position.y + 55);
         }else if(note.equals("si")){
-            font.draw(batch, note, position.x + 34, position.y + 140);
+            font.draw(batch, note, position.x + 35, position.y + 140);
         }else if(note.equals("do")){
             font.draw(batch, note, position.x + 15, position.y + 140);
         }else if(note.equals("re")){
@@ -182,9 +182,9 @@ public class NoteVert extends Actor {
     public String getNote(){
         return note;
     }
-    public void move(boolean move){
-        this.move = move;
-    }
+//    public void move(boolean move){
+//        this.move = move;
+//    }
     public Vector2 getPosition() {
         return position;
     }

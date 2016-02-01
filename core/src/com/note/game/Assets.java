@@ -285,7 +285,7 @@ public class Assets implements AssetErrorListener, Disposable {
             this.heroInfo = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
             this.heroInfo.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 //            this.heroInfo.setScale(1.0f, 1.0f);
-            freeTypeFontParameter.size = 25;
+            freeTypeFontParameter.size = 50;
             this.defaultNormal = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
             this.defaultNormal.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 //            this.defaultNormal.setScale(1.0f, -1.0f);
