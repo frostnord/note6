@@ -12,7 +12,6 @@ import com.note.Note;
 import com.note.game.Assets;
 import com.note.game.WorldController;
 import com.note.screens.ScripMiddleScreen;
-import com.note.screens.ScripPracticeScreen;
 import com.note.screens.ScripTreningScreen;
 
 import java.lang.reflect.Field;

@@ -4,8 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -14,10 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.note.Note;
 import com.note.enums.GameState;
-import com.note.game.Assets;
 import com.note.utils.Constants;
 import com.note.utils.GameManager;
 
@@ -168,7 +164,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
         this.game.setScreen(new ScripTreningScreen(this.game));
     }
     private void onPracticeClicked() {
-        this.game.setScreen(new ScripPracticeScreen(this.game));
+        this.game.setScreen(new ScripPackScreen(this.game));
     }
 
     @Override

@@ -6,16 +6,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.note.Note;
 import com.note.game.Assets;
-import com.note.game.WorldController;
 import com.note.screens.ScripMiddleScreen;
-import com.note.screens.ScripPracticeScreen;
 import com.note.screens.ScripTreningScreen;
 
 import java.lang.reflect.Field;

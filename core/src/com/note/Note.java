@@ -1,6 +1,7 @@
 package com.note;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -33,6 +34,17 @@ public class Note extends DirectedGame {
         super.dispose();
 
     }
+//    protected Preferences getPrefs()
+//    {
+//        if(preferences==null){
+//            preferences = Gdx.app.getPreferences("ThrustCopter");
+//        }
+//        if(preferences==null){
+//            System.out.println("null preferences");
+//        }
+//        return preferences;
+//    }
+
     void getDensite() {
         if (Gdx.app.getType().toString() == "Android")
         {
