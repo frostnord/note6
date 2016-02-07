@@ -155,7 +155,7 @@ public class ScripPracticeScreen extends AbstractGameScreen {
         renderGuiFpsCounter();
     }
     private void Back() {
-        this.game.setScreen(new ScripMenuScreen(this.game));
+        this.game.setScreen(new ScripPackScreen(this.game));
     }
 
     private void renderGuiFpsCounter() {

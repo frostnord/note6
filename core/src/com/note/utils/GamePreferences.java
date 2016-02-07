@@ -31,7 +31,15 @@ public class GamePreferences {
         }
         return 0;
     }
-    public int getNumberOfStar(int mode, int star) {
-        return this.prefs.getInteger("levelStar-" + mode + "-" + star);
+    public int getNumberOfStar(int mode, int pack) {
+        return this.prefs.getInteger("levelStar-" + mode + "-" + pack);
+    }
+    public void saveLastLevelStar(int mode, int pack,int star) {
+//        int n3 = this.loadActualPack();
+//        if (n2 != 0 && (this.prefs.getInteger("levelStar-" + n3 + "-" + n) < n2 || this.prefs.getInteger("levelStar-" + n3 + "-" + n) == 0)) {
+            this.prefs.putInteger("levelStar-" + mode + "-" + pack, star);
+//            this.setNextLevel(n);
+//        }
+        this.prefs.flush();
     }
 }

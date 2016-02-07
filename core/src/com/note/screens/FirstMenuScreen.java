@@ -150,7 +150,7 @@ public class FirstMenuScreen extends AbstractGameScreen {
     }
     private Table buildControlsLayer() {
         final Table table = new Table();
-        table.debug();
+//        table.debug();
 //        table.center();
         table.center().bottom();
 //        table.setFillParent(true);
@@ -343,12 +343,12 @@ public class FirstMenuScreen extends AbstractGameScreen {
 
     @Override
     public void resume() {
-        Assets.instance.init(new AssetManager());
+//        Assets.instance.init(new AssetManager());
     }
 
     @Override
     public void hide() {
-//        this.stage.dispose();
+        this.stage.dispose();
     }
 
     @Override

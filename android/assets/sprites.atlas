@@ -236,7 +236,7 @@ BassButton
   index: -1
 LearningScrip_mid
   rotate: false
-  xy: 686, 483
+  xy: 988, 181
   size: 186, 186
   orig: 186, 186
   offset: 0, 0
@@ -250,7 +250,7 @@ PlayButton
   index: -1
 PracticeScrip_right
   rotate: false
-  xy: 384, 153
+  xy: 1819, 1116
   size: 186, 186
   orig: 186, 186
   offset: 0, 0
@@ -292,9 +292,23 @@ ScripVertZnak
   index: -1
 SetingsButton
   rotate: false
-  xy: 384, 15
+  xy: 988, 43
   size: 145, 136
   orig: 145, 136
+  offset: 0, 0
+  index: -1
+Star2
+  rotate: false
+  xy: 513, 671
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Star3
+  rotate: false
+  xy: 384, 369
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
 TreningScrip_left1
@@ -306,14 +320,14 @@ TreningScrip_left1
   index: -1
 faGreen
   rotate: false
-  xy: 1551, 1065
+  xy: 975, 1117
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 faRed
   rotate: false
-  xy: 1771, 1639
+  xy: 1043, 1119
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
@@ -327,35 +341,35 @@ keybord
   index: -1
 keybord2
   rotate: false
-  xy: 384, 341
+  xy: 996, 1388
   size: 245, 136
   orig: 245, 136
   offset: 0, 0
   index: -1
 la
   rotate: false
-  xy: 1583, 796
+  xy: 1111, 1119
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 laGreen
   rotate: false
-  xy: 874, 402
+  xy: 1963, 1773
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 laRed
   rotate: false
-  xy: 942, 402
+  xy: 1176, 100
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 level
   rotate: false
-  xy: 513, 671
+  xy: 384, 67
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
@@ -369,21 +383,21 @@ linesGoriz
   index: -1
 mi
   rotate: false
-  xy: 1010, 461
+  xy: 1007, 848
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 miGreen
   rotate: false
-  xy: 1078, 461
+  xy: 1075, 850
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 miRed
   rotate: false
-  xy: 1146, 461
+  xy: 1143, 850
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
@@ -397,14 +411,14 @@ noteG
   index: 5
 noteG
   rotate: false
-  xy: 996, 1334
+  xy: 686, 479
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 6
 noteG
   rotate: false
-  xy: 1298, 1334
+  xy: 686, 287
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
@@ -425,112 +439,112 @@ noteV
   index: 2
 noteV
   rotate: false
-  xy: 975, 1032
+  xy: 1771, 1606
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 3
 noteV
   rotate: false
-  xy: 1167, 1032
+  xy: 1243, 1224
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 4
 noteV
   rotate: false
-  xy: 1359, 1032
+  xy: 1435, 1224
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 5
 noteV
   rotate: false
-  xy: 1007, 730
+  xy: 1627, 1224
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 6
 noteV
   rotate: false
-  xy: 1199, 730
+  xy: 1819, 1304
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 7
 note_greyG
   rotate: false
-  xy: 384, 479
+  xy: 686, 95
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: -1
 note_greyV
   rotate: false
-  xy: 1391, 730
+  xy: 988, 369
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: -1
 re
   rotate: false
-  xy: 1214, 461
+  xy: 1211, 847
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 reGreen
   rotate: false
-  xy: 1282, 461
+  xy: 1279, 847
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 reRed
   rotate: false
-  xy: 1350, 461
+  xy: 1347, 847
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 si
   rotate: false
-  xy: 1418, 461
+  xy: 1415, 847
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 siGreen
   rotate: false
-  xy: 1486, 461
+  xy: 1483, 847
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 siRed
   rotate: false
-  xy: 1554, 461
+  xy: 1551, 847
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 sol
   rotate: false
-  xy: 572, 72
+  xy: 1619, 847
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 solGreen
   rotate: false
-  xy: 1622, 527
+  xy: 1687, 847
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 solRed
   rotate: false
-  xy: 640, 133
+  xy: 1755, 847
   size: 66, 267
   orig: 66, 267
   offset: 0, 0

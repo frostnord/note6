@@ -114,8 +114,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
     }
     private Table buildControlsLayer() {
         Table table = new Table();
-//        table.validate();
-        table.debug();
+//        table.debug();
 //        table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         table.center().bottom();
 //        .padBottom(this.game.gameSkin.getRegion("ScripButton").getRegionWidth() / 1.5f);
@@ -189,8 +188,8 @@ public class ScripMenuScreen extends AbstractGameScreen  {
 
     @Override
     public void resume() {
-        this.game.camera.viewportWidth = Gdx.graphics.getWidth();
-        this.game.camera.viewportHeight = Gdx.graphics.getHeight();
+//        this.game.camera.viewportWidth = Gdx.graphics.getWidth();
+//        this.game.camera.viewportHeight = Gdx.graphics.getHeight();
     }
 
     @Override
