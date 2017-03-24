@@ -160,7 +160,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
     }
 
     private void onTreningClicked() {
-        this.game.setScreen(new ScripTreningScreen(this.game));
+        this.game.setScreen(new ScripLeftScreen(this.game));
     }
     private void onPracticeClicked() {
         this.game.setScreen(new ScripPackScreen(this.game));

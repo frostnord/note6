@@ -203,9 +203,6 @@ public class NoteGoriz extends Actor {
     public String getNote(){
         return note;
     }
-    public int getNoteNumber(){
-        return noteNumber;
-    }
     public Vector2 getPosition() {
         return position;
     }

@@ -126,11 +126,11 @@ public class NoteVert extends Actor {
 
 
 
-        this.font = Assets.instance.fonts.defaultNormal;
+        this.font = Assets.instance.fonts.noteName;
 //        font.setColor(18f ,45f ,115f , 1f);
         font.setColor(Color.valueOf("071d53"));
         if (lineNamber > 0) {
-            font.draw(batch, Integer.toString(lineNamber), position.x + 55, position.y + 270);//lineNumber
+            font.draw(batch, Integer.toString(lineNamber), position.x + 55, position.y + 300);//lineNumber
         }
         if (note.equals("sol")) {
             font.draw(batch, note, position.x + 7, position.y + 140);

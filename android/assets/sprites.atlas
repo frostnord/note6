@@ -236,7 +236,7 @@ BassButton
   index: -1
 LearningScrip_mid
   rotate: false
-  xy: 988, 181
+  xy: 1809, 1854
   size: 186, 186
   orig: 186, 186
   offset: 0, 0
@@ -250,7 +250,7 @@ PlayButton
   index: -1
 PracticeScrip_right
   rotate: false
-  xy: 1819, 1116
+  xy: 1771, 1666
   size: 186, 186
   orig: 186, 186
   offset: 0, 0
@@ -292,7 +292,7 @@ ScripVertZnak
   index: -1
 SetingsButton
   rotate: false
-  xy: 988, 43
+  xy: 1545, 1388
   size: 145, 136
   orig: 145, 136
   offset: 0, 0
@@ -320,14 +320,14 @@ TreningScrip_left1
   index: -1
 faGreen
   rotate: false
-  xy: 975, 1117
+  xy: 1551, 1119
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 faRed
   rotate: false
-  xy: 1043, 1119
+  xy: 1619, 1119
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
@@ -341,28 +341,28 @@ keybord
   index: -1
 keybord2
   rotate: false
-  xy: 996, 1388
+  xy: 1298, 1388
   size: 245, 136
   orig: 245, 136
   offset: 0, 0
   index: -1
 la
   rotate: false
-  xy: 1111, 1119
+  xy: 1583, 850
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 laGreen
   rotate: false
-  xy: 1963, 1773
+  xy: 1651, 850
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 laRed
   rotate: false
-  xy: 1176, 100
+  xy: 1687, 1119
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
@@ -383,21 +383,21 @@ linesGoriz
   index: -1
 mi
   rotate: false
-  xy: 1007, 848
+  xy: 1719, 850
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 miGreen
   rotate: false
-  xy: 1075, 850
+  xy: 988, 402
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 miRed
   rotate: false
-  xy: 1143, 850
+  xy: 988, 133
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
@@ -439,113 +439,127 @@ noteV
   index: 2
 noteV
   rotate: false
-  xy: 1771, 1606
+  xy: 975, 1032
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 3
 noteV
   rotate: false
-  xy: 1243, 1224
+  xy: 1167, 1032
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 4
 noteV
   rotate: false
-  xy: 1435, 1224
+  xy: 1007, 730
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 5
 noteV
   rotate: false
-  xy: 1627, 1224
+  xy: 1199, 730
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 6
 noteV
   rotate: false
-  xy: 1819, 1304
+  xy: 1359, 1086
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 7
-note_greyG
+note_blackG
   rotate: false
   xy: 686, 95
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: -1
+note_greyG
+  rotate: false
+  xy: 996, 1334
+  size: 300, 190
+  orig: 300, 190
+  offset: 0, 0
+  index: -1
 note_greyV
   rotate: false
-  xy: 988, 369
+  xy: 1391, 784
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: -1
 re
   rotate: false
-  xy: 1211, 847
+  xy: 1056, 461
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 reGreen
   rotate: false
-  xy: 1279, 847
+  xy: 1056, 192
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 reRed
   rotate: false
-  xy: 1347, 847
+  xy: 1124, 461
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 si
   rotate: false
-  xy: 1415, 847
+  xy: 1124, 192
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 siGreen
   rotate: false
-  xy: 1483, 847
+  xy: 1192, 461
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 siRed
   rotate: false
-  xy: 1551, 847
+  xy: 1192, 192
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 sol
   rotate: false
-  xy: 1619, 847
+  xy: 1260, 461
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 solGreen
   rotate: false
-  xy: 1687, 847
+  xy: 1260, 192
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 solRed
   rotate: false
-  xy: 1755, 847
+  xy: 1328, 461
   size: 66, 267
   orig: 66, 267
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 1771, 1536
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1

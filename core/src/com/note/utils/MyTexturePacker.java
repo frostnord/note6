@@ -13,5 +13,6 @@ public class MyTexturePacker {
         settings.paddingY=2;
         settings.debug=false;
         TexturePacker.process(settings,"\\Users\\1\\Desktop\\assets", "\\Projects\\Note\\note6\\android\\assets", "sprites");
+        TexturePacker.process(settings,"\\Users\\1\\Desktop\\ui","\\Projects\\Note\\note6\\android\\assets", "ui");
     }
 }

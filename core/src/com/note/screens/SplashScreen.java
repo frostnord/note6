@@ -60,10 +60,15 @@ public class SplashScreen implements Screen {
         this.music.play();
 //        this.splashImage.addAction(Actions.sequence(Actions.alpha(0.0f), Actions.fadeIn(0.5f)));
 //        AssetsLoader.load();
+
+        Assets.instance.load(game.manager);
         this.game.manager.load("sprites.atlas", TextureAtlas.class);
+        this.game.manager.load("ui.atlas",TextureAtlas.class);
         this.game.manager.finishLoading();
 //
+        this.game.uiSkin = new Skin(Gdx.files.internal("ui.json"),new TextureAtlas(("ui.atlas")));
         this.game.gameSkin = new Skin(Gdx.files.internal("sprites.json"), new TextureAtlas("sprites.atlas"));
+
 
         Assets.instance.init(this.game.manager);
     }

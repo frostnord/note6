@@ -14,8 +14,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Disposable;
 
 public class Assets implements AssetErrorListener, Disposable {
@@ -27,6 +26,8 @@ public class Assets implements AssetErrorListener, Disposable {
     public AssetDecoration decoration;
     public AssetNoteImg noteImg;
     public AssetSkin skin;
+    public AssetUiSkin uiSkin;
+    public AssetMusic music;
 
 
     private Assets() {
@@ -35,14 +36,14 @@ public class Assets implements AssetErrorListener, Disposable {
     @Override
     public void dispose() {
         this.assetManager.dispose();
-        this.fonts.defaultSmall.dispose();
+        this.fonts.packScreenScore.dispose();
         this.fonts.defaultNormal.dispose();
 //        this.fonts.defaultBig.dispose();
         this.fonts.levelComplete.dispose();
         this.fonts.levelCompleted.dispose();
 //        this.fonts.selectCharacter.dispose();
 //        this.fonts.selectLevel.dispose();
-        this.fonts.heroInfo.dispose();
+        this.fonts.packNote.dispose();
 //        this.fonts.heroStore.dispose();
     }
 
@@ -51,7 +52,7 @@ public class Assets implements AssetErrorListener, Disposable {
     }
 
     public void error(String string, Class class_, Throwable throwable) {
-        Gdx.app.error(TAG, "Couldn't load asset '" + string + "'", (Throwable)((Exception)throwable));
+        Gdx.app.error(TAG, "Couldn't load asset '" + string + "'", (Throwable) ((Exception) throwable));
     }
 
     public class AssetNoteImg {
@@ -135,6 +136,8 @@ public class Assets implements AssetErrorListener, Disposable {
 
         public final Animation noteAni;
 
+        public final AtlasRegion noteBlackGor;
+
         public final AtlasRegion noteRedDoGor;
         public final AtlasRegion noteOrangeReGor;
         public final AtlasRegion noteYellowMiGor;
@@ -144,23 +147,26 @@ public class Assets implements AssetErrorListener, Disposable {
         public final AtlasRegion notePurpleSiGor;
         public final AtlasRegion note_greyGor;
 
-        public AssetNote (TextureAtlas atlas) {
-            noteRedDoVert = atlas.findRegion("noteV",1);
-            noteOrangeReVert = atlas.findRegion("noteV",2);
-            noteYellowMiVert = atlas.findRegion("noteV",3);
-            noteGreenFaVert = atlas.findRegion("noteV",4);
-            noteBlueSolVert = atlas.findRegion("noteV",5);
-            noteSiniiLaVert = atlas.findRegion("noteV",6);
-            notePurpleSiVert = atlas.findRegion("noteV",7);
+        public AssetNote(TextureAtlas atlas) {
+
+            noteBlackGor = atlas.findRegion("note_blackG");
+
+            noteRedDoVert = atlas.findRegion("noteV", 1);
+            noteOrangeReVert = atlas.findRegion("noteV", 2);
+            noteYellowMiVert = atlas.findRegion("noteV", 3);
+            noteGreenFaVert = atlas.findRegion("noteV", 4);
+            noteBlueSolVert = atlas.findRegion("noteV", 5);
+            noteSiniiLaVert = atlas.findRegion("noteV", 6);
+            notePurpleSiVert = atlas.findRegion("noteV", 7);
             note_greyVert = atlas.findRegion("note_greyV");
 
-            noteRedDoGor = atlas.findRegion("noteG",1);
-            noteOrangeReGor = atlas.findRegion("noteG",2);
-            noteYellowMiGor = atlas.findRegion("noteG",3);
-            noteGreenFaGor = atlas.findRegion("noteG",4);
-            noteBlueSolGor = atlas.findRegion("noteG",5);
-            noteSiniiLaGor = atlas.findRegion("noteG",6);
-            notePurpleSiGor = atlas.findRegion("noteG",7);
+            noteRedDoGor = atlas.findRegion("noteG", 1);
+            noteOrangeReGor = atlas.findRegion("noteG", 2);
+            noteYellowMiGor = atlas.findRegion("noteG", 3);
+            noteGreenFaGor = atlas.findRegion("noteG", 4);
+            noteBlueSolGor = atlas.findRegion("noteG", 5);
+            noteSiniiLaGor = atlas.findRegion("noteG", 6);
+            notePurpleSiGor = atlas.findRegion("noteG", 7);
             note_greyGor = atlas.findRegion("note_greyG");
 
 
@@ -171,7 +177,9 @@ public class Assets implements AssetErrorListener, Disposable {
 //            this.noteAni = new Animation(0.1f, atlas.findRegions("zombie_boy/anim_zombie_rising"), Animation.PlayMode.NORMAL);
         }
     }
+
     public class AssetDecoration {
+
 
         public final AtlasRegion rightBorder;
         public final AtlasRegion leftBorder;
@@ -182,6 +190,8 @@ public class Assets implements AssetErrorListener, Disposable {
         public final AtlasRegion triangleImg;
         public final AtlasRegion triangleImgRot;
 
+        public final AtlasRegion star;
+
         public AssetDecoration(TextureAtlas atlas) {
             rightBorder = atlas.findRegion("rightBorder");
             leftBorder = atlas.findRegion("leftBorder");
@@ -191,18 +201,26 @@ public class Assets implements AssetErrorListener, Disposable {
             this.reflectScrip = atlas.findRegion("ReflectScrip");
             this.reflectBass = atlas.findRegion("ReflectBass");
             this.reflectPlay = atlas.findRegion("ReflectPlay");
+
+            star = atlas.findRegion("star");
         }
     }
 
 
     public void init(AssetManager assetManager) {
         this.assetManager = assetManager;
+//        assetManager.load("ui.json", Skin.class);/////проба
         assetManager.setErrorListener(this);
 //        assetManager.load("sprites.atlas", TextureAtlas.class);
 //        assetManager.finishLoading();
 
         TextureAtlas atlas = assetManager.get("sprites.atlas");
+        TextureAtlas uiAtlas = assetManager.get("ui.atlas");
+
         for (Texture t : atlas.getTextures()) {
+            t.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
+        for (Texture t : uiAtlas.getTextures()) {
             t.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         }
 
@@ -213,45 +231,108 @@ public class Assets implements AssetErrorListener, Disposable {
         }
         this.note = new AssetNote(atlas);
         this.fonts = new AssetFonts();
-        this.decoration= new AssetDecoration(atlas);
+        this.decoration = new AssetDecoration(atlas);
         this.noteImg = new AssetNoteImg(atlas);
         this.skin = new AssetSkin(atlas);
+        this.uiSkin = new AssetUiSkin(uiAtlas);
+        this.music = new AssetMusic(assetManager);
 
     }
+
 
     public void load(AssetManager assetManager) {
         this.assetManager = assetManager;
-        assetManager.load("sounds/jump.wav", Sound.class);
-        assetManager.load("sounds/pickup_coin.wav", Sound.class);
-        assetManager.load("sounds/gun_shot.wav", Sound.class);
-        assetManager.load("sounds/hero_hurt.wav", Sound.class);
-        assetManager.load("sounds/unearth1.wav", Sound.class);
-        assetManager.load("sounds/unearth2.wav", Sound.class);
-        assetManager.load("sounds/unearth3.wav", Sound.class);
-        assetManager.load("sounds/unearth4.wav", Sound.class);
-        assetManager.load("sounds/item_purchased.mp3", Sound.class);
-        assetManager.load("sounds/stopwatch.mp3", Sound.class);
-        assetManager.load("music/main_game1.wav", Music.class);
-        assetManager.load("music/menu_loop.wav", Music.class);
-        assetManager.load("music/level_complete.mp3", Music.class);
-        assetManager.load("music/game_over.mp3", Music.class);
-        assetManager.load("images/runandgun.atlas", TextureAtlas.class);
+        assetManager.load("the-righteous-brothers-igor-gig-the-righteous-brothers-uncha.mp3", Music.class);
+//        assetManager.load("sounds/pickup_coin.wav", Sound.class);
+//        assetManager.load("sounds/gun_shot.wav", Sound.class);
+//        assetManager.load("sounds/hero_hurt.wav", Sound.class);
+//        assetManager.load("sounds/unearth1.wav", Sound.class);
+//        assetManager.load("sounds/unearth2.wav", Sound.class);
+//        assetManager.load("sounds/unearth3.wav", Sound.class);
+//        assetManager.load("sounds/unearth4.wav", Sound.class);
+//        assetManager.load("sounds/item_purchased.mp3", Sound.class);
+//        assetManager.load("sounds/stopwatch.mp3", Sound.class);
+//        assetManager.load("music/main_game1.wav", Music.class);
+//        assetManager.load("music/menu_loop.wav", Music.class);
+//        assetManager.load("music/level_complete.mp3", Music.class);
+//        assetManager.load("music/game_over.mp3", Music.class);
+//        assetManager.load("images/runandgun.atlas", TextureAtlas.class);
     }
+
     public class AssetSkin implements Disposable {
 
         public final Button.ButtonStyle buttonStyle;
         public final Skin skin;
+        public final TextButton.TextButtonStyle textButtonStyle;
+        public final TextButton.TextButtonStyle optionDiologTextButtonStyle;
+        public final Window.WindowStyle windowStyle;
+//        public final Window windowSkin;
 
-        public AssetSkin (TextureAtlas atlasSkin){
+        private final Skin windowSkin;
+//
+
+
+        public AssetSkin(TextureAtlas atlasSkin) {
+
             this.skin = new Skin(atlasSkin);
+//            skin.get(TextButton.TextButtonStyle.class).font.getData().setScale(1,1);
+//            skin.
+
+
             this.buttonStyle = new Button.ButtonStyle();
             this.buttonStyle.pressedOffsetY = -5.0f;
+
+            this.textButtonStyle = new TextButton.TextButtonStyle();
+//            textButtonStyle.pressedOffsetY = -5.0f;
+            textButtonStyle.font = Assets.instance.fonts.packNote;
+            textButtonStyle.up = skin.getDrawable("PlayButton");
+
+            this.optionDiologTextButtonStyle = new TextButton.TextButtonStyle();
+            this.optionDiologTextButtonStyle.up = skin.getDrawable("PlayButton");
+            this.optionDiologTextButtonStyle.font = Assets.instance.fonts.levelCompleted;
+
+            windowSkin = new Skin(atlasSkin);
+//            windowSkin.
+            windowStyle = new Window.WindowStyle();
+            windowStyle.titleFont = Assets.instance.fonts.packNote;///////////проба
+            windowStyle.background = skin.getDrawable("PlayButton");
+        }
+
+
+        @Override
+        public void dispose() {
+
+        }
+    }
+
+    public class AssetUiSkin implements Disposable{
+
+        public final Skin uiSkin;
+        public final CheckBox.CheckBoxStyle checkBoxStyle ;
+        public final Label.LabelStyle labelStyle;
+//        public final AtlasRegion musicRegion;
+
+        public AssetUiSkin(TextureAtlas uiAtlas) {
+            uiSkin = new Skin(uiAtlas);
+
+            checkBoxStyle = new CheckBox.CheckBoxStyle();
+//            uiSkin.getFont("wolfsbane2ii.ttf").getData().setScale(2,2);
+//            checkBoxStyle.font = Assets.instance.fonts.packNote;
+//            musicRegion = uiAtlas.findRegion("music");
+            labelStyle = new Label.LabelStyle();
+            labelStyle.fontColor = Color.WHITE;
+            labelStyle.font = Assets.instance.fonts.levelComplete;
+
+
+
+
         }
 
         @Override
         public void dispose() {
 
         }
+
     }
 
     public class AssetBullet {
@@ -263,11 +344,12 @@ public class Assets implements AssetErrorListener, Disposable {
     }
 
     public class AssetFonts {
-//        public final BitmapFont defaultBig;
+
+        public final BitmapFont packScreenScore;
         public final BitmapFont defaultNormal;
-        public final BitmapFont defaultSmall;
-        public final BitmapFont heroInfo;
-//        public final BitmapFont heroStore;
+        //        public final BitmapFont defaultSmall;
+        public final BitmapFont packNote;
+        public final BitmapFont noteName;
         public final BitmapFont levelComplete;
         public final BitmapFont levelCompleted;
 //        public final BitmapFont selectCharacter;
@@ -276,21 +358,18 @@ public class Assets implements AssetErrorListener, Disposable {
         public AssetFonts() {
             FreeTypeFontGenerator freeTypeFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("LinLibertine_aBS.ttf"));
             FreeTypeFontParameter freeTypeFontParameter = new FreeTypeFontParameter();
-            freeTypeFontParameter.size = 15;
-            this.defaultSmall = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
-            this.defaultSmall.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-//            this.defaultSmall.
 //            this.defaultSmall.setScale(1.0f, -1.0f);
-            freeTypeFontParameter.size = 20;
-            this.heroInfo = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
-            this.heroInfo.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-//            this.heroInfo.setScale(1.0f, 1.0f);
+            freeTypeFontParameter.size = 180;
+            this.packNote = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
+            this.packNote.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+// this.heroInfo.setScale(1.0f, 1.0f);
             freeTypeFontParameter.size = 50;
             this.defaultNormal = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
             this.defaultNormal.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 //            this.defaultNormal.setScale(1.0f, -1.0f);
-//            this.heroStore = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
-//            this.heroStore.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            freeTypeFontParameter.size = 100;
+            this.noteName = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
+            this.noteName.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 //            this.heroStore.setScale(1.0f, 1.0f);
             freeTypeFontParameter.size = 30;
 //            this.defaultBig = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
@@ -309,10 +388,12 @@ public class Assets implements AssetErrorListener, Disposable {
             this.levelCompleted.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 //            this.levelCompleted.setScale(1.0f, 1.0f);
 
-
-
-
-
+            freeTypeFontParameter.size = 120;
+            freeTypeFontParameter.borderWidth = 3;
+            freeTypeFontParameter.borderColor = Color.BLACK;
+            this.packScreenScore = freeTypeFontGenerator.generateFont(freeTypeFontParameter);
+            this.packScreenScore.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+//            this.defaultSmall.
 
 
 //            freeTypeFontParameter.size = 40;
@@ -325,6 +406,7 @@ public class Assets implements AssetErrorListener, Disposable {
 //            this.selectCharacter.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 //            this.selectCharacter.setScale(1.0f, 1.0f);
             freeTypeFontGenerator.dispose();
+
         }
     }
 
@@ -455,16 +537,17 @@ public class Assets implements AssetErrorListener, Disposable {
     }
 
     public class AssetMusic {
-        public final Music actionMenu;
-        public final Music gameOver;
-        public final Music levelComplete;
-        public final Music mainGame1;
+//        public final Music actionMenu;
+//        public final Music gameOver;
+//        public final Music levelComplete;
+        public final Music menuMusic;
 
         public AssetMusic(AssetManager assetManager) {
-            this.mainGame1 = (Music)assetManager.get("music/main_game1.wav", Music.class);
-            this.actionMenu = (Music)assetManager.get("music/menu_loop.wav", Music.class);
-            this.levelComplete = (Music)assetManager.get("music/level_complete.mp3", Music.class);
-            this.gameOver = (Music)assetManager.get("music/game_over.mp3", Music.class);
+            this.menuMusic = (Music) assetManager.get("the-righteous-brothers-igor-gig-the-righteous-brothers-uncha.mp3", Music.class);
+//            this.mainGame1 = (Music) assetManager.get("music/main_game1.wav", Music.class);
+//            this.actionMenu = (Music) assetManager.get("music/menu_loop.wav", Music.class);
+//            this.levelComplete = (Music) assetManager.get("music/level_complete.mp3", Music.class);
+//            this.gameOver = (Music) assetManager.get("music/game_over.mp3", Music.class);
         }
     }
 
@@ -525,16 +608,16 @@ public class Assets implements AssetErrorListener, Disposable {
         public final Sound unearthZombie4;
 
         public AssetSounds(AssetManager assetManager) {
-            this.jump = (Sound)assetManager.get("sounds/jump.wav", Sound.class);
-            this.pickupCoinAndPowerUp = (Sound)assetManager.get("sounds/pickup_coin.wav", Sound.class);
-            this.gunShot = (Sound)assetManager.get("sounds/gun_shot.wav", Sound.class);
-            this.heroHurt = (Sound)assetManager.get("sounds/hero_hurt.wav", Sound.class);
-            this.unearthZombie1 = (Sound)assetManager.get("sounds/unearth1.wav", Sound.class);
-            this.unearthZombie2 = (Sound)assetManager.get("sounds/unearth2.wav", Sound.class);
-            this.unearthZombie3 = (Sound)assetManager.get("sounds/unearth3.wav", Sound.class);
-            this.unearthZombie4 = (Sound)assetManager.get("sounds/unearth4.wav", Sound.class);
-            this.itemPurchased = (Sound)assetManager.get("sounds/item_purchased.mp3", Sound.class);
-            this.stopWatch = (Sound)assetManager.get("sounds/stopwatch.mp3", Sound.class);
+            this.jump = (Sound) assetManager.get("sounds/jump.wav", Sound.class);
+            this.pickupCoinAndPowerUp = (Sound) assetManager.get("sounds/pickup_coin.wav", Sound.class);
+            this.gunShot = (Sound) assetManager.get("sounds/gun_shot.wav", Sound.class);
+            this.heroHurt = (Sound) assetManager.get("sounds/hero_hurt.wav", Sound.class);
+            this.unearthZombie1 = (Sound) assetManager.get("sounds/unearth1.wav", Sound.class);
+            this.unearthZombie2 = (Sound) assetManager.get("sounds/unearth2.wav", Sound.class);
+            this.unearthZombie3 = (Sound) assetManager.get("sounds/unearth3.wav", Sound.class);
+            this.unearthZombie4 = (Sound) assetManager.get("sounds/unearth4.wav", Sound.class);
+            this.itemPurchased = (Sound) assetManager.get("sounds/item_purchased.mp3", Sound.class);
+            this.stopWatch = (Sound) assetManager.get("sounds/stopwatch.mp3", Sound.class);
         }
     }
 

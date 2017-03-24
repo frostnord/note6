@@ -4,17 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Stack;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.note.Note;
 import com.note.actors.KeyVert;
 import com.note.actors.NoteVert;
@@ -27,7 +19,7 @@ import com.note.utils.GameManager;
 /**
  * Created by 1 on 29.03.2015.
  */
-public class ScripTreningScreen extends AbstractGameScreen {
+public class ScripLeftScreen extends AbstractGameScreen {
 
     private Image imgBackground;
     private Stage stage;
@@ -37,14 +29,14 @@ public class ScripTreningScreen extends AbstractGameScreen {
 
 
 
-    public ScripTreningScreen(Note game) {
+    public ScripLeftScreen(Note game) {
         super(game);
     }
 
     private void buildStage() {
         this.imgBackground = new Image(this.game.gameSkin, "backgroundGame");
         imgBackground.setSize(stage.getViewport().getWorldWidth(),stage.getViewport().getWorldHeight());
-        stage.addActor(this.imgBackground );
+        stage.addActor(this.imgBackground);
         znakImg = new Image(this.game.gameSkin, "ScripVertZnak");
         znakImg.setPosition(this.stage.getViewport().getWorldWidth() / 4,
                 this.stage.getViewport().getWorldHeight() - znakImg.getHeight());
@@ -74,13 +66,10 @@ public class ScripTreningScreen extends AbstractGameScreen {
         stage.addActor(new KeyVert(game,3,stage,21));
         stage.addActor(new KeyVert(game,4,stage,22));
 
-
-
 //            stage.addActor( a = new DoKey(game,stage,2));
 //            a = new DoKey(game,stage,3);
 //            a.setTouchable(Touchable.enabled);
 //            stage.addActor( a);
-
     }
 
     private void Back() {
@@ -105,6 +94,7 @@ public class ScripTreningScreen extends AbstractGameScreen {
             WorldController.KEYNUMBER = currIndex;
             stage.addActor(firstActor);
         }
+        System.out.println(WorldController.KEYNUMBER);
         if (firstActor.getPosition().y <= stage.getViewport().getWorldHeight() / 2 ){
             if (secondActor == null) {
                 secondActor = new NoteVert(game, stage);
@@ -115,7 +105,6 @@ public class ScripTreningScreen extends AbstractGameScreen {
             }
         }
         if (firstActor.getNoteCliked(true)){
-
             firstActor.speedUp();
         }
         if (firstActor.getPosition().y <= this.stage.getViewport().getWorldHeight()/3.2 - 7) {
@@ -146,7 +135,7 @@ public class ScripTreningScreen extends AbstractGameScreen {
             @Override
             public boolean keyUp(int keycode) {
                 if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
-                    ScripTreningScreen.this.Back();
+                    ScripLeftScreen.this.Back();
                 }
                 return false;
             }
@@ -191,7 +180,7 @@ public class ScripTreningScreen extends AbstractGameScreen {
         float x = 400;
         float y = 240;
         int fps = Gdx.graphics.getFramesPerSecond();
-        BitmapFont fpsFont = Assets.instance.fonts.heroInfo;
+        BitmapFont fpsFont = Assets.instance.fonts.defaultNormal;
         if (fps >= 45) {
             // 45 or more FPS show up in green
             fpsFont.setColor(0, 1, 0, 1);
@@ -205,6 +194,6 @@ public class ScripTreningScreen extends AbstractGameScreen {
         stage.getBatch().begin();
         fpsFont.draw(stage.getBatch(), "FPS: " + fps, x, y);
         stage.getBatch().end();
-        fpsFont.setColor(1, 1, 1, 1); // white
+        fpsFont.setColor(1, 1, 1, 1); // black
     }
 }

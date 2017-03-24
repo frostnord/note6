@@ -92,10 +92,7 @@ public class ScripMiddleScreen extends AbstractGameScreen {
         stage.addActor(new Lines(game,stage));
 
     }
-    private void Back() {
-        this.game.setScreen(new ScripMenuScreen(this.game));
-    }
-//    private void buildMenuLayers() {
+    //    private void buildMenuLayers() {
 //        this.layerBackground = this.buildBackgroundLayer();
 //        this.layerKeyboard = this.buildKeyboardLayer();
 //        this.layerZnak = this.buildZnakLayer();
@@ -107,17 +104,11 @@ public class ScripMiddleScreen extends AbstractGameScreen {
 //        znakImg = new Image(this.game.gameSkin, "ScripGorZnak");
 //        table.add(znakImg);
 //        return table;
-//    }
-
-//    private void buildLinesLayer() {
-
 //        float lineW = widthW / 100 ;
 //        float lineH = (hidthH - (hidthH / 4f)) / 23;
 //        Table table = new Table();
 //        table.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
 //        table.bottom().left().padBottom(stage.getViewport().getWorldHeight() / 4f);
-//        this.lineImg = new Image(this.game.gameSkin, "linesGoriz");
-
 //        stage.getBatch().begin();
 //        for (int i = 1; i < 23 ; i++) {
 //            stage.getBatch().draw(triangleTextureRegion, widthW - lineW, (lineH * i) + (hidthH / 4f)- lineH / 2 + 2, widthW / 100, (hidthH - (hidthH / 4f)) / 23);
@@ -128,16 +119,10 @@ public class ScripMiddleScreen extends AbstractGameScreen {
 //        stage.getBatch().draw(lineTextureRegion, widthW / 23, (lineH * 11) + (hidthH / 4f), widthW, hidthH / 200);
 //        stage.getBatch().draw(lineTextureRegion, widthW / 23, (lineH * 13) + (hidthH / 4f), widthW, hidthH / 200);
 //        stage.getBatch().draw(lineTextureRegion, widthW / 23, (lineH * 15) + (hidthH / 4f), widthW, hidthH / 200);
-//        stage.getBatch().end();
-
-//        table.add(this.lineImg);/////
-
 //        lineImg = new Image(Assets.instance.decoration.lineImg);
 //        table.add(lineImg).setActorBounds(widthW / 23, (lineH * 7) + (hidthH / 4f), widthW, hidthH / 200);
 //        stage.addActor(table);
 ////        return table;
-//    }
-
 //    private Table buildKeyboardLayer() {
 //        final Table table = new Table();
 //        table.center().bottom();
@@ -163,10 +148,6 @@ public class ScripMiddleScreen extends AbstractGameScreen {
 //            }
 //        });
 //        return table;
-//    }
-
-
-
 //    public enum KeyStatus {
 //        DOWN,
 //        UP;
@@ -176,193 +157,45 @@ public class ScripMiddleScreen extends AbstractGameScreen {
 //        this.imgBackground = new Image(this.game.gameSkin, "backgroundGame");
 //        table.add(this.imgBackground);
 //        return table;
-//    }
-
-    private void assembleStage() {
-        this.stage.clear();
-        com.badlogic.gdx.scenes.scene2d.ui.Stack stack = new Stack();
-        this.stage.addActor(stack);
-
-        stack.setSize(800.0f, 480.0f);
-//        stack.add(this.layerBackground);
-
-        stack.add(this.layerLines);
-        stack.add(layerZnak);
-//        stack.add(this.layerKeyboard);
-
-    }
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.draw();
-        stage.act(delta);
-//        buildLinesLayer();
-        controller();
-
-//        if (keyStatus == KeyStatus.DOWN) {
-//            drawKey(key);
-//        }
-        renderGuiFpsCounter();
-        score();
-
-    }
-    private void renderGuiFpsCounter() {
-        float x = 400;
-        float y = 240;
-        int fps = Gdx.graphics.getFramesPerSecond();
-        BitmapFont fpsFont = Assets.instance.fonts.heroInfo;
-        if (fps >= 45) {
-            // 45 or more FPS show up in green
-            fpsFont.setColor(0, 1, 0, 1);
-        } else if (fps >= 30) {
-            // 30 or more FPS show up in yellow
-            fpsFont.setColor(1, 1, 0, 1);
-        } else {
-            // less than 30 FPS show up in red
-            fpsFont.setColor(1, 0, 0, 1);
-        }
-        stage.getBatch().begin();
-        fpsFont.draw(stage.getBatch(), "FPS: " + fps, x, y);
-        stage.getBatch().end();
-        fpsFont.setColor(1, 1, 1, 1); // white
-    }
-    private  void score (){
-//        int fps = Gdx.graphics.getFramesPerSecond();
-        BitmapFont score = Assets.instance.fonts.levelCompleted;
-        float x = rightBorder.getX()+ 50;
-        float y = rightBorder.getHeight();
-
-        score.setColor(1, 0, 0, 1);
-        stage.getBatch().begin();
-        score.draw(stage.getBatch(), " " + scoreWrong, x, y - score.getCapHeight()- 10 );
-        score.setColor(0, 1, 0, 1);
-        score.draw(stage.getBatch(), " " + scoreRight, x , y );
-        stage.getBatch().end();
-    }
-
 //    public static void setScoreRight() {
 //        scoreRight++;
-//    }
-
 //    public static void setScoreWrong() {
 //        scoreWrong++;
-//    }
-
-    private void keyPressed(float x) {
-
-
-        key = (x - 3) / 34;
-//        System.out.println(key);
-//        System.out.println( actors.get(0).getNoteNumber());
-
-        if (actors.size != 0 ) {
-            if (actors.get(0).getNoteNumber() == (int) key) {
-                actors.get(0).setNoteCliked(true);
-                rightButton = true;
-//            System.out.println(actors.get(0).getName());
-                actors.removeIndex(0);
-                scoreRight +=1;
-            }else {
-                actors.get(0).setNoteCliked(true);
-//                actors.get(0).setNoteCliked(true);
-                actors.removeIndex(0);
-                scoreWrong +=1;
-            }
-        }
-    }
-    public void controller() {
-        time += 1;
-        if (time >= 220f) {
-            NoteGoriz noteGoriz = new NoteGoriz(game,stage,stage.getViewport().getWorldHeight(),
-                    stage.getViewport().getWorldHeight()-this.stage.getViewport().getWorldHeight() / 4f);
-
-            actors.add(noteGoriz);
-            stage.addActor(noteGoriz);
-            time = 0f;
-//            index = noteGoriz.getIndex();
-//            System.out.println(actors.get(0).getNoteKey());/
-//            if (actors.size >=4 ){
-//                System.out.println(actors.get(0).getNoteKey() + " " +  actors.get(1).getNoteKey()+ " " +  actors.get(2).getNoteKey()+ " " +  actors.get(3).getNoteKey());
-//            }
-        }
-
-        if (actors.size != 0 ) {
-            if (actors.get(0).getPosition().x <= 250) {
-                if (!actors.get(0).getNoteClicked()) {
-                    actors.get(0).setNoteCliked(true);
-                    actors.removeIndex(0);
-                    scoreWrong += 1;
-                }
-            }
-        }
-    }
-
-    @Override
-    public void show() {
-        Gdx.input.setCatchBackKey(true);
-        this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT,game.camera)) {
-            @Override
-            public boolean keyUp(int keycode) {
-                if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
-                    ScripMiddleScreen.this.Back();
-                }
-                return false;
-            }
-        };
-        Gdx.input.setInputProcessor(stage);
-
-
-        this.buildStage();
-        actors = new Array();
-//        NoteGoriz noteGoriz = new NoteGoriz(game,stage,stage.getViewport().getWorldHeight(),
-//                stage.getViewport().getWorldHeight()-this.stage.getViewport().getWorldHeight() / 4f);
-//        actors.add(noteGoriz);
-//        stage.addActor(noteGoriz);
-//        index = noteGoriz.getIndex();
-
-
-        controller();
-        this.stage.act();
-        this.stage.draw();
-    }
-    public void drawKey(float key) {
-//        float keyPosition = 8 + (34 * (int) key);
-        float keyPosition = keybordImg.getX() + 4 +(34 * (int)key) ;
-
-        if (((int) key == 0) || ((int) key == 3) ) {
-            pressedKey = Assets.instance.noteImg.doKeyImg;
-        } else if ((int) key == 4) {
-            pressedKey = Assets.instance.noteImg.solKeyImg;
-        } else if ((int) key == 5) {
-            pressedKey = Assets.instance.noteImg.laKeyImg;
-        } else if ((int) key == 6)  {
-            pressedKey = Assets.instance.noteImg.siKeyImg;
-        } else if ((int) key == 1)  {
-            pressedKey = Assets.instance.noteImg.reKeyImg;
-        } else if ((int) key == 2) {
-            pressedKey = Assets.instance.noteImg.miKeyImg;
-        }
-        if (rightButton) {
-            stage.getBatch().setColor(0.0f, 1.0f, 0.0f, 1.0f);
-        }else{
-            stage.getBatch().setColor(1.0f, 0.0f, 0.0f, 1.0f);
-
-        }
-
-        stage.getBatch().begin();
-        stage.getBatch().draw(pressedKey, keyPosition, 1, pressedKey.getRegionWidth(), pressedKey.getRegionHeight());
-//        stage.getBatch().setColor(1, 1, 1, 1);
-        stage.getBatch().end();
-//        System.out.println(keyPosition);
-
-    }
-
+//    public void drawKey(float key) {
+////        float keyPosition = 8 + (34 * (int) key);
+//        float keyPosition = keybordImg.getX() + 4 +(34 * (int)key) ;
+//
+//        if (((int) key == 0) || ((int) key == 3) ) {
+//            pressedKey = Assets.instance.noteImg.doKeyImg;
+//        } else if ((int) key == 4) {
+//            pressedKey = Assets.instance.noteImg.solKeyImg;
+//        } else if ((int) key == 5) {
+//            pressedKey = Assets.instance.noteImg.laKeyImg;
+//        } else if ((int) key == 6)  {
+//            pressedKey = Assets.instance.noteImg.siKeyImg;
+//        } else if ((int) key == 1)  {
+//            pressedKey = Assets.instance.noteImg.reKeyImg;
+//        } else if ((int) key == 2) {
+//            pressedKey = Assets.instance.noteImg.miKeyImg;
+//        }
+//        if (rightButton) {
+//            stage.getBatch().setColor(0.0f, 1.0f, 0.0f, 1.0f);
+//        }else{
+//            stage.getBatch().setColor(1.0f, 0.0f, 0.0f, 1.0f);
+//
+//        }
+//
+//        stage.getBatch().begin();
+//        stage.getBatch().draw(pressedKey, keyPosition, 1, pressedKey.getRegionWidth(), pressedKey.getRegionHeight());
+////        stage.getBatch().setColor(1, 1, 1, 1);
+//        stage.getBatch().end();
+////        System.out.println(keyPosition);
+//
     @Override
     public void resize(int n, int n2) {
         this.stage.getViewport().update(n, n2, true);
     }
-//    public static void setIndex(int s){
+    //    public static void setIndex(int s){
 //        index= s;
 //    }
     public static Array<NoteGoriz> getNoteActors(){
@@ -392,4 +225,171 @@ public class ScripMiddleScreen extends AbstractGameScreen {
     public void dispose() {
 
     }
+    private void Back() {
+        this.game.setScreen(new ScripMenuScreen(this.game));
+    }
+
+//    }
+
+//    private void buildLinesLayer() {
+
+//        this.lineImg = new Image(this.game.gameSkin, "linesGoriz");
+
+//        stage.getBatch().end();
+
+//        table.add(this.lineImg);/////
+
+//    }
+
+
+
+//    }
+
+//    }
+    //    private void assembleStage() {
+//        this.stage.clear();
+//        com.badlogic.gdx.scenes.scene2d.ui.Stack stack = new Stack();
+//        this.stage.addActor(stack);
+//
+//        stack.setSize(800.0f, 480.0f);
+////        stack.add(this.layerBackground);
+//
+//        stack.add(this.layerLines);
+//        stack.add(layerZnak);
+////        stack.add(this.layerKeyboard);
+//
+//    }
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.draw();
+        stage.act(delta);
+//        buildLinesLayer();
+        controller();
+
+//        if (keyStatus == KeyStatus.DOWN) {
+//            drawKey(key);
+//        }
+        renderGuiFpsCounter();
+        score();
+
+    }
+    private void renderGuiFpsCounter() {
+        float x = 400;
+        float y = 240;
+        int fps = Gdx.graphics.getFramesPerSecond();
+        BitmapFont fpsFont = Assets.instance.fonts.defaultNormal;
+        if (fps >= 45) {
+            // 45 or more FPS show up in green
+            fpsFont.setColor(0, 1, 0, 1);
+        } else if (fps >= 30) {
+            // 30 or more FPS show up in yellow
+            fpsFont.setColor(1, 1, 0, 1);
+        } else {
+            // less than 30 FPS show up in red
+            fpsFont.setColor(1, 0, 0, 1);
+        }
+        stage.getBatch().begin();
+        fpsFont.draw(stage.getBatch(), "FPS: " + fps, x, y);
+        stage.getBatch().end();
+        fpsFont.setColor(1, 1, 1, 1); // black
+    }
+
+    private  void score (){
+//        int fps = Gdx.graphics.getFramesPerSecond();
+        BitmapFont score = Assets.instance.fonts.levelCompleted;
+        float x = rightBorder.getX()+ 50;
+        float y = rightBorder.getHeight();
+
+        score.setColor(1, 0, 0, 1);
+        stage.getBatch().begin();
+        score.draw(stage.getBatch(), " " + scoreWrong, x, y - score.getCapHeight()- 10 );
+        score.setColor(0, 1, 0, 1);
+        score.draw(stage.getBatch(), " " + scoreRight, x , y );
+        stage.getBatch().end();
+    }
+
+//    }
+
+//    }
+
+//    private void keyPressed(float x) {
+//
+//
+//        key = (x - 3) / 34;
+////        System.out.println(key);
+////        System.out.println( actors.get(0).getNoteNumber());
+//
+//        if (actors.size != 0 ) {
+//            if (actors.get(0).getNoteNumber() == (int) key) {
+//                actors.get(0).setNoteCliked(true);
+//                rightButton = true;
+////            System.out.println(actors.get(0).getName());
+//                actors.removeIndex(0);
+//                scoreRight +=1;
+//            }else {
+//                actors.get(0).setNoteCliked(true);
+////                actors.get(0).setNoteCliked(true);
+//                actors.removeIndex(0);
+//                scoreWrong +=1;
+//            }
+//        }
+//    }
+    public void controller() {
+        time += 1;
+        if (time >= 220f) {
+            NoteGoriz noteGoriz = new NoteGoriz(game,stage,stage.getViewport().getWorldHeight(),
+                    stage.getViewport().getWorldHeight()-this.stage.getViewport().getWorldHeight() / 4f);
+
+            actors.add(noteGoriz);
+            stage.addActor(noteGoriz);
+            time = 0f;
+//            index = noteGoriz.getIndex();
+//            System.out.println(actors.get(0).getNoteKey());/
+//            if (actors.size >=4 ){
+//                System.out.println(actors.get(0).getNoteKey() + " " +  actors.get(1).getNoteKey()+ " " +  actors.get(2).getNoteKey()+ " " +  actors.get(3).getNoteKey());
+//            }
+        }
+
+        if (actors.size != 0 ) {
+            if (actors.get(0).getPosition().x <= 250) {
+                if (!actors.get(0).getNoteClicked()) {
+                    actors.get(0).setNoteCliked(true);
+                    actors.removeIndex(0);
+                    scoreWrong += 1;
+                }
+            }
+        }
+    }
+    @Override
+    public void show() {
+        Gdx.input.setCatchBackKey(true);
+        this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT,game.camera)) {
+            @Override
+            public boolean keyUp(int keycode) {
+                if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
+                    ScripMiddleScreen.this.Back();
+                }
+                return false;
+            }
+        };
+        Gdx.input.setInputProcessor(stage);
+
+
+        this.buildStage();
+        actors = new Array();
+//        NoteGoriz noteGoriz = new NoteGoriz(game,stage,stage.getViewport().getWorldHeight(),
+//                stage.getViewport().getWorldHeight()-this.stage.getViewport().getWorldHeight() / 4f);
+//        actors.add(noteGoriz);
+//        stage.addActor(noteGoriz);
+//        index = noteGoriz.getIndex();
+
+
+        controller();
+        this.stage.act();
+        this.stage.draw();
+    }
+
+//    }
 }

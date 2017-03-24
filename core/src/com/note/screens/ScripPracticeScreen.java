@@ -2,131 +2,75 @@ package com.note.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.note.Note;
+import com.note.actors.KeyGorizPack;
+import com.note.actors.Lines;
+import com.note.actors.BlackNote;
 import com.note.game.Assets;
 import com.note.utils.Constants;
+import com.note.utils.GamePreferences;
+import com.note.utils.Randomizer;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 
 public class ScripPracticeScreen extends AbstractGameScreen {
 
-
-//    private final Color white;
+    //    private final Color black;
     private int number;
     private Note game;
     private ScrollPane scroller;
     private Stage stage;
+    private Table layerBackground;
+    private Array<BlackNote> actors1 = new Array<BlackNote>();
+    private Image znakImg;
+    private float time = 300;
+    private int a = 0;
+    private int noteInArray = 0;
+    private int massiv = 20;
+    private int time2 = 0;
+    private Randomizer randomizer = new Randomizer();
+    private int score ;
+    private Table scoreLayer;
+    private Label scoreLabel;
+    private Label.LabelStyle labelStyle;
+    private TextButton btnMenuScrip;
+    String noteText = "?";
+    private boolean showNote = false;
+    private Image leftBorder;
+    private Image rightBorder;
+    private Dialog dialog;
+    private Window window;
+    private String status = "action";
+    private int star = 0;
 
-
-//    private Table buildLevelSelectorLayer() {
-//        ScrollPane scrollPane;
-//        Table table = new Table();
-//        table.setSize(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
-//        table.setPosition(0.0f, 0.0f);
-//        Table table2 = new Table();
-//        this.scroller = scrollPane = new ScrollPane(table2);
-//        this.scroller.setScrollingDisabled(true, false);
-//        table2.padTop(Constants.VIEWPORT_GUI_HEIGHT / 5.0f).padBottom(Constants.VIEWPORT_GUI_HEIGHT / 5.0f);
-//        int n = 0;
-//        int n2 = GamePreferences.instance.loadLastLevel();
-//        int n3 = 0;
-//        block0 : do {
-//            if (n3 >= this.game.packManager.getPackage().length) {
-////                table.add(this.scroller);
-//                table.row();
-//                Button button = new Button(this.game.gameSkin, "base");
-//                button.setSize(Constants.MENU_BUTTON_SIZE, Constants.MENU_BUTTON_SIZE);
-//                button.setPosition(Constants.VIEWPORT_GUI_WIDTH - button.getWidth(), -button.getWidth());
-////                button.setColor(this.palette[1]);
-//                button.add(new Image(this.game.gameSkin, "HomeLogo"));
-//                button.addAction(Actions.sequence((Action) Actions.delay(0.5f), (Action) Actions.moveTo(Constants.VIEWPORT_GUI_WIDTH - button.getWidth(), 0.0f, 1.0f, Interpolation.circleOut)));
-//                ChangeListener changeListener = new ChangeListener(){
-//
-//                    @Override
-//                    public void changed(ChangeListener.ChangeEvent changeEvent, Actor actor) {
-////                        TitleScreen.this.game.setScreen(new MenuScreen(TitleScreen.this.game), TitleScreen.this.slide);
-//                    }
-//                };
-//                button.addListener(changeListener);
-//                table.addActor(button);
-//                return table;
-//            }
-//            final int n4 = n3;
-//            Table table3 = new Table();
-//            int n5 = GamePreferences.instance.getNumberOfStar(n4, 4);
-//            Button button = new Button(this.game.gameSkin, "level");
-//            table2.add(table3).size(Constants.VIEWPORT_GUI_WIDTH / 3.0f);
-//            table3.addActor(button);
-//            button.setSize(0.0f, 0.0f);
-////            button.setColor(this.palette[2]);
-//            int n6 = n3 - n2;
-//            float f = 0.0f;
-//            if (n6 > 0) {
-//                f = 0.5f + 0.05f * (float)(++n);
-//            }
-//            button.addAction(Actions.sequence((Action)Actions.delay(f), (Action)Actions.sizeTo(Constants.VIEWPORT_GUI_WIDTH / 3.0f, Constants.VIEWPORT_GUI_WIDTH / 3.0f, 0.1f, Interpolation.swingOut)));
-//            this.number = new Label.LabelStyle(Assets.instance.fonts.levelCompleted, this.white);
-//            Label label = new Label((CharSequence)("" + (n4 + 1)), this.number);
-//            label.setAlignment(16);
-//            label.addAction(Actions.sequence((Action)Actions.alpha(0.0f), (Action)Actions.delay(f), (Action)Actions.fadeIn(0.2f)));
-//            label.setAlignment(1);
-//            if (n3 - n2 > 2) {
-//                button.setTouchable(Touchable.disabled);
-//                button.setColor(Color.GRAY);
-//            } else {
-//                button.top().add(label).padTop(Constants.VIEWPORT_GUI_WIDTH / 12.0f);
-//            }
-//            int n7 = 0;
-//            do {
-//                if (n7 >= n5) {
-//                    ChangeListener changeListener = new ChangeListener(){
-//
-//                        @Override
-//                        public void changed(ChangeListener.ChangeEvent changeEvent, Actor actor) {
-////                            ScripPracticeScreen.this.onLevelSelectClicked(n4);
-//                        }
-//                    };
-//                    button.addListener(changeListener);
-//                    if ((n3 + 1) % 3 == 0) {
-//                        table2.row();
-//                    }
-//                    ++n3;
-//                    continue block0;
-//                }
-//                Image image = new Image(this.game.gameSkin, "Star1");
-//                image.setSize(Constants.VIEWPORT_GUI_WIDTH / 3.0f, Constants.VIEWPORT_GUI_WIDTH / 3.0f);
-//                button.addActor(image);
-////                image.setColor(this.white);
-//                image.addAction(Actions.sequence((Action)Actions.alpha(0.0f), (Action)Actions.delay(f), (Action)Actions.fadeIn(0.2f)));
-//                ++n7;
-//            } while (true);
-//            break;
-//        } while (true);
-//    }
-
-
-
-//
-    public ScripPracticeScreen(final Note game,int number) {
+    public ScripPracticeScreen(final Note game, int number) {
         super(game);
-        this.game= game;
+        this.game = game;
         this.number = number;
-//        this.white = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+//        Gdx.app.log("GameScreen", "Starting level: " + number);
+//        ar = Levels.getLevel(number);
     }
 
     @Override
     public void show() {
         Gdx.input.setCatchBackKey(true);
-        this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT,game.camera)){
+        this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT, game.camera)) {
             @Override
             public boolean keyUp(int keycode) {
 
-                if ((keycode == Input.Keys.BACK)|| (keycode == Input.Keys.ESCAPE)){
+                if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
                     ScripPracticeScreen.this.Back();
                 }
                 return false;
@@ -134,26 +78,247 @@ public class ScripPracticeScreen extends AbstractGameScreen {
         };
         Gdx.input.setInputProcessor(stage);
 //        mode = 1;
-//        this.stage.setViewport(new StretchViewport(800.0f, 480.0f));
-
 //        GameManager.ourInstance.setGameState(GameState.MOVE);/////////////////////////
-
 //        this.atlas = (TextureAtlas)this.game.manager.get("sprites.atlas", TextureAtlas.class);
+        this.buildStage();
 
-
-
-//        this.rebuildStage();
+//        Window window = new Window("title",Assets.instance.window);
     }
+
+    private void controller() {
+        scoreLabel.setText("" + score);
+        if (massiv != 0) {
+            if (noteInArray == 4) {
+                time2 += 1;
+                if (time2 == 500) { //time between
+                    noteInArray = 0;
+                    time2 = 0;
+                }
+            }
+
+            time += 1;
+
+            if (time >= 220f && massiv != 0 && noteInArray != 4) {
+                int s = randomizer.getRandom(number);
+                BlackNote blackNote1 = new BlackNote(game, s, stage, stage.getViewport().getWorldHeight(),
+                        stage.getViewport().getWorldHeight() - this.stage.getViewport().getWorldHeight() / 4f, actors1);
+                stage.addActor(blackNote1);
+                actors1.add(blackNote1);
+                massiv--;
+                time = 0f;
+                noteInArray++;
+            }
+        } else if(actors1.size == 0){
+
+            initWindow();
+            status="pause";
+            int currentStar = GamePreferences.instance.getNumberOfStar(1,number);
+            if (currentStar<star){
+            GamePreferences.instance.saveLastLevelStar(1,number,star);
+        }
+        }
+
+    }
+
+    private void onLevelSelectClicked(int n) {
+        System.out.println(n);
+//        if (n == actors1.get(0).getNumber()) {
+
+//        }
+    }
+//        this.game.levelToLoad = n;
+//        ScripPackScreen.this.game.setScreen(new ScripPracticeScreen(game, n));
+//        AudioManager.instance.play(com.gamelounge.chrooma.game.Assets.instance.sounds.buttonSound, 1.0f);
+
+
+    private void buildStage() {
+        this.layerBackground = this.buildBackgroundLayer();
+        this.scoreLayer = buildScoreLayer();
+        stage.addActor(layerBackground);
+        stage.addActor(scoreLayer);
+        stage.addActor(new Lines(game, stage));
+//        this.layerKeyboard=this.buildKeyboardLayer();
+//        this.layerLines = this.buildLinesLayer();
+//        this.layerControls = this.buildControlsLayer();
+//        this.layerSettings = this.buildSettingsLayer();
+
+    }
+    private void initWindow(){
+        window = new Window("", Assets.instance.skin.windowStyle);
+        Dialog dialog = new Dialog("",Assets.instance.skin.windowStyle);
+        Table table = new Table();
+        table.debug();
+        Table table2 = new Table();
+        table2.debug();
+        window.debug();
+
+//        Actor musicCheckBox = new CheckBox("Music",game.gameSkin,"music").getSkin().getFont("default.fnt").getData().setScale(0.33f, 0.33f);
+        Actor musicCheckBox = new CheckBox("Music",game.uiSkin,"music");
+
+//        musicCheckBox
+//        CheckBox.CheckBoxStyle checkBoxStyle = new CheckBox.CheckBoxStyle();
+
+
+        window.setSize(stage.getViewport().getWorldWidth() / 2, stage.getViewport().getWorldWidth() / 3);
+        window.setPosition(stage.getViewport().getWorldWidth() / 4, stage.getViewport().getWorldHeight() / 3);
+
+        if (score<=50) {
+           table.add(new Image(Assets.instance.decoration.star)).center().colspan(3).padBottom(50).size(150,150);
+            star = 1;
+       }else if(score>50 && score<90){
+            table.debug();
+           table.add(new Image(Assets.instance.decoration.star)).padBottom(50).size(150, 150).padRight(100);
+           table.add(new Image(Assets.instance.decoration.star)).padBottom(50).size(150, 150);
+            table.center();
+            star = 2;
+        }else if(score>=90){
+            table.add(new Image(Assets.instance.decoration.star)).center().padBottom(50).padRight(100);
+            table.add(new Image(Assets.instance.decoration.star)).center().padBottom(50).padRight(100);
+            table.add(new Image(Assets.instance.decoration.star)).center().padBottom(50);
+            star= 3;
+        }
+        TextButton tb = new TextButton("<", Assets.instance.skin.textButtonStyle);
+        tb.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                window.remove();
+            }
+        });
+//
+        table2.add(tb).size(200, 200).padRight(50);
+        table2.add(new TextButton("[=]", Assets.instance.skin.textButtonStyle)).size(200, 200);
+        table2.add(new TextButton(">",Assets.instance.skin.textButtonStyle)).padLeft(50).size(200, 200);
+
+        window.add(musicCheckBox).left().fill();
+        window.row();
+//        window.add(table);
+//        window.row();
+//        window.add(table2);
+        stage.addActor(window);
+
+
+    }
+
+    private Table buildScoreLayer() {
+        Table table = new Table();
+//        table.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
+//        table.setPosition(0.0f, 0.0f);
+        table.setFillParent(true);
+        table.setDebug(true);
+        table.right().bottom();
+
+        labelStyle = new Label.LabelStyle(Assets.instance.fonts.packScreenScore,new Color(1.0f, 1.0f, 1.0f, 1.0f));
+//        Label scoreLabel = new Label((String.format("%02d",score)),labelStyle );
+        scoreLabel = new Label(""+score,labelStyle );
+        table.add(scoreLabel).padRight(stage.getViewport().getWorldWidth()/8).padBottom( stage.getViewport().getWorldHeight()/8);
+//        System.out.println(score);
+//        scoreLabel.setAlignment(16);
+//        table.add(scoreLabel).padRight(stage.getViewport().getWorldWidth() / 20).padBottom(stage.getViewport().getWorldHeight()/ 10);
+
+        this.btnMenuScrip = new TextButton("?",Assets.instance.skin.textButtonStyle);
+        this.btnMenuScrip.setOrigin(btnMenuScrip.getWidth() / 2.0f, btnMenuScrip.getHeight() / 2.0f);
+//        table.add(this.btnMenuScrip).size(Constants.VIEWPORT_GUI_WIDTH /4f ,Constants.VIEWPORT_GUI_WIDTH /4f*  Constants.ASPECT_RATIO);/////////////////////////////
+//        System.out.println(stage.getViewport().getWorldWidth() / 4);
+        this.btnMenuScrip.addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ChangeEvent changeEvent, Actor actor) {
+//                FirstMenuScreen.this.onPlayClicked();/////////////////////
+
+                showNote= true;
+                showNote();
+
+                initWindow();////////////////////
+            }
+        });
+        table.add(this.btnMenuScrip).right().size(stage.getViewport().getWorldHeight() / 4, stage.getViewport().getWorldHeight() / 4);
+        return table;
+    }
+
+    private void showNote() {
+        if (actors1.size!=0) {
+            btnMenuScrip.setText(actors1.get(0).getNote());
+            btnMenuScrip.addAction(sequence(delay(1.0f), run(new Runnable() {
+                public void run() {
+//                    System.out.println("Action complete!");
+                    btnMenuScrip.setText("?");
+                }
+            })));
+        }
+    }
+
+    private Table buildBackgroundLayer() {
+        Table table = new Table();
+        table.setBackground(game.gameSkin.getDrawable("backgroundGame"));
+//        table.debug();
+        table.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
+        table.setPosition(0.0f, 0.0f);
+        znakImg = new Image(this.game.gameSkin, "ScripGorZnak");
+        znakImg.setPosition(0, this.stage.getViewport().getWorldHeight() / 2.7f);
+        table.addActor(znakImg);
+
+        leftBorder = new Image(Assets.instance.decoration.leftBorder);
+        leftBorder.setSize(this.stage.getViewport().getWorldWidth() / 90, this.stage.getViewport().getWorldHeight() / 4f);
+        leftBorder.setPosition(this.stage.getViewport().getWorldWidth() / 23f * 8f - (this.stage.getViewport().getWorldWidth() / 90 - 1), 0);
+        table.addActor(leftBorder);
+
+        rightBorder = new Image(Assets.instance.decoration.rightBorder);
+        rightBorder.setSize(this.stage.getViewport().getWorldWidth() / 90, this.stage.getViewport().getWorldHeight() / 4f);
+        rightBorder.setPosition(this.stage.getViewport().getWorldWidth() / 23f * 15f, 0);
+        table.addActor(rightBorder);
+
+        KeyGorizPack keyGorizPack;
+        for (int i = 8; i < 15; i++) {
+            keyGorizPack = new KeyGorizPack(game, i - 7, stage, i);
+            final int finalI = i;
+            keyGorizPack.addListener(new ClickListener() {
+                //            @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+//                    ScripPracticeScreen.this.onLevelSelectClicked(finalI);
+                    KeyGorizPack key = (KeyGorizPack) event.getListenerActor();
+                    if (actors1.size != 0) {
+                        if (key.getKey() == actors1.get(0).getKey()) {
+                            key.status = 2;//green
+                            if (!showNote) {
+                                score += 5;
+                            }
+                            showNote = false;
+                        } else {
+                            key.status = 3;//red
+                            actors1.get(0).showTitle = true;
+                        }
+                        actors1.get(0).isNoteBlack=false;
+                        actors1.removeIndex(0);
+                    } else {
+                        key.status = 3;
+                    }
+                    return true;
+                }
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    KeyGorizPack key = (KeyGorizPack) event.getListenerActor();
+                    key.status = 1;
+                }
+            });
+            table.addActor(keyGorizPack);
+        }
+        return table;
+    }
+
+
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        Gdx.gl.glClear(16384);
         stage.act(delta);
         stage.draw();
         renderGuiFpsCounter();
+        if (status=="action"){
+        controller();
+        }
+
     }
+
     private void Back() {
         this.game.setScreen(new ScripPackScreen(this.game));
     }
@@ -162,7 +327,7 @@ public class ScripPracticeScreen extends AbstractGameScreen {
         float x = 400;
         float y = 240;
         int fps = Gdx.graphics.getFramesPerSecond();
-        BitmapFont fpsFont = Assets.instance.fonts.heroInfo;
+        BitmapFont fpsFont = Assets.instance.fonts.defaultNormal;
         if (fps >= 45) {
             // 45 or more FPS show up in green
             fpsFont.setColor(0, 1, 0, 1);
@@ -176,7 +341,7 @@ public class ScripPracticeScreen extends AbstractGameScreen {
         stage.getBatch().begin();
         fpsFont.draw(stage.getBatch(), "FPS: " + fps, x, y);
         stage.getBatch().end();
-        fpsFont.setColor(1, 1, 1, 1); // white
+        fpsFont.setColor(1, 1, 1, 1); // black
     }
 
     @Override

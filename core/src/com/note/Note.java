@@ -18,9 +18,10 @@ public class Note extends DirectedGame {
 
     public AssetManager manager = new AssetManager();
     public Skin gameSkin;
+    public Skin uiSkin;
 
 
-
+//    { return this == UP ? DOWN : UP; }
 
     @Override
     public void create() {

@@ -25,7 +25,5 @@ import java.lang.reflect.Field;
 
 
 
-    public int getNumber(){
-        return number;
-    }
+
 }

@@ -6,11 +6,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.note.Note;
 import com.note.game.Assets;
@@ -19,11 +21,7 @@ import com.note.utils.GamePreferences;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
-import java.util.ArrayList;
 
-/**
- * Created by 1 on 29.03.2015.
- */
 public class ScripPackScreen extends AbstractGameScreen {
 
     private int Height;
@@ -46,12 +44,12 @@ public class ScripPackScreen extends AbstractGameScreen {
     private ScrollPane scroller;
     private int mode;
     public Label.LabelStyle number;
-    final Color white;
+    final Color black;
 
 
     public ScripPackScreen(final Note directedGame) {
         super(directedGame);
-        this.white = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        this.black = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
 //        this.Height = Gdx.graphics.getHeight();
 ////        System.out.println( Height);
@@ -62,9 +60,7 @@ public class ScripPackScreen extends AbstractGameScreen {
 //        this.buildMenuLayers();
 //        this.assembleStage();////////////////
 
-
-//        Table table = this.buildPackSelectorLayer();
-        this.number = new Label.LabelStyle(Assets.instance.fonts.levelCompleted, this.white);
+        this.number = new Label.LabelStyle(Assets.instance.fonts.levelCompleted, this.black);
         Table table2 = this.buildLevelSelectorLayer();
         this.stage.clear();
         this.stage.addActor(table2);
@@ -100,21 +96,25 @@ public class ScripPackScreen extends AbstractGameScreen {
     private Table buildLevelSelectorLayer() {
         ScrollPane scrollPane;
         Table table = new Table();
+        table.debug();
         table.setBackground(game.gameSkin.getDrawable("backgroundMenu"));
 //        table.debug();
         table.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
         table.setPosition(0.0f, 0.0f);
         Table table2 = new Table();
+        table2.debug();
+//
+
 //        table.debug();
         this.scroller = scrollPane = new ScrollPane(table2);
         this.scroller.setScrollingDisabled(true, false);
         int n = 0;
 //        int lastLvl = GamePreferences.instance.loadLastLevel();
-        int lastLvl = 0;
+        int lastLvl = 12;
         int n3 = 0;
         block0:do {
             if (n3 >= 12) { // lvls
-                table.add(this.scroller);
+                table.add(this.scroller);//back button
                 table.row();
                 Button button = new Button(this.game.gameSkin, "base");
                 button.setSize(stage.getViewport().getWorldWidth() / 10, stage.getViewport().getWorldWidth() / 10);
@@ -135,7 +135,8 @@ public class ScripPackScreen extends AbstractGameScreen {
             }
             final int n4 = n3;
             Table table3 = new Table();
-            table.debug();
+            table3.debug();
+
 //            GamePreferences.instance.saveLastLevelStar(mode, 2, 3);
             int numStar = GamePreferences.instance.getNumberOfStar(mode, n4);
 //            System.out.println(numStar);
@@ -154,24 +155,28 @@ public class ScripPackScreen extends AbstractGameScreen {
             button.addAction(sequence(alpha(0), delay(f), parallel(fadeIn(.5f), moveBy(0, -10, .25f, Interpolation.pow5Out))));
 
             Label label = new Label((CharSequence) ("" + (n4 + 1)), this.number);
-            label.setAlignment(16);
+//            label.setAlignment(16);
             label.addAction(Actions.sequence((Action) Actions.alpha(0.0f), (Action) Actions.delay(f), (Action) Actions.fadeIn(0.2f)));
-            label.setAlignment(1);
+//            label.setAlignment(10);
             if (n3 - lastLvl > 2) {
                 button.setTouchable(Touchable.disabled);
                 button.setColor(Color.GRAY);
             } else {
-                button.top().add(label).padTop(stage.getViewport().getWorldWidth() / 10.0f);
+//                button.top().add(label).padTop(stage.getViewport().getWorldWidth() / 10.0f);
+                button.add(label);
             }
             int n7 = 0;
             do {
                 if (n7 >= numStar) {
-                    System.out.println(n7+" "+numStar+ "rrrr"+n3);
+//                    System.out.println(n7+" "+numStar+ "rrrr"+n3);
                     ChangeListener changeListener = new ChangeListener() {
 
                         @Override
                         public void changed(ChangeListener.ChangeEvent changeEvent, Actor actor) {
+//                            stage.addAction(Actions.sequence(fadeOut(1),delay(1)));
+//                            stage.addAction(Actions.fadeOut(1));
                             ScripPackScreen.this.onLevelSelectClicked(n4);
+//                            System.out.println(n4);
                         }
                     };
                     button.addListener(changeListener);
@@ -197,122 +202,20 @@ public class ScripPackScreen extends AbstractGameScreen {
 //                Image image = new Image(this.game.gameSkin, "Star1");
                 image.setSize(stage.getViewport().getWorldWidth() / 6.0f, stage.getViewport().getWorldWidth() / 6.0f);
                 button.addActor(image);
-//                image.setColor(this.white);
+//                image.setColor(this.black);
                 image.addAction(Actions.sequence((Action) Actions.alpha(0.0f), (Action) Actions.delay(f), (Action) Actions.fadeIn(0.2f)));
             } while (true);
 //            break;
+
         } while (true);
     }
-//    private Table buildLevelSelectorLayer2()
-//    {
-//        Table localTable1 = new Table();
-//        localTable1.setBackground(game.gameSkin.getDrawable("backgroundMenu"));
-//        localTable1.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
-//        localTable1.setPosition(0.0F, 0.0F);
-//        Table localTable2 = new Table();
-//        this.scroller = new ScrollPane(localTable2);
-//        this.scroller.setScrollingDisabled(true, false);
-////        localTable2.padTop(Constants.VIEWPORT_GUI_HEIGHT / 5.0F).padBottom(Constants.VIEWPORT_GUI_HEIGHT / 5.0F);
-//        int k = 0;
-////        int m = GamePreferences.instance.loadLastLevel();
-//        int m = 0;
-//        final int i = 0;
-//        if (i >= 12)
-//        {
-//            localTable1.add(this.scroller);
-//            localTable1.row();
-//            Button button = new Button(this.game.gameSkin, "base");
-//            button.setSize(Constants.MENU_BUTTON_SIZE, Constants.MENU_BUTTON_SIZE);
-//            button.setSize(stage.getViewport().getWorldWidth() / 10, stage.getViewport().getWorldWidth() / 10);
-//            button.setPosition(stage.getViewport().getWorldWidth() - button.getWidth(), -button.getWidth());
-////                button.setColor(this.palette[1]);
-////                button.add(new Image(this.buttonSkin, "HomeLogo"));
-//            button.addAction(Actions.sequence((Action) Actions.delay(0.5f), (Action) Actions.moveTo(stage.getViewport().getWorldWidth() - button.getWidth(), 0.0f, 1.0f, Interpolation.circleOut)));
-//            button.addListener(new ChangeListener() {
-//                public void changed(ChangeListener.ChangeEvent paramAnonymousChangeEvent, Actor paramAnonymousActor) {
-//
-//                    ScripPackScreen.this.game.setScreen(new ScripMenuScreen(game));
-////                    TitleScreen.this.game.solver.showBanner(false);
-//                }
-//            });
-//            localTable1.addActor(button);
-//            return localTable1;
-//        }
-//        Object localObject = new Table();
-//        int n = GamePreferences.instance.getNumberOfStar(mode,i);
-//        Button localButton = new Button(this.game.gameSkin, "level");
-//        localTable2.add((Actor)localObject).size(stage.getViewport().getWorldWidth() / 6.0f);
-//        ((Table)localObject).addActor(localButton);
-//        localButton.setSize((stage.getViewport().getWorldWidth() / 6.0f), stage.getViewport().getWorldWidth() / 6.0f);
-////        localButton.setSize(0.0F, 0.0F);
-////        localButton.setColor(this.palette[2]);
-//        float f = 0.0F;
-//        int j = k;
-//        if (i - m > 0)
-//        {
-//            j = k + 1;
-//            f = 0.5F + 0.05F * j;
-//        }
-////        localButton.addAction(Actions.sequence(Actions.delay(f), Actions.sizeTo(Constants.VIEWPORT_GUI_WIDTH / 3.0F, Constants.VIEWPORT_GUI_WIDTH / 3.0F, 0.1F, Interpolation.swingOut)));
-//        localButton.addAction(sequence(alpha(0), delay(f), parallel(fadeIn(.5f), moveBy(0, -10, .25f, Interpolation.pow5Out))));
-//
-//        localObject = new Label((CharSequence) ("" + (i + 1)), this.number);
-//        ((Label)localObject).setAlignment(16);
-//        ((Label)localObject).addAction(Actions.sequence(Actions.alpha(0.0F), Actions.delay(f), Actions.fadeIn(0.2F)));
-//        ((Label)localObject).setAlignment(1);
-//        if (i - m > 2)
-//        {
-//            localButton.setTouchable(Touchable.disabled);
-//            localButton.setColor(Color.GRAY);
-//        }
-//        for (;;)
-//        {
-//            k = 0;
-//            if (k < n) {
-////                break label554;/////////
-//            }
-//            localButton.addListener(new ChangeListener()
-//            {
-//                public void changed(ChangeListener.ChangeEvent paramAnonymousChangeEvent, Actor paramAnonymousActor)
-//                {
-//                    ScripPackScreen.this.onLevelSelectClicked(i);
-//                }
-//            });
-//            if ((i + 1) % 6 == 0) {
-//                localTable2.row();
-//            }
-////            i += 1;/////////////
-//            k = j;
-//            break;
-//            localButton.top().add((Actor)localObject).padTop(Constants.VIEWPORT_GUI_WIDTH / 12.0F);
-//        }
-//        label554:if (k == 0) {
-//            localObject = new Image(this.game.gameSkin, "Star1");
-//        }
-//        for (;;)
-//        {
-//            ((Image)localObject).setSize(stage.getViewport().getWorldWidth() / 6.0f, stage.getViewport().getWorldWidth() / 6.0f);
-//            localButton.addActor((Actor)localObject);
-////            ((Image)localObject).setColor(this.white);
-//            ((Image)localObject).addAction(Actions.sequence(Actions.alpha(0.0F), Actions.delay(f), Actions.fadeIn(0.2F)));
-//            k += 1;
-//            break;
-//            if (k == 1) {
-//                localObject = new Image(this.game.gameSkin, "Star2");
-//            } else {
-//                localObject = new Image(this.game.gameSkin, "Star3");
-//            }
-//        }
-//     }
-
-
     private void onLevelSelectClicked(int n) {
         System.out.println(n);
 //        this.game.levelToLoad = n;
         ScripPackScreen.this.game.setScreen(new ScripPracticeScreen(game, n));
 //        AudioManager.instance.play(com.gamelounge.chrooma.game.Assets.instance.sounds.buttonSound, 1.0f);
     }
-
+//     }
 //    private Table buildLinesLayer() {
 //        Table table = new Table();
 //        table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -362,31 +265,31 @@ public class ScripPackScreen extends AbstractGameScreen {
 
     @Override
     public void resize(int n, int n2) {
-        System.out.println("resize");
+//        System.out.println("resize");
         this.stage.getViewport().update(n, n2, true);
     }
 
     @Override
     public void pause() {
-        System.out.println("pause");
+//        System.out.println("pause");
     }
 
     @Override
     public void resume() {
-        System.out.println("resume");
+//        System.out.println("resume");
 //        this.game.camera.viewportWidth = Gdx.graphics.getWidth();
 //        this.game.camera.viewportHeight = Gdx.graphics.getHeight();
     }
 
     @Override
     public void hide() {
-        System.out.println("hide");
+//        System.out.println("hide");
         this.stage.dispose();
     }
 
     @Override
     public void dispose() {
-        System.out.println("dispose");
+//        System.out.println("dispose");
         this.stage.dispose();
     }
 
@@ -396,7 +299,7 @@ public class ScripPackScreen extends AbstractGameScreen {
 //    }
     @Override
     public void show() {
-        System.out.println("show");
+//        System.out.println("show");
 //        this.stage = new Stage();
 //        this.game.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
@@ -412,7 +315,7 @@ public class ScripPackScreen extends AbstractGameScreen {
             }
         };
         Gdx.input.setInputProcessor(stage);
-        mode = 1;
+        mode = 1;//scrip
 //        this.stage.setViewport(new StretchViewport(800.0f, 480.0f));
 
 //        GameManager.ourInstance.setGameState(GameState.MOVE);/////////////////////////
@@ -429,7 +332,7 @@ public class ScripPackScreen extends AbstractGameScreen {
         float x = 400;
         float y = 240;
         int fps = Gdx.graphics.getFramesPerSecond();
-        BitmapFont fpsFont = Assets.instance.fonts.heroInfo;
+        BitmapFont fpsFont = Assets.instance.fonts.defaultNormal;
         if (fps >= 45) {
             // 45 or more FPS show up in green
             fpsFont.setColor(0, 1, 0, 1);
@@ -443,7 +346,7 @@ public class ScripPackScreen extends AbstractGameScreen {
         stage.getBatch().begin();
         fpsFont.draw(stage.getBatch(), "FPS: " + fps, x, y);
         stage.getBatch().end();
-        fpsFont.setColor(1, 1, 1, 1); // white
+        fpsFont.setColor(1, 1, 1, 1); // black
     }
 }
 

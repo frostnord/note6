@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.note.Note;
 import com.note.game.Assets;
 import com.note.screens.ScripMiddleScreen;
-import com.note.screens.ScripTreningScreen;
+import com.note.screens.ScripLeftScreen;
 
 import java.lang.reflect.Field;
 
@@ -137,8 +137,8 @@ public class KeyGoriz extends AbstractActor {
                     }
                 }
 
-                if (game.getScreen().getClass() == ScripTreningScreen.class) {
-                    ScripTreningScreen.firstActor.setNoteCliked(true);
+                if (game.getScreen().getClass() == ScripLeftScreen.class) {
+                    ScripLeftScreen.firstActor.setNoteCliked(true);
                 }
                 if (game.getScreen().getClass() == ScripMiddleScreen.class) {
                     if ((ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key)) {
@@ -173,20 +173,28 @@ public class KeyGoriz extends AbstractActor {
             }
             //            @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                if (key == 1) {
-                    keyTextureRegion = Assets.instance.noteImg.doKeyImgActor;
-                }else if (key == 2){
-                    keyTextureRegion = Assets.instance.noteImg.reKeyImgActor;
-                }else if (key == 3){
-                    keyTextureRegion = Assets.instance.noteImg.miKeyImgActor;
-                }else if (key == 4){
-                    keyTextureRegion = Assets.instance.noteImg.faKeyImgActor;
-                }else if (key == 5){
-                    keyTextureRegion = Assets.instance.noteImg.solKeyImgActor;
-                }else if (key == 6) {
-                    keyTextureRegion = Assets.instance.noteImg.laKeyImgActor;
-                }else if (key == 7) {
-                    keyTextureRegion = Assets.instance.noteImg.siKeyImgActor;
+                switch (key) {
+                    case 1:
+                        keyTextureRegion = Assets.instance.noteImg.doKeyImgActor;
+                        break;
+                    case 2:
+                        keyTextureRegion = Assets.instance.noteImg.reKeyImgActor;
+                        break;
+                    case 3:
+                        keyTextureRegion = Assets.instance.noteImg.miKeyImgActor;
+                        break;
+                    case 4:
+                        keyTextureRegion = Assets.instance.noteImg.faKeyImgActor;
+                        break;
+                    case 5:
+                        keyTextureRegion = Assets.instance.noteImg.solKeyImgActor;
+                        break;
+                    case 6:
+                        keyTextureRegion = Assets.instance.noteImg.laKeyImgActor;
+                        break;
+                    case 7:
+                        keyTextureRegion = Assets.instance.noteImg.siKeyImgActor;
+                        break;
                 }
             }
         });
