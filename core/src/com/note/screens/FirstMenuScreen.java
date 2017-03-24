@@ -399,7 +399,7 @@ public class FirstMenuScreen extends AbstractGameScreen  {
 //        this.stage.setViewport(new FillViewport(800,480));
 
 //        this.atlas = (TextureAtlas)this.game.manager.get("sprites.atlas", TextureAtlas.class); noooooooo
-
+//
 
         this.rebuildStage();
 
