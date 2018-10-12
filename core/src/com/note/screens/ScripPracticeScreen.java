@@ -113,7 +113,7 @@ public class ScripPracticeScreen extends AbstractGameScreen {
                     if (GamePreferences.instance.isMusicEnabled()){
                         Assets.instance.music.menuMusic.play();
                     }
-                    ScripPracticeScreen.this.Back();
+                    ScripPracticeScreen.this.Back() ;
                 }
                 return false;
             }
