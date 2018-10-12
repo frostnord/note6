@@ -33,7 +33,7 @@ public class BlackNote extends Actor {
     private Array<BlackNote> arr;
     float noteSize = 0;
 
-    public BlackNote(DirectedGame game, int number, Stage stage, float widhtTop, float widthBot,Array arr) {
+    public BlackNote(DirectedGame game, int number, Stage stage, float widhtTop, float widthBot, Array arr) {
         this.arr = arr;
         this.game = game;
         this.number = number;
@@ -42,20 +42,17 @@ public class BlackNote extends Actor {
         position = new Vector2(stage.getViewport().getWorldWidth(), ((this.stage.getViewport().getWorldHeight() - this.stage.getViewport().getWorldHeight() / 4f - 50) / 23f) * number + this.stage.getViewport().getWorldHeight() / 4f);
         this.width = widthBot / 9.2f;
         this.height = widthBot / 13f;
-//        center =
         this.font = Assets.instance.fonts.defaultNormal;
-
 //        font.setColor(0.11f,0.11f, 0.11f, 1);
         font.setColor(Color.valueOf("071d53"));
 
-        lineImg= Assets.instance.decoration.lineImg;
-//        GlyphLayout glyphLayout = new GlyphLayout();
-//        String item1 = "Do";
-//        glyphLayout.setText(font,item1);
-//        doNote = glyphLayout.width;
+        lineImg = Assets.instance.decoration.lineImg;
         nameNote();
 
-
+        note = Assets.languageNoteName(note);
+        GlyphLayout glyphLayout = new GlyphLayout();
+        glyphLayout.setText(font, note);
+        noteSize = glyphLayout.width;
     }
 
     public String getNote() {
@@ -65,42 +62,41 @@ public class BlackNote extends Actor {
     private void nameNote() {
         if ((number == 0) || (number == 7) || (number == 21) || (number == 14)) {
             note = "Mi";
-//            System.out.println("Mi");
             key = 3;
+//            System.out.println("Mi");
         }
         if ((number == 1) || (number == 8) || (number == 22) || (number == 15)) {
             note = "Fa";
-//            System.out.println("Fa");
             key = 4;
+//            System.out.println("Fa");
         }
         if ((number == 2) || (number == 9) || (number == 16)) {
             note = "Sol";
-//            System.out.println("Sol");
             key = 5;
+//            System.out.println("Sol");
         }
         if ((number == 3) || (number == 10) || (number == 17)) {
             note = "La";
-//            System.out.println("La");
             key = 6;
+//            System.out.println("La");
         }
         if ((number == 4) || (number == 11) || (number == 18)) {
             note = "Si";
-//            System.out.println("Si");
             key = 7;
+//            System.out.println("Si");
         }
         if ((number == 5) || (number == 12) || (number == 19)) {
             note = "Do";
-//            System.out.println("Do");
             key = 1;
+//            System.out.println("Do");
         }
         if ((number == 6) || (number == 13) || (number == 20)) {
             note = "Re";
-//            System.out.println("Re");
             key = 2;
+//            System.out.println("Re");
         }
-        GlyphLayout glyphLayout = new GlyphLayout();
-        glyphLayout.setText(font,note);
-        noteSize = glyphLayout.width;
+
+
 //        System.out.println("noteSize "+noteSize);
     }
 
@@ -118,39 +114,37 @@ public class BlackNote extends Actor {
         float widthW = this.stage.getViewport().getWorldWidth();
         float hidthH = stage.getViewport().getWorldHeight();
 
-        if ((number== 5)||(number == 4)){
+        if ((number == 5) || (number == 4)) {
 //            batch.draw(lineImg,po sition.x - 10 , 208,70,2);
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 12 + keyH , widthW / 13 , hidthH / 200);
+            batch.draw(lineImg, position.x - 27, pole / 46 * 12 + keyH, widthW / 13, hidthH / 200);
         }
-        if ((number == 3)||(number == 2)) {
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 12 + keyH , widthW / 13 , hidthH / 200);
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 8 + keyH , widthW / 13 , hidthH / 200);
+        if ((number == 3) || (number == 2)) {
+            batch.draw(lineImg, position.x - 27, pole / 46 * 12 + keyH, widthW / 13, hidthH / 200);
+            batch.draw(lineImg, position.x - 27, pole / 46 * 8 + keyH, widthW / 13, hidthH / 200);
         }
-        if ((number== 1)||(number == 0)){
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 12 + keyH , widthW / 13 , hidthH / 200);
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 8 + keyH , widthW / 13 , hidthH / 200);
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 4 + keyH , widthW / 13 , hidthH / 200);
+        if ((number == 1) || (number == 0)) {
+            batch.draw(lineImg, position.x - 27, pole / 46 * 12 + keyH, widthW / 13, hidthH / 200);
+            batch.draw(lineImg, position.x - 27, pole / 46 * 8 + keyH, widthW / 13, hidthH / 200);
+            batch.draw(lineImg, position.x - 27, pole / 46 * 4 + keyH, widthW / 13, hidthH / 200);
         }
-        if( (number== 17)||(number==18)){
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 36 + keyH , widthW / 13 , hidthH / 200);
+        if ((number == 17) || (number == 18)) {
+            batch.draw(lineImg, position.x - 27, pole / 46 * 36 + keyH, widthW / 13, hidthH / 200);
         }
-        if ((number == 19)||(number==20)){
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 36 + keyH , widthW / 13 , hidthH / 200);
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 40 + keyH , widthW / 13 , hidthH / 200);
+        if ((number == 19) || (number == 20)) {
+            batch.draw(lineImg, position.x - 27, pole / 46 * 36 + keyH, widthW / 13, hidthH / 200);
+            batch.draw(lineImg, position.x - 27, pole / 46 * 40 + keyH, widthW / 13, hidthH / 200);
         }
-        if (number == 21||number==22){
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 36 + keyH , widthW / 13 , hidthH / 200);
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 40 + keyH , widthW / 13 , hidthH / 200);
-            batch.draw(lineImg,position.x - 27 , pole / 46 * 44 + keyH , widthW / 13 , hidthH / 200);
+        if (number == 21 || number == 22) {
+            batch.draw(lineImg, position.x - 27, pole / 46 * 36 + keyH, widthW / 13, hidthH / 200);
+            batch.draw(lineImg, position.x - 27, pole / 46 * 40 + keyH, widthW / 13, hidthH / 200);
+            batch.draw(lineImg, position.x - 27, pole / 46 * 44 + keyH, widthW / 13, hidthH / 200);
         }
         batch.draw(textureRegion, position.x, position.y + 6, width, height);
 
         if (showTitle) {
 //            font.draw(batch, note, position.x , position.y + 53f);
-            Float center = width /2 - noteSize /2;
+            Float center = width / 2 - noteSize / 2;
             font.draw(batch, note, position.x + center, position.y + 53f);
-
-//            System.out.println("fontsize " + noteSize);
         }
     }
 

@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.note.Note;
 import com.note.enums.GameState;
+import com.note.game.WorldController;
 import com.note.utils.Constants;
 import com.note.utils.GameManager;
 
@@ -43,6 +44,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
 
     public ScripMenuScreen(final Note directedGame) {
         super(directedGame);
+        WorldController.GAMEMODE = "scrip";
 
 //        this.Height = Gdx.graphics.getHeight();
 ////        System.out.println( Height);
@@ -228,6 +230,7 @@ public class ScripMenuScreen extends AbstractGameScreen  {
         GameManager.ourInstance.setGameState(GameState.MOVE);
 //        this.atlas = (TextureAtlas)this.game.manager.get("sprites.atlas", TextureAtlas.class);
         this.rebuildStage();
+
     }
 
     private void Back() {

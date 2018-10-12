@@ -4,6 +4,7 @@ package com.note.actors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -23,6 +24,7 @@ public class NoteVert extends Actor {
     private final Stage stage;
     private final float width;
     private final float height;
+    private final String noteName;
     private TextureRegion textureRegion;
     private TextureRegion lineImg;
     private final DirectedGame game;
@@ -41,33 +43,31 @@ public class NoteVert extends Actor {
     private boolean move ;
     private int lineNamber;
     private float speed = 90;
+    private float noteSize;
+//    private float center;
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 
+
         lineImg= Assets.instance.decoration.lineImg;
-        if (note.equals("do")){
+        if (note.equals("Do")){
             textureRegion = Assets.instance.note.noteRedDoVert;
-        }else if (note.equals("re")){
+        }else if (note.equals("Re")){
             textureRegion = Assets.instance.note.noteOrangeReVert;
-        }else if (note.equals("mi")){
+        }else if (note.equals("Mi")){
             textureRegion = Assets.instance.note.noteYellowMiVert;
-        }else if (note.equals("fa")){
+        }else if (note.equals("Fa")){
             textureRegion = Assets.instance.note.noteGreenFaVert;
-        }else if (note.equals("sol")){
+        }else if (note.equals("Sol")){
             textureRegion = Assets.instance.note.noteBlueSolVert;
-        }else if (note.equals("la")){
+        }else if (note.equals("La")){
             textureRegion = Assets.instance.note.noteSiniiLaVert;
-        }else if (note.equals("si")){
+        }else if (note.equals("Si")){
             textureRegion = Assets.instance.note.notePurpleSiVert;
         }
 
-//        switch ((int)index){
-//            case 4   :
-//                batch.draw(lineImg,position.x-5,position.y-40,lineImg.getRegionWidth(),lineImg.getRegionHeight());
-//                return;
-//        }
         float widhtW =  stage.getViewport().getWorldWidth();
         float heidthH = stage.getViewport().getWorldHeight();
 
@@ -78,39 +78,31 @@ public class NoteVert extends Actor {
         if (index == 4) {
             lineNamber = 1;
             batch.draw(lineImg, widhtW / 46 * 11 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
-//            batch.draw(lineImg,192 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight()+40);
         }
         if ((index == 3)||(index == 2)) {
             lineNamber = 2;
             batch.draw(lineImg, widhtW / 46 * 11 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
             batch.draw(lineImg, widhtW / 46 * 7 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
-
-//            batch.draw(lineImg, 192, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
         }
         if ((index== 1)||(index == 0)){
             lineNamber = 3;
             batch.draw(lineImg, widhtW / 46 * 11 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
             batch.draw(lineImg, widhtW / 46 * 7 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
             batch.draw(lineImg, widhtW / 46 * 3 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
-
-//            batch.draw(lineImg, 55, position.y - lineImg.getRegionHeight() / 4 + 8, lineImg.getRegionWidth(), lineImg.getRegionHeight()+40);
         }
         if (index== 17){
             lineNamber = 1;
             batch.draw(lineImg, widhtW / 46 * 35 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
-//            batch.draw(lineImg,600 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight()+40);
         }
         if (index==18){
             lineNamber = 1;
             batch.draw(lineImg, widhtW / 46 * 35 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
-//            batch.draw(lineImg,600 ,position.y - lineImg.getRegionHeight()/4+8,lineImg.getRegionWidth(),lineImg.getRegionHeight()+40);
         }
         if ((index == 19)||(index==20)){
             lineNamber = 2;
             batch.draw(lineImg, widhtW / 46 * 35 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
             batch.draw(lineImg, widhtW / 46 * 39 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
         }
-
         if ((index == 21)||(index==22)){
             lineNamber = 3;
             batch.draw(lineImg, widhtW / 46 * 35 - widhtW / 220  /2 , position.y - 10, widhtW  / 220, heidthH / 5 );
@@ -121,30 +113,32 @@ public class NoteVert extends Actor {
             textureRegion = Assets.instance.note.note_greyVert;
         }
 
-        batch.draw(textureRegion, position.x + 0 , position.y , width,height);/////// Note
+        batch.draw(textureRegion, position.x , position.y, width, height);/////// Note
 
 
 
 
-        this.font = Assets.instance.fonts.noteName;
-//        font.setColor(18f ,45f ,115f , 1f);
-        font.setColor(Color.valueOf("071d53"));
+
         if (lineNamber > 0) {
             font.draw(batch, Integer.toString(lineNamber), position.x + 55, position.y + 300);//lineNumber
         }
-        if (note.equals("sol")) {
-            font.draw(batch, note, position.x + 7, position.y + 140);
+        Float center = width / 2 - noteSize / 2;
+        font.draw(batch,noteName ,position.x + center ,position.y+140f);
+//        System.out.println(center+" "+width+" "+noteSize);
+
+//        if (note.equals("sol")) {
+//            font.draw(batch, note, position.x + 7, position.y + 140);
 //                label.setPosition(position.x + 15 , position.y + 55);
-        }else if(note.equals("si")){
-            font.draw(batch, note, position.x + 35, position.y + 140);
-        }else if(note.equals("do")){
-            font.draw(batch, note, position.x + 15, position.y + 140);
-        }else if(note.equals("re")){
-            font.draw(batch, note, position.x + 18, position.y + 140);
-        }else {
-            font.draw(batch, note, position.x + 23, position.y + 140);
-//            label.setPosition(position.x + 10 , position.y + 55);
-        }
+//        }else if(note.equals("si")){
+//            font.draw(batch, note, position.x + 35, position.y + 140);
+//        }else if(note.equals("do")){
+//            font.draw(batch, note, position.x + 15, position.y + 140);
+//        }else if(note.equals("re")){
+//            font.draw(batch, note, position.x + 18, position.y + 140);
+//        }else {
+//            font.draw(batch, note, position.x + 23, position.y + 140);
+////            label.setPosition(position.x + 10 , position.y + 55);
+//        }
 //        font.drawMultiLine(batch, Float.toString( index), position.x+50, position.y, 0, BitmapFont.HAlignment.CENTER);
 //        if (GameManager.ourInstance.getGameState()== GameState.WAITKEYPRESS) {
     }
@@ -153,11 +147,6 @@ public class NoteVert extends Actor {
         this.stage = stage;
         randomNote();
         this.move= true;
-//        Skin skin2 = new Skin();
-//        label = new Label(note,skin2);
-//        label.setRotation(-90.0f);
-//        index = 20;
-//        note ="mi";
         width = stage.getViewport().getWorldWidth() / 12;
         height = stage.getViewport().getWorldWidth()/ 10;
         setOrigin(getWidth() /2,getHeight() /2 );
@@ -165,8 +154,16 @@ public class NoteVert extends Actor {
         this.isSecond=false;
         dimension = new Vector2(1, 1);
         origin = new Vector2();
-        scale = new Vector2(1, 1);
+//        scale = new Vector2(1, 1);
         rotation1 = 0;
+        this.font = Assets.instance.fonts.noteName;
+//        font.setColor(18f ,45f ,115f , 1f);
+        this.font.setColor(Color.valueOf("071d53"));
+        noteName = Assets.languageNoteName(note);
+        GlyphLayout glyphLayout = new GlyphLayout();
+        glyphLayout.setText(font, noteName);
+        noteSize = glyphLayout.width;
+//        center = width / 2 - noteSize / 2;
     }
 
 
@@ -193,33 +190,37 @@ public class NoteVert extends Actor {
         index = rand.nextInt(22);
 
         if (( index==0)||(index==7)||(index==21)||(index==14)) {
-            note = "mi";
-            System.out.println("mi");
+            note = "Mi";
+//            System.out.println("mi");
         }
         if (( index==1)||(index==8)||(index==22)||(index==15)) {
-            note = "fa";
-            System.out.println("fa");
+            note = "Fa";
+//            System.out.println("fa");
         }
         if (( index==2)||(index==9)||(index==16)) {
-            note="sol";
-            System.out.println("sol");
+            note="Sol";
+//            System.out.println("sol");
         }
         if (( index==3)||(index==10)||(index==17)) {
-            note ="la";
-            System.out.println("la");
+            note ="La";
+//            System.out.println("la");
         }
         if (( index==4)||(index==11)||(index==18)) {
-            note="si";
-            System.out.println("si");
+            note="Si";
+//            System.out.println("si");
         }
         if (( index==5)||(index==12)||(index==19)) {
-            note="do";
-            System.out.println("do");
+            note="Do";
+//            System.out.println("do");
         }
         if (( index==6)||(index==13)||(index==20)) {
-            note="re";
-            System.out.println("re");
+            note="Re";
+//            System.out.println("re");
         }
+
+
+
+
         return index;
     }
     public void speedUp(){

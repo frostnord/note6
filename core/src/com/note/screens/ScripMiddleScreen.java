@@ -25,6 +25,7 @@ import com.note.actors.NoteGoriz;
 import com.note.game.Assets;
 import com.note.utils.Constants;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.note.utils.GamePreferences;
 
 public class ScripMiddleScreen extends AbstractGameScreen {
 
@@ -61,9 +62,6 @@ public class ScripMiddleScreen extends AbstractGameScreen {
     }
 
     private void buildStage() {
-//        this.buildMenuLayers();
-//        this.assembleStage();
-
         this.imgBackground = new Image(this.game.gameSkin, "backgroundGame");
         imgBackground.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
         stage.addActor(this.imgBackground);
@@ -195,16 +193,10 @@ public class ScripMiddleScreen extends AbstractGameScreen {
     public void resize(int n, int n2) {
         this.stage.getViewport().update(n, n2, true);
     }
-    //    public static void setIndex(int s){
-//        index= s;
-//    }
+
     public static Array<NoteGoriz> getNoteActors(){
         return actors;
     }
-
-//    public static int getIndex(){
-//        return index;
-//    }
 
     @Override
     public void pause() {
@@ -223,28 +215,11 @@ public class ScripMiddleScreen extends AbstractGameScreen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
     private void Back() {
         this.game.setScreen(new ScripMenuScreen(this.game));
     }
-
-//    }
-
-//    private void buildLinesLayer() {
-
-//        this.lineImg = new Image(this.game.gameSkin, "linesGoriz");
-
-//        stage.getBatch().end();
-
-//        table.add(this.lineImg);/////
-
-//    }
-
-
-
-//    }
-
 //    }
     //    private void assembleStage() {
 //        this.stage.clear();
@@ -299,6 +274,7 @@ public class ScripMiddleScreen extends AbstractGameScreen {
     private  void score (){
 //        int fps = Gdx.graphics.getFramesPerSecond();
         BitmapFont score = Assets.instance.fonts.levelCompleted;
+
         float x = rightBorder.getX()+ 50;
         float y = rightBorder.getHeight();
 
@@ -369,6 +345,9 @@ public class ScripMiddleScreen extends AbstractGameScreen {
             @Override
             public boolean keyUp(int keycode) {
                 if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
+                    if (GamePreferences.instance.isMusicEnabled()){
+                        Assets.instance.music.menuMusic.play();
+                    }
                     ScripMiddleScreen.this.Back();
                 }
                 return false;
@@ -386,9 +365,9 @@ public class ScripMiddleScreen extends AbstractGameScreen {
 //        index = noteGoriz.getIndex();
 
 
-        controller();
-        this.stage.act();
-        this.stage.draw();
+//        controller();  //включить если заглючит
+//        this.stage.act(); //включить если заглючит
+//        this.stage.draw(); //включить если заглючит
     }
 
 //    }

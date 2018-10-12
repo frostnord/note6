@@ -178,13 +178,12 @@ public class FirstMenuScreen extends AbstractGameScreen  {
             }
         });
         final Button soundCheckBox = new CheckBox("", game.uiSkin, "sound");
+        soundCheckBox.setChecked(GamePreferences.instance.isSoundEnabled());
         soundCheckBox.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                boolean isSoundOn = soundCheckBox.isChecked();/////доделать
+                boolean isSoundOn = soundCheckBox.isChecked();
                 GamePreferences.instance.setSoundEnabled(isSoundOn);
-//                musicManager.setEnabled(isMusicOn);
 //                Assets.instance.music.menuMusic.stop();
-                statusMusic();
             }
         });
         String languageRu ;
@@ -195,7 +194,7 @@ public class FirstMenuScreen extends AbstractGameScreen  {
         }
         final Button languageCheckBox = new CheckBox("", game.uiSkin, "language");/// доделать языки
         final Label languageLabel = new Label(languageRu, new Label.LabelStyle(Assets.instance.fonts.levelCompleted,Color.WHITE));
-//        languageLabel.setAlignment(Align.center);
+        languageCheckBox.setChecked(GamePreferences.instance.languageRu());
         languageCheckBox.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 boolean languageRuTrue = languageCheckBox.isChecked();
@@ -231,7 +230,8 @@ public class FirstMenuScreen extends AbstractGameScreen  {
         final TextButton oKbutton = new TextButton("Ok",Assets.instance.skin.optionDiologTextButtonStyle);
         oKbutton.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-            optDialog.hide();
+                GamePreferences.instance.flush();
+                optDialog.hide();
             }
         });
         optDialog.getContentTable().add(oKbutton).colspan(2).size(150,150);
@@ -378,7 +378,6 @@ public class FirstMenuScreen extends AbstractGameScreen  {
 
 
 //            this.game.manager.load("sprites.atlas", TextureAtlas.class);///////
-//            this.game.manager.finishLoading();///////////
 
         Gdx.input.setCatchBackKey(true);
 //        this.stage = new Stage(){
@@ -392,6 +391,8 @@ public class FirstMenuScreen extends AbstractGameScreen  {
 //            }
 //        };
         Gdx.input.setInputProcessor(stage);
+
+
 
 //        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 //        camera.position.set(0, 0, 0);

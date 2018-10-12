@@ -15,9 +15,6 @@ import java.lang.reflect.Field;
  */
 public class KeyGorizPack extends AbstractActor {
 
-//    private final TextureRegion triangleTextureRegion;
-//    private final TextureRegion lineTextureRegion;
-
     private TextureRegion keyTextureRegion = Assets.instance.noteImg.doRedKeyImgActor;
     private static float textuerKeybordHeight;
     private Stage stage;

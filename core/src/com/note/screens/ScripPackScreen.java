@@ -50,7 +50,6 @@ public class ScripPackScreen extends AbstractGameScreen {
     public ScripPackScreen(final Note directedGame) {
         super(directedGame);
         this.black = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-
 //        this.Height = Gdx.graphics.getHeight();
 ////        System.out.println( Height);
 //        this.Width = Gdx.graphics.getWidth();
@@ -68,7 +67,6 @@ public class ScripPackScreen extends AbstractGameScreen {
 
 //        this.imgBackground = new Image(this.game.gameSkin,"backgroundMenu");
 //        this.imgBackground.setBounds(0.0F, 0.0F, this.Width, this.Height);
-//
 //
 //        this.treningMenuImg = new Image(this.game.gameSkin, "TreningScrip_left");
 //        float f1 = this.Width / 5f;
@@ -96,34 +94,28 @@ public class ScripPackScreen extends AbstractGameScreen {
     private Table buildLevelSelectorLayer() {
         ScrollPane scrollPane;
         Table table = new Table();
-        table.debug();
         table.setBackground(game.gameSkin.getDrawable("backgroundMenu"));
-//        table.debug();
         table.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
         table.setPosition(0.0f, 0.0f);
         Table table2 = new Table();
-        table2.debug();
-//
-
+//        table2.debug();
 //        table.debug();
         this.scroller = scrollPane = new ScrollPane(table2);
         this.scroller.setScrollingDisabled(true, false);
-        int n = 0;
+//        int n = 0;
 //        int lastLvl = GamePreferences.instance.loadLastLevel();
         int lastLvl = 12;
-        int n3 = 0;
+        int iconCount = 0;
         block0:do {
-            if (n3 >= 12) { // lvls
-                table.add(this.scroller);//back button
+            if (iconCount >= 12) { // lvls
+//                table.add(this.scroller);//back button
+                table.add(table2);//back button
                 table.row();
                 Button button = new Button(this.game.gameSkin, "base");
                 button.setSize(stage.getViewport().getWorldWidth() / 10, stage.getViewport().getWorldWidth() / 10);
                 button.setPosition(stage.getViewport().getWorldWidth() - button.getWidth(), -button.getWidth());
-//                button.setColor(this.palette[1]);
-//                button.add(new Image(this.buttonSkin, "HomeLogo"));
                 button.addAction(Actions.sequence((Action) Actions.delay(0.5f), (Action) Actions.moveTo(stage.getViewport().getWorldWidth() - button.getWidth(), 0.0f, 1.0f, Interpolation.circleOut)));
                 ChangeListener changeListener = new ChangeListener() {
-
                     @Override
                     public void changed(ChangeListener.ChangeEvent changeEvent, Actor actor) {
                         ScripPackScreen.this.game.setScreen(new ScripMenuScreen(game));
@@ -133,32 +125,30 @@ public class ScripPackScreen extends AbstractGameScreen {
                 table.addActor(button);
                 return table;
             }
-            final int n4 = n3;
-            Table table3 = new Table();
-            table3.debug();
 
+            final int packNumber = iconCount;
+            Table table3 = new Table();
+//            table3.debug();
 //            GamePreferences.instance.saveLastLevelStar(mode, 2, 3);
-            int numStar = GamePreferences.instance.getNumberOfStar(mode, n4);
-//            System.out.println(numStar);
+            int kolvoStar = GamePreferences.instance.getNumberOfStar(mode, packNumber);
             Button button = new Button(this.game.gameSkin, "level");
             table2.add(table3).size(stage.getViewport().getWorldWidth() / 6.0f);
             table3.addActor(button);
 //            button.setSize(0.0f, 0.0f);
             button.setSize((stage.getViewport().getWorldWidth() / 6.0f), stage.getViewport().getWorldWidth() / 6.0f);
 //            button.setColor(this.palette[2]);
-            int n6 = n3 - lastLvl;
+//            int n6 = iconCount - lastLvl;
             float f = 0.0f;
-            if (n6 > 0) {
-                f = 0.5f + 0.05f * (float) (++n);
-            }
+//            if (n6 > 0) {               ?????????
+//                f = 0.5f + 0.05f * (float) (++n);????????
+//            }???????/////
 //            button.addAction(Actions.sequence((Action)Actions.delay(f), (Action)Actions.sizeTo(stage.getViewport().getWorldWidth() / 6.0f, stage.getViewport().getWorldWidth() / 6.0f, 0.1f, Interpolation.swingOut)));
             button.addAction(sequence(alpha(0), delay(f), parallel(fadeIn(.5f), moveBy(0, -10, .25f, Interpolation.pow5Out))));
-
-            Label label = new Label((CharSequence) ("" + (n4 + 1)), this.number);
+            Label label = new Label((CharSequence) ("" + (packNumber + 1)), this.number);
 //            label.setAlignment(16);
             label.addAction(Actions.sequence((Action) Actions.alpha(0.0f), (Action) Actions.delay(f), (Action) Actions.fadeIn(0.2f)));
 //            label.setAlignment(10);
-            if (n3 - lastLvl > 2) {
+            if (iconCount - lastLvl > 2) {
                 button.setTouchable(Touchable.disabled);
                 button.setColor(Color.GRAY);
             } else {
@@ -167,23 +157,22 @@ public class ScripPackScreen extends AbstractGameScreen {
             }
             int n7 = 0;
             do {
-                if (n7 >= numStar) {
+                if (n7 >= kolvoStar) {
 //                    System.out.println(n7+" "+numStar+ "rrrr"+n3);
                     ChangeListener changeListener = new ChangeListener() {
-
                         @Override
                         public void changed(ChangeListener.ChangeEvent changeEvent, Actor actor) {
 //                            stage.addAction(Actions.sequence(fadeOut(1),delay(1)));
 //                            stage.addAction(Actions.fadeOut(1));
-                            ScripPackScreen.this.onLevelSelectClicked(n4);
+                            ScripPackScreen.this.onLevelSelectClicked(packNumber);
 //                            System.out.println(n4);
                         }
                     };
                     button.addListener(changeListener);
-                    if ((n3 + 1) % 6 == 0) {
+                    if ((iconCount + 1) % 6 == 0) {
                         table2.row();
                     }
-                    ++n3;
+                    ++iconCount;
                     continue block0;
                 }
                 Image image;

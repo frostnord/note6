@@ -92,8 +92,9 @@ public class KeyGoriz extends AbstractActor {
             //            @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 //                if (((DoKey) event.getTarget()).state != 0) {
-            if(ScripMiddleScreen.getNoteActors().size != 0) {
-                if (key == 1) {
+                if(ScripMiddleScreen.getNoteActors().size != 0) {
+                    Assets.play(number-3);
+                    if (key == 1) {
                     if (ScripMiddleScreen.getNoteActors().get(0).getNoteKey() == key) {
                         keyTextureRegion = Assets.instance.noteImg.doGreenKeyImgActor;
                     } else {

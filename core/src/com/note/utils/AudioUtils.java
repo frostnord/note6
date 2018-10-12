@@ -17,23 +17,23 @@ public class AudioUtils {
     public static AudioUtils getInstance() {
         return ourInstance;
     }
-    private Preferences getPreferences() {
-        return Gdx.app.getPreferences(GameManager.PREFERENCES_NAME);
-    }
-    public String getSoundRegionName() {
-        boolean soundOn = getPreferences().getBoolean(SOUND_ON_PREFERENCE, true);
-        return soundOn ? Constants.SOUND_ON_REGION_NAME : Constants.SOUND_OFF_REGION_NAME;
-    }
+//    private Preferences getPreferences() {
+//        return Gdx.app.getPreferences(GameManager.PREFERENCES_NAME);
+//    }
+//   public String getSoundRegionName() {
+//        boolean soundOn = getPreferences().getBoolean(SOUND_ON_PREFERENCE, true);
+//        return soundOn ? Constants.SOUND_ON_REGION_NAME : Constants.SOUND_OFF_REGION_NAME;
+//    }
     public void toggleSound() {
-        saveBoolean(SOUND_ON_PREFERENCE, !getPreferences().getBoolean(SOUND_ON_PREFERENCE, true));
+//        saveBoolean(SOUND_ON_PREFERENCE, !getPreferences().getBoolean(SOUND_ON_PREFERENCE, true));
     }
 
 
 
     private void saveBoolean(String key, boolean value) {
-        Preferences preferences = getPreferences();
-        preferences.putBoolean(key, value);
-        preferences.flush();
+//        Preferences preferences = getPreferences();
+//        preferences.putBoolean(key, value);
+//        preferences.flush();
     }
     public static void dispose() {
 //        music.dispose();

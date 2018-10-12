@@ -8,5 +8,6 @@ import com.badlogic.gdx.InputAdapter;
 public class WorldController  {
 
     public static Float KEYNUMBER = 23f ;
+    public static String GAMEMODE ;
 
 }

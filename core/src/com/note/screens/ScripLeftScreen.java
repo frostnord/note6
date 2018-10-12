@@ -15,6 +15,7 @@ import com.note.game.Assets;
 import com.note.game.WorldController;
 import com.note.utils.Constants;
 import com.note.utils.GameManager;
+import com.note.utils.GamePreferences;
 
 /**
  * Created by 1 on 29.03.2015.
@@ -35,7 +36,7 @@ public class ScripLeftScreen extends AbstractGameScreen {
 
     private void buildStage() {
         this.imgBackground = new Image(this.game.gameSkin, "backgroundGame");
-        imgBackground.setSize(stage.getViewport().getWorldWidth(),stage.getViewport().getWorldHeight());
+        imgBackground.setSize(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
         stage.addActor(this.imgBackground);
         znakImg = new Image(this.game.gameSkin, "ScripVertZnak");
         znakImg.setPosition(this.stage.getViewport().getWorldWidth() / 4,
@@ -66,10 +67,10 @@ public class ScripLeftScreen extends AbstractGameScreen {
         stage.addActor(new KeyVert(game,3,stage,21));
         stage.addActor(new KeyVert(game,4,stage,22));
 
+
 //            stage.addActor( a = new DoKey(game,stage,2));
 //            a = new DoKey(game,stage,3);
 //            a.setTouchable(Touchable.enabled);
-//            stage.addActor( a);
     }
 
     private void Back() {
@@ -101,7 +102,6 @@ public class ScripLeftScreen extends AbstractGameScreen {
                 nextIndex = secondActor.getIndex();
                 stage.addActor(secondActor);
                 currIndex = nextIndex;
-//                    WorldController.KEYNUMBER = currIndex;
             }
         }
         if (firstActor.getNoteCliked(true)){
@@ -111,7 +111,6 @@ public class ScripLeftScreen extends AbstractGameScreen {
 
             GameManager.ourInstance.setGameState(GameState.WAITKEYPRESS);
             if (firstActor.getNoteCliked(true)) {
-
                 currIndex = nextIndex;
                 WorldController.KEYNUMBER = currIndex;
                 firstActor.remove();
@@ -119,9 +118,7 @@ public class ScripLeftScreen extends AbstractGameScreen {
                 firstActor = secondActor;
                 secondActor = null;
 //                firstActor.move(true);
-
                 GameManager.ourInstance.setGameState(GameState.MOVE);
-
             } else {
                 GameManager.ourInstance.setGameState(GameState.WAITKEYPRESS);
             }
@@ -135,6 +132,9 @@ public class ScripLeftScreen extends AbstractGameScreen {
             @Override
             public boolean keyUp(int keycode) {
                 if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
+                    if (GamePreferences.instance.isMusicEnabled()){
+                        Assets.instance.music.menuMusic.play();
+                    }
                     ScripLeftScreen.this.Back();
                 }
                 return false;
@@ -145,6 +145,7 @@ public class ScripLeftScreen extends AbstractGameScreen {
         this.buildStage();
         this.stage.act();
         this.stage.draw();
+        Assets.instance.music.menuMusic.stop();
 
     }
 

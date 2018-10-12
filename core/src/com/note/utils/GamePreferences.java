@@ -34,6 +34,9 @@ public class GamePreferences {
         prefs.putBoolean("music.enabled", musicEnabled);
         prefs.flush();
     }
+    public void flush (){
+        prefs.flush();
+    }
 
     public void load() {
         this.sound = this.prefs.getBoolean("sound", true);

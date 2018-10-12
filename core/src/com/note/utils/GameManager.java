@@ -9,7 +9,7 @@ public class GameManager {
 
     public static GameManager ourInstance = new GameManager();
 
-    public static final String PREFERENCES_NAME = "preferences";
+//    public static final String PREFERENCES_NAME = "preferences";
 
     public static GameManager getInstance() {
         return ourInstance;

@@ -2,10 +2,7 @@ package com.note.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -25,6 +22,8 @@ public class NoteGoriz extends Actor {
     private final float width;
     private final float height;
     private final Stage stage;
+    private final String noteName;
+    private final float noteSize;
     private float widthBot;
     private TextureRegion textureRegion;
     private TextureRegion lineImg;
@@ -128,26 +127,27 @@ public class NoteGoriz extends Actor {
             batch.draw(textureRegion, position.x , position.y + 6, width, height);
         }
 
-        this.font = Assets.instance.fonts.defaultNormal;
-//        font.setColor(0.11f,0.11f, 0.11f, 1);
-        font.setColor(Color.valueOf("071d53"));
+
         if (ran != 0) {
+
+            Float center = width / 2 - noteSize / 2;
+            font.draw(batch,noteName ,position.x + center ,position.y+53f);
 //            font.draw(batch, note, position.x + 10, position.y + 50);
-            if (note.equals("Sol")) {
-                font.draw(batch, note, position.x + 8, position.y + 53);
-//                label.setPosition(position.x + 15 , position.y + 55);
-            }else if(note.equals("Si")){
-                font.draw(batch, note, position.x + 25, position.y + 53);
-            }else if(note.equals("Do")){
-                font.draw(batch, note, position.x + 15, position.y + 53);
-            }else if(note.equals("Re")){
-                font.draw(batch, note, position.x + 15, position.y + 53);
-//            }else if(note.equals("Fa")){
-//                font.draw(batch, note, position.x + 28, position.y + 53);
-            }else {
-                font.draw(batch, note, position.x + 16, position.y + 53);
+//            if (note.equals("Sol")) {
+//                font.draw(batch, note, position.x + 8, position.y + 53);
+////                label.setPosition(position.x + 15 , position.y + 55);
+//            }else if(note.equals("Si")){
+//                font.draw(batch, note, position.x + 25, position.y + 53);
+//            }else if(note.equals("Do")){
+//                font.draw(batch, note, position.x + 15, position.y + 53);
+//            }else if(note.equals("Re")){
+//                font.draw(batch, note, position.x + 15, position.y + 53);
+////            }else if(note.equals("Fa")){
+////                font.draw(batch, note, position.x + 28, position.y + 53);
+//            }else {
+//                font.draw(batch, note, position.x + 16, position.y + 53);
 //            label.setPosition(position.x + 10 , position.y + 55);
-            }
+//            }
         }
     }
 
@@ -185,6 +185,14 @@ public class NoteGoriz extends Actor {
         origin = new Vector2();
         scale = new Vector2(1, 1);
         rotation1 = 0;
+
+        this.font = Assets.instance.fonts.defaultNormal;
+//        font.setColor(0.11f,0.11f, 0.11f, 1);
+        font.setColor(Color.valueOf("071d53"));
+        noteName = Assets.languageNoteName(note);
+        GlyphLayout glyphLayout = new GlyphLayout();
+        glyphLayout.setText(font, noteName);
+        noteSize = glyphLayout.width;
     }
     private float nadpisOFF() {
         Random random = new Random();

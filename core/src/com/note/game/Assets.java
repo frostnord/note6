@@ -16,11 +16,12 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Disposable;
+import com.note.utils.GamePreferences;
 
 public class Assets implements AssetErrorListener, Disposable {
     public static final String TAG = Assets.class.getName();
     public static final Assets instance = new Assets();
-    private AssetManager assetManager;
+    public static AssetManager assetManager;
     public AssetNote note;
     public AssetFonts fonts;
     public AssetDecoration decoration;
@@ -28,6 +29,7 @@ public class Assets implements AssetErrorListener, Disposable {
     public AssetSkin skin;
     public AssetUiSkin uiSkin;
     public AssetMusic music;
+    public AssetSounds sounds;
 
 
     private Assets() {
@@ -148,7 +150,6 @@ public class Assets implements AssetErrorListener, Disposable {
         public final AtlasRegion note_greyGor;
 
         public AssetNote(TextureAtlas atlas) {
-
             noteBlackGor = atlas.findRegion("note_blackG");
 
             noteRedDoVert = atlas.findRegion("noteV", 1);
@@ -179,8 +180,6 @@ public class Assets implements AssetErrorListener, Disposable {
     }
 
     public class AssetDecoration {
-
-
         public final AtlasRegion rightBorder;
         public final AtlasRegion leftBorder;
         public final AtlasRegion lineImg;
@@ -205,8 +204,6 @@ public class Assets implements AssetErrorListener, Disposable {
             star = atlas.findRegion("star");
         }
     }
-
-
     public void init(AssetManager assetManager) {
         this.assetManager = assetManager;
 //        assetManager.load("ui.json", Skin.class);/////проба
@@ -236,14 +233,73 @@ public class Assets implements AssetErrorListener, Disposable {
         this.skin = new AssetSkin(atlas);
         this.uiSkin = new AssetUiSkin(uiAtlas);
         this.music = new AssetMusic(assetManager);
+        this.sounds = new AssetSounds(assetManager);
 
     }
+    public static void play( int note){
+        if (GamePreferences.instance.isSoundEnabled()) {
+            String gameMoode = WorldController.GAMEMODE;
+            String noteName = "sound/"+gameMoode+"/"+note+".ogg";
+            assetManager.get(noteName,Sound.class).play();
+//            System.out.println(noteName);
+        }
+    }
+
+    public static String languageNoteName(String note){
+        if(GamePreferences.instance.languageRu()){
+            note=note;
+        }else {
+            if (note.equals("Do")){
+                note="C";
+            }else if (note.equals("Re")){
+                note="D";
+            }else if (note.equals("Mi")){
+                note="E";
+            }else if(note.equals("Fa")){
+                note="F";
+            }else if (note.equals("Sol")){
+                note="G";
+            }else if (note.equals("La")){
+                note="A";
+            }else if(note.equals("Si")){
+                note="B";
+            }
+        }
+        return note ;
+    }
+
+//    public static Sound getSound(String soundKey) {
+//        return (Sound) assetManager.get(soundKey, Sound.class);
+//    }
 
 
     public void load(AssetManager assetManager) {
         this.assetManager = assetManager;
-        assetManager.load("the-righteous-brothers-igor-gig-the-righteous-brothers-uncha.mp3", Music.class);
-//        assetManager.load("sounds/pickup_coin.wav", Sound.class);
+        assetManager.load("sound/scrip/0.ogg", Sound.class);
+        assetManager.load("sound/scrip/1.ogg", Sound.class);
+        assetManager.load("sound/scrip/2.ogg", Sound.class);
+        assetManager.load("sound/scrip/3.ogg", Sound.class);
+        assetManager.load("sound/scrip/4.ogg", Sound.class);
+        assetManager.load("sound/scrip/5.ogg", Sound.class);
+        assetManager.load("sound/scrip/6.ogg", Sound.class);
+        assetManager.load("sound/scrip/7.ogg", Sound.class);
+        assetManager.load("sound/scrip/8.ogg", Sound.class);
+        assetManager.load("sound/scrip/9.ogg", Sound.class);
+        assetManager.load("sound/scrip/10.ogg", Sound.class);
+        assetManager.load("sound/scrip/11.ogg", Sound.class);
+        assetManager.load("sound/scrip/12.ogg", Sound.class);
+        assetManager.load("sound/scrip/13.ogg", Sound.class);
+        assetManager.load("sound/scrip/14.ogg", Sound.class);
+        assetManager.load("sound/scrip/15.ogg", Sound.class);
+        assetManager.load("sound/scrip/16.ogg", Sound.class);
+        assetManager.load("sound/scrip/17.ogg", Sound.class);
+        assetManager.load("sound/scrip/18.ogg", Sound.class);
+        assetManager.load("sound/scrip/19.ogg", Sound.class);
+        assetManager.load("sound/scrip/20.ogg", Sound.class);
+        assetManager.load("sound/scrip/21.ogg", Sound.class);
+        assetManager.load("sound/scrip/22.ogg", Sound.class);
+        assetManager.load("sound/scrip/23.ogg", Sound.class);
+        assetManager.load("the-righteous-brothers-igor-gig-the-righteous-brothers-uncha.ogg", Music.class);
 //        assetManager.load("sounds/gun_shot.wav", Sound.class);
 //        assetManager.load("sounds/hero_hurt.wav", Sound.class);
 //        assetManager.load("sounds/unearth1.wav", Sound.class);
@@ -257,6 +313,34 @@ public class Assets implements AssetErrorListener, Disposable {
 //        assetManager.load("music/level_complete.mp3", Music.class);
 //        assetManager.load("music/game_over.mp3", Music.class);
 //        assetManager.load("images/runandgun.atlas", TextureAtlas.class);
+    }
+
+    public class AssetSounds {
+        //        public final Sound gunShot;
+//        public final Sound heroHurt;
+//        public final Sound itemPurchased;
+//        public final Sound jump;
+        public final Sound do1;
+//        public final Sound stopWatch;
+//        public final Sound unearthZombie1;
+//        public final Sound unearthZombie2;
+//        public final Sound unearthZombie3;
+//        public final Sound unearthZombie4;
+
+        public AssetSounds(AssetManager assetManager) {
+//            this.jump = (Sound) assetManager.get("sounds/jump.wav", Sound.class);
+
+            this.do1 = (Sound) assetManager.get("sound/scrip/0.ogg", Sound.class);///do
+
+//            this.gunShot = (Sound) assetManager.get("sounds/gun_shot.wav", Sound.class);
+//            this.heroHurt = (Sound) assetManager.get("sounds/hero_hurt.wav", Sound.class);
+//            this.unearthZombie1 = (Sound) assetManager.get("sounds/unearth1.wav", Sound.class);
+//            this.unearthZombie2 = (Sound) assetManager.get("sounds/unearth2.wav", Sound.class);
+//            this.unearthZombie3 = (Sound) assetManager.get("sounds/unearth3.wav", Sound.class);
+//            this.unearthZombie4 = (Sound) assetManager.get("sounds/unearth4.wav", Sound.class);
+//            this.itemPurchased = (Sound) assetManager.get("sounds/item_purchased.mp3", Sound.class);
+//            this.stopWatch = (Sound) assetManager.get("sounds/stopwatch.mp3", Sound.class);
+        }
     }
 
     public class AssetSkin implements Disposable {
@@ -288,7 +372,7 @@ public class Assets implements AssetErrorListener, Disposable {
             textButtonStyle.up = skin.getDrawable("PlayButton");
 
             this.optionDiologTextButtonStyle = new TextButton.TextButtonStyle();
-            this.optionDiologTextButtonStyle.up = skin.getDrawable("PlayButton");
+//            this.optionDiologTextButtonStyle.up = skin.getDrawable("PlayButton");
             this.optionDiologTextButtonStyle.font = Assets.instance.fonts.levelCompleted;
 
             windowSkin = new Skin(atlasSkin);
@@ -536,14 +620,19 @@ public class Assets implements AssetErrorListener, Disposable {
         }
     }
 
+
+
     public class AssetMusic {
 //        public final Music actionMenu;
 //        public final Music gameOver;
 //        public final Music levelComplete;
         public final Music menuMusic;
+//        public final Sound do1;
 
         public AssetMusic(AssetManager assetManager) {
-            this.menuMusic = (Music) assetManager.get("the-righteous-brothers-igor-gig-the-righteous-brothers-uncha.mp3", Music.class);
+//            this.do1 = (Sound) assetManager.get("sound/do.wav", Sound.class);
+
+            this.menuMusic = (Music) assetManager.get("the-righteous-brothers-igor-gig-the-righteous-brothers-uncha.ogg", Music.class);
 //            this.mainGame1 = (Music) assetManager.get("music/main_game1.wav", Music.class);
 //            this.actionMenu = (Music) assetManager.get("music/menu_loop.wav", Music.class);
 //            this.levelComplete = (Music) assetManager.get("music/level_complete.mp3", Music.class);
@@ -595,31 +684,6 @@ public class Assets implements AssetErrorListener, Disposable {
         }
     }
 
-    public class AssetSounds {
-        public final Sound gunShot;
-        public final Sound heroHurt;
-        public final Sound itemPurchased;
-        public final Sound jump;
-        public final Sound pickupCoinAndPowerUp;
-        public final Sound stopWatch;
-        public final Sound unearthZombie1;
-        public final Sound unearthZombie2;
-        public final Sound unearthZombie3;
-        public final Sound unearthZombie4;
-
-        public AssetSounds(AssetManager assetManager) {
-            this.jump = (Sound) assetManager.get("sounds/jump.wav", Sound.class);
-            this.pickupCoinAndPowerUp = (Sound) assetManager.get("sounds/pickup_coin.wav", Sound.class);
-            this.gunShot = (Sound) assetManager.get("sounds/gun_shot.wav", Sound.class);
-            this.heroHurt = (Sound) assetManager.get("sounds/hero_hurt.wav", Sound.class);
-            this.unearthZombie1 = (Sound) assetManager.get("sounds/unearth1.wav", Sound.class);
-            this.unearthZombie2 = (Sound) assetManager.get("sounds/unearth2.wav", Sound.class);
-            this.unearthZombie3 = (Sound) assetManager.get("sounds/unearth3.wav", Sound.class);
-            this.unearthZombie4 = (Sound) assetManager.get("sounds/unearth4.wav", Sound.class);
-            this.itemPurchased = (Sound) assetManager.get("sounds/item_purchased.mp3", Sound.class);
-            this.stopWatch = (Sound) assetManager.get("sounds/stopwatch.mp3", Sound.class);
-        }
-    }
 
     public class AssetZombie {
         public final Animation animBoyDying;

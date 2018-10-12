@@ -13,6 +13,7 @@ import com.note.game.Assets;
 import com.note.game.WorldController;
 import com.note.screens.ScripMiddleScreen;
 import com.note.screens.ScripLeftScreen;
+import com.note.utils.SoundManager;
 
 import java.lang.reflect.Field;
 
@@ -38,7 +39,6 @@ public class KeyVert extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-//        keyTextureRegion = Assets.instance.
         batch.draw(keyTextureRegion, position, 0, width, height);
 
         if (!((number % 2) == 0)) {
@@ -52,17 +52,13 @@ public class KeyVert extends Actor {
                     width / 10,
                     stage.getViewport().getWorldHeight() / 1.5f);///////////////
         }
-
     }
 
     public KeyVert(final Note game, final int key, final Stage stage, final int number) {
-
-
         this.number = number;
         this.game = game;
         this.stage = stage;
         this.position = (this.stage.getViewport().getWorldWidth() / 23) * number;
-//        System.out.println(position);
         this.width = this.stage.getViewport().getWorldWidth() / 23 + 1;
         this.height = this.stage.getViewport().getWorldHeight() / 3.5f;
 
@@ -91,23 +87,15 @@ public class KeyVert extends Actor {
                 keyTextureRegion = Assets.instance.noteImg.siKeyImgActor;
                 break;
         }
-
-
         triangleTextureRegion = Assets.instance.decoration.triangleImg;
         lineTextureRegion = Assets.instance.decoration.lineImg;
         this.state = 0;
-
 //        isTouchable();
 //        setTouchable(Touchable.enabled);
         setBounds(position, 0, width, height);
-
-
         addListener(new ClickListener() {
             //            @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println();
-//                if (((DoKey) event.getTarget()).state != 0) {
-//
                 if (key == 1) {
                     if (WorldController.KEYNUMBER == number) {
                         keyTextureRegion = Assets.instance.noteImg.doGreenKeyImgActor;
@@ -160,7 +148,9 @@ public class KeyVert extends Actor {
                 if (game.getScreen().getClass() == ScripLeftScreen.class) {
                     ScripLeftScreen.firstActor.setNoteCliked(true);
                 }
-
+                Assets.play(number);
+//                SoundManager.soundPlay(number);
+//                System.out.println(number);
 
 
 

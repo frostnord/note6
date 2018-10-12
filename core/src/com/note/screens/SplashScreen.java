@@ -79,22 +79,22 @@ public class SplashScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 //        this.stage.draw();
 //        this.stage.act();
+        this.batch.begin();
+//            this.batch.setColor(1.0F, 1.0F, 1.0F, this.alpha);
+        this.batch.draw(this.imgLogo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        this.batch.end();
+
         if (game.manager.update()&& !this.music.isPlaying() ) {
 //            this.splashImage.addAction(Actions.sequence(Actions.fadeOut(0.5f), Actions.alpha(0.0f), Actions.run(new Runnable() {
 //                public void run() {
-                    SplashScreen.this.game.setScreen(new FirstMenuScreen(this.game));
+
+            SplashScreen.this.game.setScreen(new FirstMenuScreen(this.game));
+//            SplashScreen.this.game.setScreen(new ScripPackScreen(this.game));
 //                }
 //            })));
         }
-//        if ((this.delay < 0.5D) && (this.alpha == 0.0F)) {
-//            this.delay += delta;
-//        }
 
 
-            this.batch.begin();
-//            this.batch.setColor(1.0F, 1.0F, 1.0F, this.alpha);
-            this.batch.draw(this.imgLogo, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-            this.batch.end();
 
 //            if (Gdx.input.justTouched()) {
 //                this.timer = 3.0F;

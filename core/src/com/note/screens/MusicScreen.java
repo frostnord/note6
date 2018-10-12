@@ -52,6 +52,7 @@ public class MusicScreen implements Screen {
 
     @Override
     public void show() {
+        Gdx.app.log("GameScreen", "MusicScr");
         Gdx.input.setCatchBackKey(true);
         this.stage = new Stage(new ExtendViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT, game.camera)) {
             @Override
@@ -136,6 +137,7 @@ public class MusicScreen implements Screen {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 //                    ScripPracticeScreen.this.onLevelSelectClicked(finalI);
                     KeyGorizPack key = (KeyGorizPack) event.getListenerActor();
+
                     if (actors1.size != 0) {
                         System.out.println(key.getKey()+" key");
                         System.out.println(actors1.get(0).getKey()+" number");
