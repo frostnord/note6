@@ -9,8 +9,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.note.enums.GameState;
 import com.note.game.Assets;
 import com.note.screens.DirectedGame;
+import com.note.screens.ScripPracticeScreen;
 
 
 public class BlackNote extends Actor {
@@ -32,6 +34,7 @@ public class BlackNote extends Actor {
     private int key;
     private Array<BlackNote> arr;
     float noteSize = 0;
+    private String status = "action";
 
     public BlackNote(DirectedGame game, int number, Stage stage, float widhtTop, float widthBot, Array arr) {
         this.arr = arr;
@@ -152,15 +155,20 @@ public class BlackNote extends Actor {
         return key;
     }
 
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public void act(float delta) {
 
 //        stateTime += Gdx.graphics.getDeltaTime();
 
-        super.act(delta);
-//        if  (GameManager.ourInstance.getGameState()== GameState.MOVE) {
+    if  (game.gs == GameState.MOVE){
         position.x -= 130 * delta;
-//        }
+        }
         if (position.x <= 110) {
+
             remove();
 //            for (int i = 0; i < arr.size; i++) {
 //                System.out.print(i + "-" + arr.get(i).getNote() + " ");

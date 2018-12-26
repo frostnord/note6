@@ -229,28 +229,28 @@ filter: Nearest,Nearest
 repeat: none
 BassButton
   rotate: false
-  xy: 593, 1308
+  xy: 1007, 1511
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
 LearningScrip_mid
   rotate: false
-  xy: 1739, 1172
+  xy: 2, 49
   size: 186, 186
   orig: 186, 186
   offset: 0, 0
   index: -1
 PlayButton
   rotate: false
-  xy: 2, 542
+  xy: 1389, 1511
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
 dialod
   rotate: false
-  xy: 2, 542
+  xy: 1389, 1511
   size: 380, 380
   split: 55, 51, 54, 48
   pad: 56, 33, 53, 47
@@ -259,349 +259,356 @@ dialod
   index: -1
 PracticeScrip_right
   rotate: false
-  xy: 1568, 466
+  xy: 1579, 35
   size: 186, 186
   orig: 186, 186
   offset: 0, 0
   index: -1
 ReflectPlay
   rotate: false
-  xy: 2, 1307
+  xy: 211, 444
   size: 380, 381
   orig: 380, 381
   offset: 0, 0
   index: -1
 ReflectScrip
   rotate: false
-  xy: 2, 924
+  xy: 516, 958
   size: 380, 381
   orig: 380, 381
   offset: 0, 0
   index: -1
 ScripButton
   rotate: false
-  xy: 975, 1148
+  xy: 211, 62
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
 ScripGorZnak
   rotate: false
-  xy: 384, 1100
+  xy: 2, 237
   size: 207, 588
   orig: 207, 588
   offset: 0, 0
   index: -1
 ScripVertZnak
   rotate: false
-  xy: 2, 1690
+  xy: 2, 1673
   size: 1003, 352
   orig: 1003, 352
   offset: 0, 0
   index: -1
 SetingsButton
   rotate: false
-  xy: 866, 2
+  xy: 1767, 60
   size: 145, 136
   orig: 145, 136
   offset: 0, 0
   index: -1
+Star1 - копия
+  rotate: false
+  xy: 1277, 827
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
 Star2
   rotate: false
-  xy: 384, 332
+  xy: 975, 827
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Star3
   rotate: false
-  xy: 2, 240
+  xy: 975, 525
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 TreningScrip_left1
   rotate: false
-  xy: 1186, 766
+  xy: 593, 576
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
 Zstar
   rotate: false
-  xy: 1521, 1532
+  xy: 1809, 1897
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 faGreen
   rotate: false
-  xy: 304, 273
+  xy: 1771, 336
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 faRed
   rotate: false
-  xy: 304, 4
+  xy: 1839, 336
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 keybord
   rotate: false
-  xy: 384, 634
+  xy: 1007, 1893
   size: 800, 132
   orig: 800, 132
   offset: 0, 0
   index: -1
 keybord2
   rotate: false
-  xy: 372, 2
+  xy: 1771, 198
   size: 245, 136
   orig: 245, 136
   offset: 0, 0
   index: -1
 la
   rotate: false
-  xy: 1903, 1775
+  xy: 1907, 336
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 laGreen
   rotate: false
-  xy: 1760, 687
+  xy: 898, 1102
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 laRed
   rotate: false
-  xy: 1828, 687
+  xy: 1963, 1758
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 level
   rotate: false
-  xy: 686, 332
+  xy: 975, 223
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 linesGoriz
   rotate: false
-  xy: 384, 768
+  xy: 2, 1341
   size: 800, 330
   orig: 800, 330
   offset: 0, 0
   index: -1
 mi
   rotate: false
-  xy: 1756, 83
+  xy: 1963, 1489
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 miGreen
   rotate: false
-  xy: 1824, 83
+  xy: 1952, 1220
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 miRed
   rotate: false
-  xy: 1892, 83
+  xy: 1963, 951
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 next
   rotate: false
-  xy: 1357, 1148
+  xy: 593, 194
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
 noteG
   rotate: false
-  xy: 593, 1116
+  xy: 593, 2
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 5
 noteG
   rotate: false
-  xy: 372, 140
+  xy: 1277, 635
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 6
 noteG
   rotate: false
-  xy: 2, 48
+  xy: 1277, 443
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: 7
 noteV
   rotate: false
-  xy: 988, 332
+  xy: 804, 1371
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 1
 noteV
   rotate: false
-  xy: 1180, 82
+  xy: 1579, 827
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 2
 noteV
   rotate: false
-  xy: 1372, 82
+  xy: 1579, 525
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 3
 noteV
   rotate: false
-  xy: 1564, 82
+  xy: 1579, 223
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 4
 noteV
   rotate: false
-  xy: 674, 30
+  xy: 1771, 1591
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 5
 noteV
   rotate: false
-  xy: 1739, 1360
+  xy: 1760, 1209
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 6
 noteV
   rotate: false
-  xy: 1568, 654
+  xy: 1771, 907
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: 7
 note_blackG
   rotate: false
-  xy: 866, 140
+  xy: 1277, 251
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: -1
 note_greyG
   rotate: false
-  xy: 1568, 956
+  xy: 1277, 59
   size: 300, 190
   orig: 300, 190
   offset: 0, 0
   index: -1
 note_greyV
   rotate: false
-  xy: 1756, 352
+  xy: 1771, 605
   size: 190, 300
   orig: 190, 300
   offset: 0, 0
   index: -1
 prew
   rotate: false
-  xy: 1521, 1662
+  xy: 996, 1129
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
 re
   rotate: false
-  xy: 1896, 903
+  xy: 1963, 682
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 reGreen
   rotate: false
-  xy: 1948, 634
-  size: 66, 267
-  orig: 66, 267
-  offset: 0, 0
-  index: -1
-reRed
-  rotate: false
-  xy: 1948, 365
+  xy: 1975, 413
   size: 66, 267
   orig: 66, 267
   offset: 0, 0
   index: -1
 restart
   rotate: false
-  xy: 1186, 384
+  xy: 1378, 1129
   size: 380, 380
   orig: 380, 380
   offset: 0, 0
   index: -1
-si
-  rotate: false
-  xy: 1960, 96
-  size: 66, 267
-  orig: 66, 267
-  offset: 0, 0
-  index: -1
-siGreen
-  rotate: false
-  xy: 1931, 1506
-  size: 66, 267
-  orig: 66, 267
-  offset: 0, 0
-  index: -1
-siRed
-  rotate: false
-  xy: 1971, 1775
-  size: 66, 267
-  orig: 66, 267
-  offset: 0, 0
-  index: -1
-sol
-  rotate: false
-  xy: 1931, 1237
-  size: 66, 267
-  orig: 66, 267
-  offset: 0, 0
-  index: -1
-solGreen
-  rotate: false
-  xy: 1964, 968
-  size: 66, 267
-  orig: 66, 267
-  offset: 0, 0
-  index: -1
 star
   rotate: false
-  xy: 1007, 1530
+  xy: 2, 827
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 
 sprites3.png
-size: 128,512
+size: 256,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-solRed
+reRed
+  rotate: false
+  xy: 2, 540
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+si
+  rotate: false
+  xy: 2, 271
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+siGreen
+  rotate: false
+  xy: 70, 540
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+siRed
   rotate: false
   xy: 2, 2
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+sol
+  rotate: false
+  xy: 70, 271
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+solGreen
+  rotate: false
+  xy: 138, 540
+  size: 66, 267
+  orig: 66, 267
+  offset: 0, 0
+  index: -1
+solRed
+  rotate: false
+  xy: 70, 2
   size: 66, 267
   orig: 66, 267
   offset: 0, 0

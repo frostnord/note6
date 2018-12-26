@@ -50,7 +50,7 @@ public class LoadingScreen extends AbstractGameScreen {
     }
     private Table buildBackgroundLayer() {
         Table table = new Table();
-        this.imgBackground = new Image(this.game.gameSkin.getRegion("backgroundMenu"));
+        this.imgBackground = new Image(this.game.gameSkin,"backgroundMenu");
         table.add(this.imgBackground).fill().expand();
         return table;
     }

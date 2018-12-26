@@ -12,6 +12,7 @@ public abstract class AbstractGameScreen implements Screen {
     protected Note game;
 
     public AbstractGameScreen(Note directedGame) {
+
         this.game = directedGame;
     }
     @Override

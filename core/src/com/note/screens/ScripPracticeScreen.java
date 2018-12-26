@@ -16,6 +16,8 @@ import com.note.actors.KeyGorizPack;
 import com.note.actors.Lines;
 import com.note.actors.BlackNote;
 import com.note.actors.menu.MyTextButton;
+import com.note.actors.menu.PauseWindow;
+import com.note.enums.GameState;
 import com.note.game.Assets;
 import com.note.utils.Constants;
 import com.note.utils.GamePreferences;
@@ -51,7 +53,7 @@ public class ScripPracticeScreen extends AbstractGameScreen {
     private Image rightBorder;
     private Dialog dialog;
     private Window window;
-    private String status = "action";
+//    private String status = "action";
     private int star = 0;////
 
 
@@ -59,40 +61,46 @@ public class ScripPracticeScreen extends AbstractGameScreen {
         super(game);
         this.game = game;
         this.number = number;
+//        game.gameStatus = "action";
+        game.gs = GameState.MOVE;
 //        Gdx.app.log("GameScreen", "Starting level: " + number);
-//        ar = Levels.getLevel(number);
     }
 
+//    public String getStatus() {
+//
+//        return status;
+//    }
+
     private void controller() {
-        scoreLabel.setText("" + score);
-        if (massiv != 0) {
-            if (noteInArray == 4) {
-                time2 += 1;
-                if (time2 == 500) { //time between
-                    noteInArray = 0;
-                    time2 = 0;
+            scoreLabel.setText("" + score);
+            if (massiv != 0) {
+                if (noteInArray == 4) {
+                    time2 += 1;
+                    if (time2 == 500) { //time between
+                        noteInArray = 0;
+                        time2 = 0;
+                    }
+                }
+                time += 1;
+                if (time >= 220f && massiv != 0 && noteInArray != 4) {
+                    int s = randomizer.getRandom(number);
+                    BlackNote blackNote1 = new BlackNote(game, s, stage, stage.getViewport().getWorldHeight(),
+                            stage.getViewport().getWorldHeight() - this.stage.getViewport().getWorldHeight() / 4f, actors1);
+                    stage.addActor(blackNote1);
+                    actors1.add(blackNote1);
+                    massiv--;
+                    time = 0f;
+                    noteInArray++;
+                }
+            } else if (actors1.size == 0) {
+//                initWindow();
+                ////////вин виндов тут
+//                status("pause");
+                int currentStar = GamePreferences.instance.getNumberOfStar(1, number);
+                if (currentStar < star) {
+                    GamePreferences.instance.saveLastLevelStar(1, number, star);
                 }
             }
-            time += 1;
-            if (time >= 220f && massiv != 0 && noteInArray != 4) {
-                int s = randomizer.getRandom(number);
-                BlackNote blackNote1 = new BlackNote(game, s, stage, stage.getViewport().getWorldHeight(),
-                        stage.getViewport().getWorldHeight() - this.stage.getViewport().getWorldHeight() / 4f, actors1);
-                stage.addActor(blackNote1);
-                actors1.add(blackNote1);
-                massiv--;
-                time = 0f;
-                noteInArray++;
-            }
-        } else if (actors1.size == 0) {
-            initWindow();
-            status = "pause";
-            int currentStar = GamePreferences.instance.getNumberOfStar(1, number);
-            if (currentStar < star) {
-                GamePreferences.instance.saveLastLevelStar(1, number, star);
-            }
-        }
-
     }
 
     private void onLevelSelectClicked(int n) {
@@ -100,6 +108,12 @@ public class ScripPracticeScreen extends AbstractGameScreen {
 //        if (n == actors1.get(0).getNumber()) {
 
 //        }
+    }
+    public void status (String status){
+
+        for(BlackNote e : actors1) {
+            e.setStatus(status);
+        }
     }
 
     @Override
@@ -110,10 +124,20 @@ public class ScripPracticeScreen extends AbstractGameScreen {
             @Override
             public boolean keyUp(int keycode) {
                 if ((keycode == Input.Keys.BACK) || (keycode == Input.Keys.ESCAPE)) {
-                    if (GamePreferences.instance.isMusicEnabled()){
-                        Assets.instance.music.menuMusic.play();
+                    if (game.gs != GameState.PAUSE) {
+
+                        game.gs = GameState.PAUSE;
+                        PauseWindow pauseWindow = new PauseWindow("", stage, score, game, number);
+                        stage.addActor(pauseWindow);
+//                    ScripPracticeScreen.this.Back() ;
+//                    status("pause");
+//                    game.gameStatus = "pause";
+                    }else {
+                        if (GamePreferences.instance.isMusicEnabled()) {
+                            Assets.instance.music.menuMusic.play();
+                        }
+                        ScripPracticeScreen.this.Back() ;
                     }
-                    ScripPracticeScreen.this.Back() ;
                 }
                 return false;
             }
@@ -126,7 +150,6 @@ public class ScripPracticeScreen extends AbstractGameScreen {
     }
 //        this.game.levelToLoad = n;
 //        ScripPackScreen.this.game.setScreen(new ScripPracticeScreen(game, n));
-//        AudioManager.instance.play(com.gamelounge.chrooma.game.Assets.instance.sounds.buttonSound, 1.0f);
 
 
     private void buildStage() {
@@ -142,127 +165,130 @@ public class ScripPracticeScreen extends AbstractGameScreen {
 
     }
 
-    private void initWindow() {
-        window = new Window("", Assets.instance.skin.windowStyle);
-        dialog = new Dialog("", Assets.instance.skin.windowStyle);
-        Table table = new Table();
-//        table.debug();
-        Table table2 = new Table();
-        table2.debug();
-//        window.debug();
-
-//        Actor musicCheckBox = new CheckBox("Music",game.gameSkin,"music").getSkin().getFont("default.fnt").getData().setScale(0.33f, 0.33f);
-//        Actor musicCheckBox = new CheckBox("Music", game.uiSkin, "music");
-
-//        musicCheckBox
-//        CheckBox.CheckBoxStyle checkBoxStyle = new CheckBox.CheckBoxStyle();
-
-        window.setSize(stage.getViewport().getWorldWidth() / 2, stage.getViewport().getWorldWidth() / 3);
-        System.out.println(stage.getViewport().getWorldWidth() / 2 +"+"+ stage.getViewport().getWorldWidth() / 3);
-
-        window.setPosition(stage.getViewport().getWorldWidth() / 4, stage.getViewport().getWorldHeight() / 3);
-
-        if (score <= 50) {
-            table.add(new Image(Assets.instance.decoration.star)).center().colspan(3).padBottom(50).size(150, 150);
-        } else if (score > 50 && score < 90) {
-            table.debug();
-            table.add(new Image(Assets.instance.decoration.star)).padBottom(50).size(150, 150).padRight(100);
-            table.add(new Image(Assets.instance.decoration.star)).padBottom(50).size(150, 150);
-            table.center();
-            star = 2;
-        } else if (score >= 90) {
-            table.add(new Image(Assets.instance.decoration.star)).center().padBottom(50).size(150, 150).padRight(100);
-            table.add(new Image(Assets.instance.decoration.star)).center().padBottom(50).size(150, 150).padRight(100);
-            table.add(new Image(Assets.instance.decoration.star)).center().padBottom(50).size(150, 150);
-            star = 3;
-        }
-
-        Button btnWindowPrew = new Button(Assets.instance.skin.buttonStyle);
-        Image imgWindowPrew = new Image(this.game.gameSkin, "prew");
-        imgWindowPrew.setOrigin(imgWindowPrew.getWidth() / 2.0f, imgWindowPrew.getHeight() / 2.0f);
-        btnWindowPrew.add((Actor) imgWindowPrew);
-        btnWindowPrew.setOrigin(btnWindowPrew.getWidth() / 2.0f, btnWindowPrew.getHeight() / 2.0f);
-        btnWindowPrew.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent changeEvent, Actor actor) {
-                ScripPracticeScreen.this.game.setScreen( new ScripPackScreen(game));
-            }
-        });
-        table2.add(btnWindowPrew).size(200, 200).padRight(50);
-
-//        TextButton homeButton = new TextButton("<", Assets.instance.skin.textButtonStyle);
-//        homeButton.addListener(new ClickListener() {
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
+//    private void initWindow() {
+//        window = new Window("", Assets.instance.skin.windowStyle);
+//        dialog = new Dialog("", Assets.instance.skin.windowStyle);
+//        Table table = new Table();
+////        table.debug();
+//        Table table2 = new Table();
+//        table2.debug();
+////        window.debug();
 //
-////                window.remove();
+////        Actor musicCheckBox = new CheckBox("Music",game.gameSkin,"music").getSkin().getFont("default.fnt").getData().setScale(0.33f, 0.33f);
+////        Actor musicCheckBox = new CheckBox("Music", game.uiSkin, "music");
+//
+////        musicCheckBox
+////        CheckBox.CheckBoxStyle checkBoxStyle = new CheckBox.CheckBoxStyle();
+//
+//        window.setSize(stage.getViewport().getWorldWidth() / 2, stage.getViewport().getWorldWidth() / 3);
+//        System.out.println(stage.getViewport().getWorldWidth() / 2 +"+"+ stage.getViewport().getWorldWidth() / 3);
+//
+//        window.setPosition(stage.getViewport().getWorldWidth() / 4, stage.getViewport().getWorldHeight() / 3);
+//
+//        if (score <= 50) {
+//            table.add(new Image(Assets.instance.decoration.star)).center().colspan(3).padBottom(50).size(150, 150);
+//        } else if (score > 50 && score < 90) {
+//            table.debug();
+//            table.add(new Image(Assets.instance.decoration.star)).padBottom(50).size(150, 150).padRight(100);
+//            table.add(new Image(Assets.instance.decoration.star)).padBottom(50).size(150, 150);
+//            table.center();
+//            star = 2;
+//        } else if (score >= 90) {
+//            table.add(new Image(Assets.instance.decoration.star)).center().padBottom(50).size(150, 150).padRight(100);
+//            table.add(new Image(Assets.instance.decoration.star)).center().padBottom(50).size(150, 150).padRight(100);
+//            table.add(new Image(Assets.instance.decoration.star)).center().padBottom(50).size(150, 150);
+//            star = 3;
+//        }
+//
+//        Button btnWindowPack = new Button(Assets.instance.skin.buttonStyle);
+//        Image imgWindowPrew = new Image(this.game.gameSkin, "prew");
+//        imgWindowPrew.setOrigin(imgWindowPrew.getWidth() / 2.0f, imgWindowPrew.getHeight() / 2.0f);
+//        btnWindowPack.add((Actor) imgWindowPrew);
+//        btnWindowPack.setOrigin(btnWindowPack.getWidth() / 2.0f, btnWindowPack.getHeight() / 2.0f);
+//        btnWindowPack.addListener(new ChangeListener() {
+//            @Override
+//            public void changed(ChangeEvent changeEvent, Actor actor) {
+//
 //                ScripPracticeScreen.this.game.setScreen( new ScripPackScreen(game));
 //            }
 //        });
-//        table2.add(homeButton).size(200, 200).padRight(50);
-//        TextButton packButton = new TextButton("[=]", Assets.instance.skin.textButtonStyle);
-//        packButton.addListener(new ClickListener() {
+//        table2.add(btnWindowPack).size(200, 200).padRight(50);
+//
+////        TextButton homeButton = new TextButton("<", Assets.instance.skin.textButtonStyle);
+////        homeButton.addListener(new ClickListener() {
+////            @Override
+////            public void clicked(InputEvent event, float x, float y) {
+////
+//////                window.remove();
+////                ScripPracticeScreen.this.game.setScreen( new ScripPackScreen(game));
+////            }
+////        });
+////        table2.add(homeButton).size(200, 200).padRight(50);
+////        TextButton packButton = new TextButton("[=]", Assets.instance.skin.textButtonStyle);
+////        packButton.addListener(new ClickListener() {
+////            @Override
+////            public void clicked(InputEvent event, float x, float y) {
+////                window.remove();
+////            }
+////        });
+////        table2.add(packButton).size(200, 200);
+//
+//
+//        Button btnWindowRestart = new Button(Assets.instance.skin.buttonStyle);
+//        Image imgWindowRestart = new Image(this.game.gameSkin, "restart");
+//        imgWindowRestart.setOrigin(imgWindowRestart.getWidth() / 2.0f, imgWindowRestart.getHeight() / 2.0f);
+//        btnWindowRestart.add((Actor) imgWindowRestart);
+//        btnWindowRestart.setOrigin(btnWindowRestart.getWidth() / 2.0f, btnWindowRestart.getHeight() / 2.0f);
+//        btnWindowRestart.addListener(new ChangeListener() {
 //            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                window.remove();
+//            public void changed(ChangeEvent changeEvent, Actor actor) {
+//                ScripPracticeScreen.this.game.setScreen(new ScripPracticeScreen(game, number));
 //            }
 //        });
-//        table2.add(packButton).size(200, 200);
-
-
-        Button btnWindowRestart = new Button(Assets.instance.skin.buttonStyle);
-        Image imgWindowRestart = new Image(this.game.gameSkin, "restart");
-        imgWindowRestart.setOrigin(imgWindowRestart.getWidth() / 2.0f, imgWindowRestart.getHeight() / 2.0f);
-        btnWindowRestart.add((Actor) imgWindowRestart);
-        btnWindowRestart.setOrigin(btnWindowRestart.getWidth() / 2.0f, btnWindowRestart.getHeight() / 2.0f);
-        btnWindowRestart.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent changeEvent, Actor actor) {
-                ScripPracticeScreen.this.game.setScreen(new ScripPracticeScreen(game, number));
-            }
-        });
-        table2.add(btnWindowRestart).size(200, 200).center();
-////////////////////////////
-
-//        table2.add(new MyTextButton("R", Assets.instance.skin.textButtonStyle, new ChangeListener() {
-//            @Override
-//            public void changed(ChangeEvent event, Actor actor) {
-//                ScripPracticeScreen.this.game.setScreen(new ScripPracticeScreen(game, number));
-////                System.out.println(number+"pack number");
-//            }
-//        })).size(200, 200).center();
-
-        if (number!= 11) {
-            Button btnWindowNext = new Button(Assets.instance.skin.buttonStyle);
-            Image imgWindowNext = new Image(this.game.gameSkin, "next");
-            imgWindowNext.setOrigin(imgWindowNext.getWidth() / 2.0f, imgWindowNext.getHeight() / 2.0f);
-            btnWindowNext.add((Actor) imgWindowNext);
-            btnWindowNext.setOrigin(btnWindowRestart.getWidth() / 2.0f, btnWindowRestart.getHeight() / 2.0f);
-            btnWindowNext.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent changeEvent, Actor actor) {
-                    ScripPracticeScreen.this.game.setScreen(new ScripPracticeScreen(game, number + 1));
-                }
-            });
-            table2.add(btnWindowNext).size(200, 200).padLeft(50);
-
-//            table2.add(new MyTextButton(">>", Assets.instance.skin.textButtonStyle, new ChangeListener() {
+//        table2.add(btnWindowRestart).size(200, 200).center();
+//////////////////////////////
+//
+////        table2.add(new MyTextButton("R", Assets.instance.skin.textButtonStyle, new ChangeListener() {
+////            @Override
+////            public void changed(ChangeEvent event, Actor actor) {
+////                ScripPracticeScreen.this.game.setScreen(new ScripPracticeScreen(game, number));
+//////                System.out.println(number+"pack number");
+////            }
+////        })).size(200, 200).center();
+//
+//        if (number!= 11) {
+//            Button btnWindowPlay = new Button(Assets.instance.skin.buttonStyle);
+//            Image imgWindowNext = new Image(this.game.gameSkin, "next");
+//            imgWindowNext.setOrigin(imgWindowNext.getWidth() / 2.0f, imgWindowNext.getHeight() / 2.0f);
+//            btnWindowPlay.add((Actor) imgWindowNext);
+//            btnWindowPlay.setOrigin(btnWindowRestart.getWidth() / 2.0f, btnWindowRestart.getHeight() / 2.0f);
+//            btnWindowPlay.addListener(new ChangeListener() {
 //                @Override
-//                public void changed(ChangeEvent event, Actor actor) {
-//                    ScripPracticeScreen.this.game.setScreen(new ScripPracticeScreen(game, number + 1));
+//                public void changed(ChangeEvent changeEvent, Actor actor) {
+////                    ScripPracticeScreen.this.game.setScreen(new ScripPracticeScreen(game, number + 1));
+//                    window.remove();
+//                    status("action");
 //                }
-//            })) .size(200, 200).padLeft(50);
-        }
-//        window.add(musicCheckBox).left().fill();
-        window.row().pad(5);
-        window.add(table);
-        window.row().pad(5);
-        window.add(table2);
-//        window.pack();
-        stage.addActor(window);
-
-
-    }
+//            });
+//            table2.add(btnWindowPlay).size(200, 200).padLeft(50);
+//
+////            table2.add(new MyTextButton(">>", Assets.instance.skin.textButtonStyle, new ChangeListener() {
+////                @Override
+////                public void changed(ChangeEvent event, Actor actor) {
+////                    ScripPracticeScreen.this.game.setScreen(new ScripPracticeScreen(game, number + 1));
+////                }
+////            })) .size(200, 200).padLeft(50);
+//        }
+////        window.add(musicCheckBox).left().fill();
+//        window.row().pad(5);
+//        window.add(table);
+//        window.row().pad(5);
+//        window.add(table2);
+////        window.pack();
+//        stage.addActor(window);
+//
+//
+//    }
 
     private Table buildScoreLayer() {
         Table table = new Table();
@@ -289,7 +315,9 @@ public class ScripPracticeScreen extends AbstractGameScreen {
 //                FirstMenuScreen.this.onPlayClicked();/////////////////////
                 showNote = true;
                 showNote();
-                initWindow();////////////////////
+                PauseWindow pauseWindow = new PauseWindow("",stage,score,game,number);
+                stage.addActor(pauseWindow);
+//                initWindow();////////////////////
 //                dialog.show(stage);
             }
         });
@@ -377,11 +405,12 @@ public class ScripPracticeScreen extends AbstractGameScreen {
         stage.act(delta);
         stage.draw();
         renderGuiFpsCounter();
-        if (status == "action") {
+        if (game.gameStatus == "action"){
             controller();
         }
 
     }
+
 
     private void Back() {
         this.game.setScreen(new ScripPackScreen(this.game));
